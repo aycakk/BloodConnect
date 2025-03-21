@@ -1,22 +1,32 @@
 package com.softwarengineering.bloodconnect
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        val model=HealthModel(this)
-        val inputdata= floatArrayOf(70.0f,35.0f,1.0f,1.0f)
-        val prediction=model.predict(inputdata)
-        Log.d("lifetes", "model predictlon: $prediction ")
-        model.close()
 
-    }
+
+
+
+
+
+           }
+
+
+
+
+
+
 }
