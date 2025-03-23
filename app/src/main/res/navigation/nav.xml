@@ -13,10 +13,35 @@
         <action
             android:id="@+id/action_welcomeFragment_to_register1Fragment"
             app:destination="@id/register1Fragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/register1Fragment"
         android:name="com.softwarengineering.bloodconnect.ui.fragments.Register1Fragment"
         android:label="fragment_register1"
-        tools:layout="@layout/fragment_register1" />
+        tools:layout="@layout/fragment_register1" >
+        <action
+            android:id="@+id/action_register1Fragment_to_register2Fragment"
+            app:destination="@id/register2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/register2Fragment"
+        android:name="com.softwarengineering.bloodconnect.ui.fragments.Register2Fragment"
+        android:label="fragment_register2"
+        tools:layout="@layout/fragment_register2" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.softwarengineering.bloodconnect.ui.fragments.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.softwarengineering.bloodconnect.ui.fragments.HomeFragment"
+        android:label="HomeFragment" />
 </navigation>

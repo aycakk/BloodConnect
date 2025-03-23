@@ -44,6 +44,7 @@ android {
         viewBinding = true
         buildConfig = true
         mlModelBinding = true
+        dataBinding=true
     }
 }
 val nav_version = "2.8.0"
@@ -113,8 +114,6 @@ dependencies {
 
     implementation ("com.google.firebase:firebase-auth:21.1.0")
 
-
-        implementation ("androidx.compose.ui:ui-text-google-fonts:1.7.8")
 
 }
 

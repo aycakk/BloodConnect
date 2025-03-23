@@ -1,7 +1,6 @@
 package com.softwarengineering.bloodconnect.ui.fragments
 
 import android.os.Bundle
-import android.renderscript.ScriptGroup.Binding
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,23 +8,19 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import com.softwarengineering.bloodconnect.R
-import com.softwarengineering.bloodconnect.databinding.FragmentWelcomeBinding
+import com.softwarengineering.bloodconnect.databinding.FragmentLoginBinding
 
-class WelcomeFragment : Fragment() {
-    private lateinit var binding: FragmentWelcomeBinding
+class LoginFragment : Fragment() {
+    private lateinit var binding: FragmentLoginBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding=DataBindingUtil.inflate(inflater,R.layout.fragment_welcome,container,false)
-        binding.welcomefragment=this
+        binding=DataBindingUtil.inflate(inflater,R.layout.fragment_login, container, false)
         // Inflate the layout for this fragment
-        binding.buttonCreateaccount.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_welcomeFragment_to_register1Fragment)
-        }
         binding.buttonLogin.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_welcomeFragment_to_loginFragment)
+            Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_homeFragment)
         }
         return binding.root
     }

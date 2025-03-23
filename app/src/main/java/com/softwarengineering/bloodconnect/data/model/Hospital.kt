@@ -1,7 +1,7 @@
 package com.softwarengineering.bloodconnect.data.model
 
 data class Hospital(
-    var id: String = "",
+    var hospitalID: String = "",
     var name: String = "",
     var email: String = "",
     var phone: String = "",

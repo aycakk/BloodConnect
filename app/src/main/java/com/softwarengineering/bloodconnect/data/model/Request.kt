@@ -1,7 +1,7 @@
 package com.softwarengineering.bloodconnect.data.model
 
 data class Request(
-    var id: String = "",
+    var requestID: String = "",
     var hospitalID: String = "",
     var recipientID: String = "",
     var requestStatus: String = "waiting",  // "waiting", "matched", "completed" olabilir
