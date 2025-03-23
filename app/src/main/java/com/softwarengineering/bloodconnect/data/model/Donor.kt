@@ -7,7 +7,9 @@ data class Donor (var id: String = "",
                   var bloodType: String = "",
                   var email: String = "",
                   var gender: String = "",
-                  var height: String = "",
+                  var height: Float = 0F,
+                  var weight: Float = 0F,
                   var phone: String = "",
-                  var password: String = ""){
-}
+                  var password: String = "",
+                  var isSmoking: Boolean = false
+    )
