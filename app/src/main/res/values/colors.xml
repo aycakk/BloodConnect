@@ -8,8 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#D80032</color>
-<<<<<<< Updated upstream
     <color name="textbackground">#F8F7FB</color>
-=======
->>>>>>> Stashed changes
+
 </resources>
