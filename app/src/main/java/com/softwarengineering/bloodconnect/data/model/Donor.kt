@@ -1,7 +1,5 @@
 package com.softwarengineering.bloodconnect.data.model
 
-import android.util.Log
-import com.google.firebase.firestore.FirebaseFirestore
 
 data class Donor (var donorID: String = "",
                   var name: String = "",

@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.softwarengineering.bloodconnect.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 
 class Register2Fragment : Fragment() {
 

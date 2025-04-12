@@ -21,10 +21,11 @@ import com.google.gson.JsonObject
 import com.softwarengineering.bloodconnect.R
 import com.softwarengineering.bloodconnect.databinding.ActivityMapsBinding
 import com.softwarengineering.bloodconnect.network.ApiClient
+import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
+@AndroidEntryPoint
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap

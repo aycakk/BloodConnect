@@ -15,7 +15,9 @@ import com.softwarengineering.bloodconnect.data.model.Donor
 import com.softwarengineering.bloodconnect.data.model.Hospital
 import com.softwarengineering.bloodconnect.data.model.Match
 import com.softwarengineering.bloodconnect.data.model.Request
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
