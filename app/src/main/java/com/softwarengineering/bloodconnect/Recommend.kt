@@ -2,23 +2,25 @@ package com.softwarengineering.bloodconnect
 
 import android.content.Context
 import com.softwarengineering.bloodconnect.data.model.Donor
+import com.softwarengineering.bloodconnect.data.model.Donation
+import com.google.firebase.firestore.FirebaseFirestore
 
 class Recommend() {
     fun scoreDonor(context: Context, donor: Donor, recipientBloodType: String, hospitalAddress: FloatArray): Float {
-        //donorDistance = haversine distance between donor and hospital. use a simpler function later for optimization
-        //donorBloodType = donor.bloodType
-        //patientBloodType = recipientBloodType
-        //bmi = donor.weight / (donor.height * donor.height)
-        //healthData = floatArrayOf(donor.age, bmi, donor.smokes, donor.gender)
+        //donorDistance = haversine distance between donor and hospital. use simpler function later for optimization
+        val donorBloodType = donor.bloodType
+        val bmi = donor.weight / (donor.height * donor.height)
+        var gender = 0f
+        if (donor.gender == "Male") {
+            gender = 1f
+        }
+        val healthData = floatArrayOf(donor.age.toFloat(), bmi, donor.smokes.toFloat(), gender)
 
         //implement database queries after integration for predData
 
         //sample data until database integration
         val predData = floatArrayOf(2.0f, 5.0f, 1250.0f, 47.0f)
-        val healthData = floatArrayOf(20.0f, 30.0f, 0.0f, 1.0f)
-        val donorBloodType = "AB+"
         val donorDistance = 0.5f
-        val patientBloodType = "AB+"
 
         val bloodCompatibility = mapOf(
             "O-" to listOf("O-"),
@@ -36,9 +38,9 @@ class Recommend() {
 
         var totalScore = 0f
 
-        if (donorBloodType == patientBloodType) {
+        if (donorBloodType == recipientBloodType) {
             totalScore += 40f
-        } else if (bloodCompatibility[patientBloodType]?.contains(donorBloodType) == true) {
+        } else if (bloodCompatibility[recipientBloodType]?.contains(donorBloodType) == true) {
             totalScore += 20f
         } else {
             totalScore = 0f
@@ -50,6 +52,9 @@ class Recommend() {
         totalScore += 10f * predModel.predict(predData)
 
         totalScore += 40f * hModel.predict(healthData)
+
+        hModel.close()
+        predModel.close()
 
         return totalScore
 
