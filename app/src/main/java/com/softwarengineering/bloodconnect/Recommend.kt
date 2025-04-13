@@ -5,7 +5,7 @@ import com.softwarengineering.bloodconnect.data.model.Donor
 
 class Recommend() {
     fun scoreDonor(context: Context, donor: Donor, recipientBloodType: String, hospitalAddress: FloatArray): Float {
-        //donorDistance = euclidean distance between donor and hospital possibly without square root
+        //donorDistance = haversine distance between donor and hospital. use a simpler function later for optimization
         //donorBloodType = donor.bloodType
         //patientBloodType = recipientBloodType
         //bmi = donor.weight / (donor.height * donor.height)
