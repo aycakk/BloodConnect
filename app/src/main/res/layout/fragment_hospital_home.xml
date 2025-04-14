@@ -5,9 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-<variable
-    name="homefragment"
-    type="com.softwarengineering.bloodconnect.ui.fragments.HomeFragment" />
+        <variable
+            name="homefragment"
+            type="com.softwarengineering.bloodconnect.ui.fragments.hospitals.HospitalHomeFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -72,13 +72,13 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/donorhistorycd"
             android:layout_width="150dp"
-            android:layout_height="85dp"
-            android:layout_marginTop="21dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="64dp"
             app:cardBackgroundColor="#D9D9E0"
             app:cardCornerRadius="16dp"
             app:layout_constraintEnd_toEndOf="@+id/viewbloodreguestcd"
             app:layout_constraintStart_toStartOf="@+id/viewbloodreguestcd"
-            app:layout_constraintTop_toBottomOf="@+id/imageView6">
+            app:layout_constraintTop_toBottomOf="@+id/privatechoose">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -90,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="32dp"
-                    android:text="Nearly Donors"
+                    android:text="Donor History"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/imageButton_nearlydonors"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -113,13 +113,13 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/vreatebloodrequestcd"
             android:layout_width="150dp"
-            android:layout_height="85dp"
+            android:layout_height="100dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="21dp"
+            android:layout_marginTop="64dp"
             app:cardBackgroundColor="#D9D9E0"
             app:cardCornerRadius="16dp"
             app:layout_constraintStart_toEndOf="@+id/donorhistorycd"
-            app:layout_constraintTop_toBottomOf="@+id/imageView6">
+            app:layout_constraintTop_toBottomOf="@+id/privatechoose">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -131,7 +131,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="24dp"
-                    android:text="Donation Tracking"
+                    android:text="Create Blood Request"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/image_Buttondonation"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -153,9 +153,9 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/viewbloodreguestcd"
             android:layout_width="150dp"
-            android:layout_height="85dp"
+            android:layout_height="100dp"
             android:layout_marginStart="45dp"
-            android:layout_marginTop="29dp"
+            android:layout_marginTop="32dp"
             app:cardBackgroundColor="#D9D9E0"
             app:cardCornerRadius="16dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -167,11 +167,11 @@
 
                 <TextView
                     android:id="@+id/textView6"
-                    android:layout_width="wrap_content"
+                    android:layout_width="64dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="32dp"
-                    android:text="Request Blood"
+                    android:layout_marginTop="16dp"
+                    android:text="View Request Blood"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/image_buttonrequest"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -194,8 +194,8 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/managebloodinventerycd"
             android:layout_width="150dp"
-            android:layout_height="85dp"
-            android:layout_marginTop="29dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="32dp"
             app:cardBackgroundColor="#D9D9E0"
             app:cardCornerRadius="16dp"
             app:layout_constraintEnd_toEndOf="@+id/vreatebloodrequestcd"
@@ -208,11 +208,11 @@
 
                 <TextView
                     android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
+                    android:layout_width="64dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="32dp"
-                    android:text="Donate"
+                    android:layout_marginTop="16dp"
+                    android:text="Manage Blood Inventery"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/imageButton_donateunion"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -234,7 +234,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="320dp"
             android:layout_height="0dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="64dp"
             app:cardBackgroundColor="#D9D9E0"
             app:cardCornerRadius="16dp"
             app:layout_constraintEnd_toEndOf="@+id/managebloodinventerycd"
@@ -250,7 +250,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Hospitals and Blood banks"
+                    android:text="Partner Blood Banks"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -285,18 +285,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
-
-
-    <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:src="@drawable/hhospital"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/privatechoose" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

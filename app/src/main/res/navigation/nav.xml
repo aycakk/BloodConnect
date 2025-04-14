@@ -16,6 +16,12 @@
         <action
             android:id="@+id/action_welcomeFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_hospitalLoginFragment"
+            app:destination="@id/hospitalLoginFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_hospitalRegister1Fragment"
+            app:destination="@id/hospitalRegister1Fragment" />
     </fragment>
     <fragment
         android:id="@+id/register1Fragment"
@@ -30,7 +36,11 @@
         android:id="@+id/register2Fragment"
         android:name="com.softwarengineering.bloodconnect.ui.fragments.Register2Fragment"
         android:label="fragment_register2"
-        tools:layout="@layout/fragment_register2" />
+        tools:layout="@layout/fragment_register2" >
+        <action
+            android:id="@+id/action_register2Fragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.softwarengineering.bloodconnect.ui.fragments.LoginFragment"
@@ -44,4 +54,38 @@
         android:id="@+id/homeFragment"
         android:name="com.softwarengineering.bloodconnect.ui.fragments.HomeFragment"
         android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/hospitalLoginFragment"
+        android:name="com.softwarengineering.bloodconnect.ui.fragments.hospitals.HospitalLoginFragment"
+        android:label="HospitalLoginFragment" >
+        <action
+            android:id="@+id/action_hospitalLoginFragment_to_hospitalRegister1Fragment"
+            app:destination="@id/hospitalRegister1Fragment" />
+        <action
+            android:id="@+id/action_hospitalLoginFragment_to_hospitalHomeFragment"
+            app:destination="@id/hospitalHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/hospitalRegister1Fragment"
+        android:name="com.softwarengineering.bloodconnect.ui.fragments.hospitals.HospitalRegister1Fragment"
+        android:label="HospitalRegister1Fragment" >
+        <action
+            android:id="@+id/action_hospitalRegister1Fragment_to_hospitalRegister2Fragment"
+            app:destination="@id/hospitalRegister2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/hospitalRegister2Fragment"
+        android:name="com.softwarengineering.bloodconnect.ui.fragments.hospitals.HospitalRegister2Fragment"
+        android:label="HospitalRegister2Fragment" >
+        <action
+            android:id="@+id/action_hospitalRegister2Fragment_to_hospitalHomeFragment2"
+            app:destination="@id/hospitalHomeFragment" />
+        <action
+            android:id="@+id/action_hospitalRegister2Fragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/hospitalHomeFragment"
+        android:name="com.softwarengineering.bloodconnect.ui.fragments.hospitals.HospitalHomeFragment"
+        android:label="HospitalHomeFragment" />
 </navigation>

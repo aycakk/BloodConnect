@@ -7,14 +7,14 @@
     <data>
         <variable
             name="register1fragment"
-            type="com.softwarengineering.bloodconnect.ui.fragments.Register1Fragment" />
+            type="com.softwarengineering.bloodconnect.ui.fragments.hospitals.HospitalRegister1Fragment" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragments.Register1Fragment">
+        tools:context=".ui.fragments.hospitals.HospitalRegister1Fragment">
 
         <TextView
             android:id="@+id/textView2"
@@ -38,50 +38,38 @@
             android:fontFamily="@font/roboto_medium"
             android:paddingStart="5dp"
             android:paddingRight="5dp"
-            android:text="Name*"
+            android:text="Hospital Name"
             android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@+id/name"
+            app:layout_constraintStart_toStartOf="@+id/hospitalname"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <EditText
-            android:id="@+id/name"
+            android:id="@+id/hospitalname"
             android:layout_width="283dp"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
 
             android:background="@color/textbackground"
             android:ems="10"
-            android:hint="First Name"
+            android:hint="Hospital Name"
             android:inputType="text"
             android:paddingStart="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-        <TextView
+        <Spinner
             android:id="@+id/privatechoose"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:layout_marginTop="16dp"
+            android:entries="@array/institiontype"
             android:fontFamily="@font/roboto_medium"
             android:paddingStart="5dp"
-            android:text="Last name*"
+            android:prompt="@string/secim_yap"
+            android:spinnerMode="dropdown"
             android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@+id/editText_lastname"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
-
-        <EditText
-            android:id="@+id/editText_lastname"
-            android:layout_width="283dp"
-            android:layout_height="30dp"
-            android:background="@color/textbackground"
-            android:ems="10"
-            android:hint="Last Name"
-            android:inputType="text"
-            android:paddingStart="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/privatechoose" />
+            app:layout_constraintStart_toStartOf="@+id/hospitalname"
+            app:layout_constraintTop_toBottomOf="@+id/hospitalname" />
 
         <TextView
             android:id="@+id/textViewill"
@@ -89,18 +77,18 @@
             android:layout_height="20dp"
             android:layout_marginTop="16dp"
             android:paddingStart="5dp"
-            android:text="Date of Birth*"
+            android:text="province*"
             android:textSize="10sp"
             app:layout_constraintStart_toStartOf="@+id/province"
-            app:layout_constraintTop_toBottomOf="@+id/editText_lastname" />
+            app:layout_constraintTop_toBottomOf="@+id/privatechoose" />
 
         <EditText
             android:id="@+id/province"
             android:layout_width="283dp"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:background="@color/textbackground"
             android:ems="10"
-            android:hint="Date"
+            android:hint="Enter province"
             android:inputType="date"
             android:paddingStart="5dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -114,10 +102,10 @@
             android:layout_height="40dp"
             android:background="@color/textbackground"
             android:ems="10"
+            android:hint="Enter distrinct"
             android:inputType="number"
             android:paddingStart="5dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -127,15 +115,15 @@
             android:layout_height="20dp"
             android:layout_marginTop="16dp"
             android:paddingStart="5dp"
-            android:text="ID Number*"
+            android:text="District*"
             android:textSize="10sp"
             app:layout_constraintStart_toStartOf="@+id/distrinct"
             app:layout_constraintTop_toBottomOf="@+id/province" />
 
         <EditText
-            android:id="@+id/phonenumber"
+            android:id="@+id/code"
             android:layout_width="283dp"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:background="@color/textbackground"
             android:ems="10"
             android:inputType="phone"
@@ -150,40 +138,29 @@
             android:layout_height="20dp"
             android:layout_marginTop="16dp"
             android:paddingStart="5dp"
-            android:text="Phone Number*"
+            android:text="İnstition code"
             android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@+id/phonenumber"
+            app:layout_constraintStart_toStartOf="@+id/code"
             app:layout_constraintTop_toBottomOf="@+id/distrinct" />
-
-        <EditText
-            android:id="@+id/editTextadress"
-            android:layout_width="283dp"
-            android:layout_height="40dp"
-            android:background="@color/textbackground"
-            android:ems="10"
-            android:gravity="start|top"
-            android:inputType="textMultiLine"
-            android:paddingStart="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewadress" />
 
         <TextView
             android:id="@+id/textViewadress"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_width="283dp"
+            android:layout_height="30dp"
             android:layout_marginTop="16dp"
             android:paddingStart="5dp"
-            android:text="Adress*"
+            android:text="(!This code is the official institution number provided by the Ministry of Health.)"
+            android:textAlignment="viewStart"
+            android:textColor="@color/red"
             android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@+id/editTextadress"
-            app:layout_constraintTop_toBottomOf="@+id/phonenumber" />
+            app:layout_constraintStart_toStartOf="@+id/code"
+            app:layout_constraintTop_toBottomOf="@+id/code" />
 
         <Button
             android:id="@+id/button_continue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:backgroundTint="@color/red"
             android:fontFamily="@font/roboto_medium"
             android:text="Continue"
@@ -192,7 +169,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextadress" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewadress" />
 
         <ImageView
             android:id="@+id/imageView4"

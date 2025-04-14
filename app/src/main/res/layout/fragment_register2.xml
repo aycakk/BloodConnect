@@ -32,7 +32,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
         <TextView
-            android:id="@+id/textViewbirth"
+            android:id="@+id/textViewill"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_marginTop="16dp"
@@ -40,24 +40,24 @@
             android:paddingStart="5dp"
             android:text="Do you have any ilness?*"
             android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@+id/editTextDate"
+            app:layout_constraintStart_toStartOf="@+id/province"
             app:layout_constraintTop_toBottomOf="@+id/spinnerbloodtype" />
 
         <EditText
-            android:id="@+id/editTextDate"
+            android:id="@+id/province"
             android:layout_width="283dp"
             android:layout_height="30dp"
             android:background="@color/textbackground"
             android:ems="10"
-            android:inputType="date"
+            android:inputType="text"
             android:paddingStart="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewbirth" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewill" />
 
         <EditText
-            android:id="@+id/editTextNumber"
+            android:id="@+id/distrinct"
             android:layout_width="283dp"
             android:layout_height="30dp"
             android:background="@color/textbackground"
@@ -77,8 +77,8 @@
             android:paddingStart="5dp"
             android:text="What is your  Illness, ıf any?"
             android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@+id/editTextNumber"
-            app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
+            app:layout_constraintStart_toStartOf="@+id/distrinct"
+            app:layout_constraintTop_toBottomOf="@+id/province" />
 
         <TextView
             android:id="@+id/textView7"
@@ -88,7 +88,7 @@
             android:paddingStart="5dp"
             android:text="E-mail*"
             android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextEmailAddress"
+            app:layout_constraintStart_toStartOf="@+id/email"
             app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
         <Button
@@ -151,11 +151,11 @@
             android:fontFamily="@font/roboto_medium"
             android:text="(!This section is for those who have illness.)"
             android:textColor="@color/red"
-            app:layout_constraintStart_toStartOf="@+id/editTextNumber"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+            app:layout_constraintStart_toStartOf="@+id/distrinct"
+            app:layout_constraintTop_toBottomOf="@+id/distrinct" />
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress"
+            android:id="@+id/email"
             android:layout_width="283dp"
             android:layout_height="30dp"
             android:background="@color/textbackground"
@@ -196,7 +196,7 @@
             android:layout_marginTop="16dp"
             android:text="Password*"
             app:layout_constraintStart_toStartOf="@+id/password"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+            app:layout_constraintTop_toBottomOf="@+id/email" />
 
         <TextView
             android:id="@+id/textView15"

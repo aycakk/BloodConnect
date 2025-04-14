@@ -8,9 +8,16 @@ import javax.inject.Inject
 @HiltViewModel
 class RegisterViewModel @Inject constructor(var donorRepostory: DonorRepostory):ViewModel() {
     fun registerDonor(
-        name: String,
-        email: String,
-        password: String,
 
-    )=donorRepostory.registerDonor(name,email,password,)
+    )=donorRepostory.registerDonor(name,lastname,idnumber,phonenumber,gender,blood,email,password,)
+    var name :String= ""
+    var lastname:String = ""
+    var idnumber:String= ""
+    var phonenumber:String= ""
+    var adress:String= ""
+    var gender:String= ""
+    var blood:String= ""
+    var email: String= ""
+    var password: String= ""
+
 }

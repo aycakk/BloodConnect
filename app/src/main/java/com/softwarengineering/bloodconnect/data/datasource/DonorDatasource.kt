@@ -6,9 +6,14 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.softwarengineering.bloodconnect.data.model.Donor
 
-class DonorDatasource(var collection: CollectionReference) {
+class DonorDatasource(var collectiondonor: CollectionReference) {
      fun registerDonor(
         name: String,
+        lastname:String,
+        idnumber:String,
+        phonenumber:String,
+        gender:String,
+        blood:String,
         email: String,
         password: String,
 
@@ -23,7 +28,7 @@ class DonorDatasource(var collection: CollectionReference) {
                 val donor = Donor(
                     donorID = uid,
                     name = name,
-                    surname = "",
+                    surname = lastname,
                     age = 0,
                     bloodType = "",
                     email = email,

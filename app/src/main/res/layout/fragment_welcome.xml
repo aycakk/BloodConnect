@@ -17,23 +17,57 @@
         android:layout_height="match_parent"
         tools:context=".ui.fragments.WelcomeFragment">
 
+        <Button
+            android:id="@+id/button_createaccount"
+            android:layout_width="297dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/red"
+            android:backgroundTintMode="src_over"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Create Account"
+            android:textColor="@color/white"
+            app:cornerRadius="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_login"
+            app:strokeColor="@color/red"
+            app:strokeWidth="2dp" />
+
+        <Button
+            android:id="@+id/button_form"
+            android:layout_width="297dp"
+            android:layout_height="60dp"
+
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Application form for hospitals"
+            android:textColor="@color/red"
+            app:cornerRadius="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_createaccount"
+            app:strokeColor="@color/red"
+            app:strokeWidth="2dp" />
+
         <ImageView
 
             android:id="@+id/imageView"
             android:layout_width="180dp"
             android:layout_height="180dp"
-            android:layout_marginTop="219dp"
+            android:layout_marginTop="16dp"
             android:src="@drawable/bloodconnect_logo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="114dp"
+            android:layout_marginTop="70dp"
             android:fontFamily="@font/roboto_medium"
             android:text="Welcome"
             android:textColor="@color/black"
@@ -46,35 +80,33 @@
         <Button
             android:id="@+id/button_login"
             android:layout_width="297dp"
-            android:layout_height="63.21dp"
-            android:layout_marginTop="450dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="32dp"
             android:backgroundTint="@color/white"
             android:fontFamily="@font/roboto_medium"
             android:text="Login"
             android:textColor="@color/red"
             app:cornerRadius="50dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
             app:strokeColor="@color/red"
             app:strokeWidth="2dp" />
 
         <Button
-            android:id="@+id/button_createaccount"
+            android:id="@+id/button_loginhospital"
             android:layout_width="297dp"
-            android:layout_height="63.21dp"
-            android:layout_marginTop="550dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="32dp"
             android:backgroundTint="@color/red"
             android:backgroundTintMode="src_over"
             android:fontFamily="@font/roboto_medium"
-            android:text="Create Account"
+            android:text="LOGİN FOR HOSPİTALS"
             android:textColor="@color/white"
             app:cornerRadius="50dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_form"
             app:strokeColor="@color/red"
             app:strokeWidth="2dp" />
 

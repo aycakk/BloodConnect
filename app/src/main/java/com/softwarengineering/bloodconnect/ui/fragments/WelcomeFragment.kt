@@ -29,6 +29,12 @@ class WelcomeFragment : Fragment() {
         binding.buttonLogin.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_welcomeFragment_to_loginFragment)
         }
+        binding.buttonLoginhospital.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_welcomeFragment_to_hospitalLoginFragment)
+        }
+        binding.buttonForm.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_welcomeFragment_to_hospitalRegister1Fragment)
+        }
         return binding.root
     }
 
