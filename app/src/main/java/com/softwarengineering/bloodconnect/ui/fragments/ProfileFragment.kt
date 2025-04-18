@@ -6,13 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import com.softwarengineering.bloodconnect.R
 import com.softwarengineering.bloodconnect.databinding.FragmentProfileBinding
+import com.softwarengineering.bloodconnect.viewmodel.DonorViewModel
+import com.softwarengineering.bloodconnect.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
 private lateinit var binding:FragmentProfileBinding
+private lateinit var viewModel: DonorViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,6 +28,11 @@ private lateinit var binding:FragmentProfileBinding
         }
         // Inflate the layout for this fragment
         return binding.root
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempviewmodel: DonorViewModel by viewModels()
+        viewModel=tempviewmodel
     }
 
 

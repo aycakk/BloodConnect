@@ -50,4 +50,27 @@ class DonorDatasource(var collectiondonor: CollectionReference) {
                 Log.d("register", "registerDonor: ",e)
             }
     }
+
+    fun getCurrentDonor(
+        onSuccess: (Donor) -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
+        if (uid.isNullOrEmpty()) {
+            onFailure(Exception("User not logged in"))
+            return
+        }
+
+        collectiondonor.document(uid).get()
+            .addOnSuccessListener { doc ->
+                val donor = doc.toObject(Donor::class.java)
+                if (donor != null) {
+                    onSuccess(donor)
+                } else {
+                    onFailure(Exception("No donor data found"))
+                }
+            }
+            .addOnFailureListener { onFailure(it) }
+    }
+}
 }

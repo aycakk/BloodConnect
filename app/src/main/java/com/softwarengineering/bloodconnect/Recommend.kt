@@ -4,7 +4,7 @@ import android.content.Context
 import com.softwarengineering.bloodconnect.data.model.Donor
 import com.softwarengineering.bloodconnect.data.model.Donation
 import com.google.firebase.firestore.FirebaseFirestore
-
+/*
 class Recommend() {
     fun scoreDonor(context: Context, donor: Donor, recipientBloodType: String, hospitalAddress: FloatArray): Float {
         //donorDistance = haversine distance between donor and hospital. use simpler function later for optimization
@@ -58,5 +58,5 @@ class Recommend() {
 
         return totalScore
 
-    }
-}
+    }/
+}*/
