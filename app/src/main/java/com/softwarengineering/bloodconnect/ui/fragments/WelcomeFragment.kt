@@ -10,7 +10,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import com.softwarengineering.bloodconnect.R
 import com.softwarengineering.bloodconnect.databinding.FragmentWelcomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WelcomeFragment : Fragment() {
     private lateinit var binding: FragmentWelcomeBinding
 
@@ -26,6 +28,12 @@ class WelcomeFragment : Fragment() {
         }
         binding.buttonLogin.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_welcomeFragment_to_loginFragment)
+        }
+        binding.buttonLoginhospital.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_welcomeFragment_to_hospitalLoginFragment)
+        }
+        binding.buttonForm.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_welcomeFragment_to_hospitalRegister1Fragment)
         }
         return binding.root
     }
