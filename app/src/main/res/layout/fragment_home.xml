@@ -232,8 +232,11 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/hospitalBtn"
+            android:clickable="true"
+            android:focusable="true"
             android:layout_width="320dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             app:cardBackgroundColor="#D9D9E0"
             app:cardCornerRadius="16dp"
@@ -273,6 +276,8 @@
 
                 <ImageButton
                     android:id="@+id/image_Buttonhospital"
+                    android:focusable="false"
+                    android:clickable="false"
                     android:layout_width="32dp"
                     android:layout_height="37dp"
                     android:layout_marginStart="16dp"

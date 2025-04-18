@@ -1,22 +1,18 @@
 package com.softwarengineering.bloodconnect.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.softwarengineering.bloodconnect.R
 import com.softwarengineering.bloodconnect.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var binding:FragmentHomeBinding
@@ -25,9 +21,27 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding=DataBindingUtil.inflate(inflater,R.layout.fragment_home, container, false)
-        // Inflate the layout for this fragment
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        binding.homefragment = this
+
+        with(binding){
+            hospitalBtn.setOnClickListener {
+                Log.d("TEST", "hospitalBtn tıklandı")
+                Toast.makeText(requireContext(), "Tıklandı!", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.mapFragment)
+
+                /*
+                                parentFragmentManager.beginTransaction()
+                                    .replace(R.id.fragmentMap, MapFragment())
+                                    .addToBackStack(null)
+                                    .commit()
+
+                 */
+            }
+        }
+
         return binding.root
+
     }
 
 

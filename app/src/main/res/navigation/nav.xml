@@ -88,4 +88,9 @@
         android:id="@+id/hospitalHomeFragment"
         android:name="com.softwarengineering.bloodconnect.ui.fragments.hospitals.HospitalHomeFragment"
         android:label="HospitalHomeFragment" />
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.softwarengineering.bloodconnect.ui.fragments.MapFragment"
+        android:label="MapFragment"
+        tools:layout="@layout/fragment_map" />
 </navigation>
