@@ -5,29 +5,29 @@ import org.tensorflow.lite.Interpreter
 import org.tensorflow.lite.support.common.FileUtil
 import java.nio.ByteBuffer
 
-class HealthModel(context: Context) {
+class PredicModel(context: Context) {
     private val interpreter: Interpreter
 
     init {
-        val model = FileUtil.loadMappedFile(context, "health_model.tflite")
+        val model = FileUtil.loadMappedFile(context, "predic_model.tflite")
         val options = Interpreter.Options()
         interpreter = Interpreter(model, options)
     }
 
-    //expected input format: [age, bmi, smoker, sex(1:male)]
-    fun predict(inputData: FloatArray): Float {
+    //input format [months since last, total num, total c.c., months since first]
+    fun predict(inputData: FloatArray): Int {
         val inputBuffer = ByteBuffer.allocateDirect(inputData.size * 4).apply {
             order(java.nio.ByteOrder.nativeOrder())
             asFloatBuffer().put(inputData)
         }
 
-        val outputData = Array(1) { FloatArray(1) }
+        val outputData = Array(1) { FloatArray(2) }
         interpreter.run(inputBuffer, outputData)
-        return outputData[0][0]
+
+        return outputData[0].indices.maxByOrNull { outputData[0][it] } ?: -1
     }
 
     fun close() {
         interpreter.close()
     }
-
 }

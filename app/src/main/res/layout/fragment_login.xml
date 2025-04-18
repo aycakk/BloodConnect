@@ -23,13 +23,13 @@
             android:layout_marginTop="24dp"
             android:backgroundTint="@color/red"
             android:fontFamily="@font/roboto_medium"
-            android:text="Sing in"
+            android:text="LOG IN"
             android:textColor="@color/white"
             app:cornerRadius="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextpassword" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -70,10 +70,12 @@
 
         <EditText
             android:id="@+id/edittextemail"
-            android:layout_width="238dp"
+            android:layout_width="300dp"
             android:layout_height="40dp"
             android:background="@color/textbackground"
             android:ems="10"
+            android:textSize="15sp"
+            android:hint="@string/email"
             android:fontFamily="@font/roboto_medium"
             android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"
@@ -83,10 +85,13 @@
 
         <EditText
             android:id="@+id/editTextpassword"
-            android:layout_width="238dp"
+            android:layout_width="308dp"
             android:layout_height="40dp"
             android:background="@color/textbackground"
             android:ems="10"
+            android:hint="@string/password"
+            android:textSize="15sp"
+
             android:fontFamily="@font/roboto_medium"
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
@@ -98,9 +103,11 @@
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/roboto_medium"
             android:text="E-mail"
+            android:textStyle="bold"
+            android:textSize="15sp"
             app:layout_constraintStart_toStartOf="@+id/edittextemail"
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -108,19 +115,13 @@
             android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="20dp"
             android:text="Password"
+            android:textStyle="bold"
+            android:textSize="15sp"
             app:layout_constraintStart_toStartOf="@+id/editTextpassword"
             app:layout_constraintTop_toBottomOf="@+id/edittextemail" />
 
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Keep me sing in"
-            app:layout_constraintStart_toStartOf="@+id/editTextpassword"
-            app:layout_constraintTop_toBottomOf="@+id/editTextpassword" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

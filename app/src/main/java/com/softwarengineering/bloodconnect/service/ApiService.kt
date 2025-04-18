@@ -12,7 +12,15 @@ interface ApiService {
     fun getNearbyPlaces(
         @Query("location") location: String,
         @Query("radius") radius: Int,
-        @Query("type") type: String, // "hospital|blood_donation_center"
+        @Query("type") type: String = "hospital",
+        @Query("key") apiKey: String
+    ): Call<JsonObject>
+
+    @GET("place/nearbysearch/json")
+    fun getNearbyByKeyword(
+        @Query("location") location: String,
+        @Query("radius") radius: Int,
+        @Query("keyword") keyword: String,
         @Query("key") apiKey: String
     ): Call<JsonObject>
 

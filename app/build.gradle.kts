@@ -69,6 +69,7 @@ dependencies {
 
     // **Google Maps SDK (Harita Gösterimi)**
     implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation("com.google.maps.android:maps-ktx:5.1.1")
 
     // **Google Places API (Kan bağış noktalarını bulma)**
     implementation("com.google.android.libraries.places:places:4.1.0")
@@ -79,6 +80,9 @@ dependencies {
     implementation("com.google.maps:google-maps-services:0.17.0") {
         exclude(group = "org.apache.httpcomponents", module = "httpclient") // Compatibility Fix
     }
+
+    // Routes API (Yol tarifi hesaplamak için)
+    implementation ("com.google.maps:google-maps-services:0.15.0")
 
     // **Google Geocoding API (Adres-Konum Dönüştürme)**
     implementation("com.google.maps.android:android-maps-utils:3.4.0")
@@ -114,6 +118,9 @@ dependencies {
 
     implementation ("com.google.firebase:firebase-auth:21.1.0")
 
+    // **Firebase Cloud Messaging (FCM) - Acil Kan Bağışı Bildirimleri İçin**
+    implementation("com.google.firebase:firebase-messaging-ktx:24.1.0")
+    implementation("com.google.firebase:firebase-analytics-ktx:21.4.0")
 
 }
 
