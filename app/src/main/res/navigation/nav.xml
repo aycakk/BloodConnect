@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav"
-    app:startDestination="@id/welcomeFragment">
+    app:startDestination="@id/profileFragment">
 
     <fragment
         android:id="@+id/welcomeFragment"
@@ -88,4 +88,8 @@
         android:id="@+id/hospitalHomeFragment"
         android:name="com.softwarengineering.bloodconnect.ui.fragments.hospitals.HospitalHomeFragment"
         android:label="HospitalHomeFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.softwarengineering.bloodconnect.ui.fragments.ProfileFragment"
+        android:label="ProfileFragment" />
 </navigation>
