@@ -1,7 +1,7 @@
 package com.softwarengineering.bloodconnect.data.model
 
 data class Match(
-    var matcID: String = "",
+    var matchID: String = "",
     var donorID: String = "",
     var recipientID: String = "",
     var matchScore: Int = 0,  // Eşleşme oranı (%0 - %100)
