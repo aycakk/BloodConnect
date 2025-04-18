@@ -27,16 +27,7 @@ class HomeFragment : Fragment() {
         with(binding){
             hospitalBtn.setOnClickListener {
                 Log.d("TEST", "hospitalBtn tıklandı")
-                Toast.makeText(requireContext(), "Tıklandı!", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.mapFragment)
-
-                /*
-                                parentFragmentManager.beginTransaction()
-                                    .replace(R.id.fragmentMap, MapFragment())
-                                    .addToBackStack(null)
-                                    .commit()
-
-                 */
             }
         }
 

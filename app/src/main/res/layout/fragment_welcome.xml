@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -21,7 +19,7 @@
             android:id="@+id/button_createaccount"
             android:layout_width="297dp"
             android:layout_height="60dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/red"
             android:backgroundTintMode="src_over"
             android:fontFamily="@font/roboto_medium"
@@ -38,8 +36,7 @@
             android:id="@+id/button_form"
             android:layout_width="297dp"
             android:layout_height="60dp"
-
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/white"
             android:fontFamily="@font/roboto_medium"
             android:text="Application form for hospitals"
@@ -81,10 +78,10 @@
             android:id="@+id/button_login"
             android:layout_width="297dp"
             android:layout_height="60dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/white"
             android:fontFamily="@font/roboto_medium"
-            android:text="Login"
+            android:text="LOG IN"
             android:textColor="@color/red"
             app:cornerRadius="50dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -97,11 +94,11 @@
             android:id="@+id/button_loginhospital"
             android:layout_width="297dp"
             android:layout_height="60dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/red"
             android:backgroundTintMode="src_over"
             android:fontFamily="@font/roboto_medium"
-            android:text="LOGİN FOR HOSPİTALS"
+            android:text="LOG IN FOR HOSPITALS"
             android:textColor="@color/white"
             app:cornerRadius="50dp"
             app:layout_constraintEnd_toEndOf="parent"

@@ -23,13 +23,13 @@
             android:layout_marginTop="24dp"
             android:backgroundTint="@color/red"
             android:fontFamily="@font/roboto_medium"
-            android:text="Sign in"
+            android:text="LOG IN"
             android:textColor="@color/white"
             app:cornerRadius="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextpassword" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -122,14 +122,6 @@
             app:layout_constraintStart_toStartOf="@+id/editTextpassword"
             app:layout_constraintTop_toBottomOf="@+id/edittextemail" />
 
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Keep me sign in"
-            app:layout_constraintStart_toStartOf="@+id/editTextpassword"
-            app:layout_constraintTop_toBottomOf="@+id/editTextpassword" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
