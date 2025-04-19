@@ -98,39 +98,41 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
         //kan merkezleri
         viewModel.bloodCenters.observe(viewLifecycleOwner) { centers ->
-            centers.forEach { (name, latLng) ->
+            centers.forEach { center ->
+                val latLng = LatLng(center.latitude, center.longitude)
                 val marker = mMap.addMarker(
                     MarkerOptions()
                         .position(latLng)
-                        .title(name)
+                        .title(center.name)
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
                 )
-                marker?.tag = name to latLng
-                addGeofence(latLng, name)
+                marker?.tag = center
+                addGeofence(latLng, center.name)
             }
         }
     }
 
 
-    /*
-        @RequiresApi(Build.VERSION_CODES.O)
-        private fun simulateEmergencyRequest() {
-            val hospitalName = "Florence Nightingale Hospital"
-            val hospitalLocation = LatLng(41.0080, 28.9790)
-            val bloodType = "O-"
 
-            val matched = viewModel.findEligibleDonors(bloodType, hospitalLocation)
+        /*
+            @RequiresApi(Build.VERSION_CODES.O)
+            private fun simulateEmergencyRequest() {
+                val hospitalName = "Florence Nightingale Hospital"
+                val hospitalLocation = LatLng(41.0080, 28.9790)
+                val bloodType = "O-"
 
-            if (matched.isEmpty()) {
-                Toast.makeText(requireContext(), "Uygun donör bulunamadı", Toast.LENGTH_SHORT).show()
-            } else {
-                matched.forEach {
-                    viewModel.sendNotification(requireContext(), it.name, hospitalName)
+                val matched = viewModel.findEligibleDonors(bloodType, hospitalLocation)
+
+                if (matched.isEmpty()) {
+                    Toast.makeText(requireContext(), "Uygun donör bulunamadı", Toast.LENGTH_SHORT).show()
+                } else {
+                    matched.forEach {
+                        viewModel.sendNotification(requireContext(), it.name, hospitalName)
+                    }
                 }
             }
-        }
 
-     */
+         */
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
@@ -147,12 +149,16 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         mMap.setOnMarkerClickListener { marker ->
             val hospital = marker.tag as? HospitalApiModel
             if (hospital != null) {
-                val latLng = LatLng(hospital.latitude, hospital.longitude)
-                val bottomSheet = LocationBottomSheet(hospital, latLng)
-                bottomSheet.show(parentFragmentManager, bottomSheet.tag)
+                viewModel.fetchPhoneNumber(hospital, getString(R.string.google_maps_key)) { phone ->
+                    val updated = hospital.copy(phone = phone)
+                    val latLng = LatLng(updated.latitude, updated.longitude)
+                    val bottomSheet = LocationBottomSheet(updated, latLng)
+                    bottomSheet.show(parentFragmentManager, bottomSheet.tag)
+                }
             }
             true
         }
+
 
     }
 

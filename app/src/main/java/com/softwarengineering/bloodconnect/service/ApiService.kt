@@ -24,6 +24,14 @@ interface ApiService {
         @Query("key") apiKey: String
     ): Call<JsonObject>
 
+    @GET("place/details/json")
+    fun getPlaceDetails(
+        @Query("place_id") placeId: String,
+        @Query("fields") fields: String = "formatted_phone_number",
+        @Query("key") apiKey: String
+    ): Call<JsonObject>
+
+
     // 📌 Adresi koordinata çevir (Geocoding API)
     @GET("geocode/json")
     fun getGeocode(

@@ -24,7 +24,7 @@ class LocationBottomSheet(
 
         // Bilgileri ekrana yansıt
         binding.tvHospitalName.text = hospital.name
-        binding.tvPhoneNumber.text = "Telefon: ${hospital.phone}"
+        binding.tvPhoneNumber.text = "Telefon: ${hospital.phone.ifBlank { "Belirtilmemiş" }}"
         binding.tvAddress.text = "Adres: ${hospital.address}"
 
 
@@ -33,9 +33,6 @@ class LocationBottomSheet(
         } else {
             "Acil: ${hospital.urgentBloodType}"
         }
-
-
-
 
         // Yol tarifi
         binding.btnNavigate.setOnClickListener {

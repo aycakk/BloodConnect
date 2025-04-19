@@ -6,5 +6,6 @@ data class HospitalApiModel(
     val longitude: Double,
     val address: String = "",
     val phone: String = "" , // İsteğe bağlı, çoğu zaman gelmez
-    val urgentBloodType: String = ""
+    val urgentBloodType: String = "",
+    val placeId: String = ""
 )
