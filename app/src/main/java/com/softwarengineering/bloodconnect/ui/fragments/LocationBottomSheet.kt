@@ -27,12 +27,14 @@ class LocationBottomSheet(
         binding.tvPhoneNumber.text = "Phone: ${hospital.phone.ifBlank { "Unspecified" }}"
         binding.tvAddress.text = "Address: ${hospital.address}"
 
-
+/*
         binding.tvUrgentBloodType.text = if (hospital.urgentBloodType.isNullOrBlank()) {
             "No urgent need for blood"
         } else {
             "Urgent: ${hospital.urgentBloodType}"
         }
+
+ */
 
         // Yol tarifi
         binding.btnNavigate.setOnClickListener {

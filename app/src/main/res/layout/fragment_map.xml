@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragmentMap"
+    android:id="@+id/mapContainer"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:layout_height="match_parent"
     tools:context=".ui.fragments.MapFragment">
 
-    <!-- Google Maps Fragment -->
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarMap"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/red"
+        android:title="Hospitals and Blood Centers"
+        android:titleTextColor="@color/white"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <!-- Map fragment holder -->
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-    <!-- Aşağıdaki buton acil çağrı içindi ama kaldırıldı -->
-    <!--
-        <Button
-            android:id="@+id/acilKanButonu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Emergency Blood Call!"
-            android:layout_margin="16dp"/>
-    -->
-</FrameLayout>
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

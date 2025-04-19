@@ -21,13 +21,19 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.Places
 import android.Manifest
 import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.net.ConnectivityManager
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import com.softwarengineering.bloodconnect.R
 import com.softwarengineering.bloodconnect.data.model.Hospital
 import com.softwarengineering.bloodconnect.data.model.HospitalApiModel
@@ -59,10 +65,40 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             Places.initialize(requireContext(), getString(R.string.google_maps_key))
         }
 
-        requireActivity().window.decorView.systemUiVisibility =
-            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
-                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        //set toolbar
+        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbarMap)
+        setHasOptionsMenu(true)
 
+        // Toolbar back button
+        (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.toolbarMap.setTitleTextColor(Color.WHITE)
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = "Hospitals and Blood Centers"
+        val upArrow = ContextCompat.getDrawable(requireContext(), R.drawable.ic_arrow_back)
+        upArrow?.setTint(Color.WHITE)
+        (requireActivity() as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(upArrow)
+
+        (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.red)
+
+
+
+
+
+        //internet connection test
+        if (!isConnected(requireContext())) {
+            Toast.makeText(requireContext(), "No internet connection. Map features may not work properly.", Toast.LENGTH_LONG).show()
+            return  // Harita yüklenmesin
+        }
+
+        //location permission
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            requestPermissions(
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                1001
+            )
+        }
         geofencingClient = LocationServices.getGeofencingClient(requireContext())
         requestNotificationPermission()
         viewModel.requestFirebaseToken()
@@ -162,6 +198,17 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                findNavController().navigateUp()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+
     private fun addGeofence(location: LatLng, name: String) {
         val geofence = Geofence.Builder()
             .setRequestId(name)
@@ -212,14 +259,29 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 101 && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Log.d("NOTIFICATION", "Bildirim izni verildi.")
-        } else {
-            Log.w("NOTIFICATION", "Kullanıcı bildirim iznini reddetti.")
+        if (requestCode == 1001) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(requireContext(), "Location permission granted", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Location permission denied. Map may not work properly.", Toast.LENGTH_LONG).show()
+            }
         }
     }
+
+
+    //test for internet handling
+    private fun isConnected(context: Context): Boolean {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork = connectivityManager.activeNetworkInfo
+        return activeNetwork != null && activeNetwork.isConnected
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
