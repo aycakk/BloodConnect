@@ -22,7 +22,7 @@
         android:id="@+id/tvUrgentBloodType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Acil: 0- Kan Grubu"
+        android:text="Emergency: 0-Blood"
         android:textSize="16sp"
         android:textColor="#D32F2F"
         android:layout_marginBottom="8dp" />
@@ -32,7 +32,7 @@
         android:id="@+id/tvPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Telefon: (0212) 123 45 67"
+        android:text="Phone: (0212) 123 45 67"
         android:textSize="15sp"
         android:textColor="#333333"
         android:layout_marginBottom="8dp" />
@@ -42,7 +42,7 @@
         android:id="@+id/tvAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Adres: Bahçelievler, İstanbul"
+        android:text="Adress: Bahçelievler, İstanbul"
         android:textSize="14sp"
         android:textColor="#666666"
         android:layout_marginBottom="12dp" />
@@ -52,7 +52,7 @@
         android:id="@+id/btnNavigate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Yol Tarifi Al"
+        android:text="Get Directions"
         android:backgroundTint="@color/red"
         android:textColor="@android:color/white"
         android:drawableStart="@android:drawable/ic_menu_directions"

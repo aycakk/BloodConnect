@@ -24,14 +24,14 @@ class LocationBottomSheet(
 
         // Bilgileri ekrana yansıt
         binding.tvHospitalName.text = hospital.name
-        binding.tvPhoneNumber.text = "Telefon: ${hospital.phone.ifBlank { "Belirtilmemiş" }}"
-        binding.tvAddress.text = "Adres: ${hospital.address}"
+        binding.tvPhoneNumber.text = "Phone: ${hospital.phone.ifBlank { "Unspecified" }}"
+        binding.tvAddress.text = "Address: ${hospital.address}"
 
 
         binding.tvUrgentBloodType.text = if (hospital.urgentBloodType.isNullOrBlank()) {
-            "Acil kan ihtiyacı belirtilmemiş"
+            "No urgent need for blood"
         } else {
-            "Acil: ${hospital.urgentBloodType}"
+            "Urgent: ${hospital.urgentBloodType}"
         }
 
         // Yol tarifi
