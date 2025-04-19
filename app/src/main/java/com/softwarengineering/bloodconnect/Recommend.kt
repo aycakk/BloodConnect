@@ -14,7 +14,7 @@ class Recommend() {
         if (donor.gender == "Male") {
             gender = 1f
         }
-        val healthData = floatArrayOf(donor.age.toFloat(), bmi, donor.smokes.toFloat(), gender)
+        //val healthData = floatArrayOf(donor.age.toFloat(), bmi, donor.smokes.toFloat(), gender)
 
         //implement database queries after integration for predData
 
@@ -51,7 +51,7 @@ class Recommend() {
 
         totalScore += 10f * predModel.predict(predData)
 
-        totalScore += 40f * hModel.predict(healthData)
+        //totalScore += 40f * hModel.predict(healthData)
 
         hModel.close()
         predModel.close()

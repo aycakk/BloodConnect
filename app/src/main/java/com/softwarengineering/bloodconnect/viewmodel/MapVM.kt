@@ -15,6 +15,7 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.JsonObject
 import com.softwarengineering.bloodconnect.R
 import com.softwarengineering.bloodconnect.data.model.Donor
+import com.softwarengineering.bloodconnect.data.model.HospitalApiModel
 import com.softwarengineering.bloodconnect.network.ApiClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,8 +31,10 @@ class MapVM(application: Application) : AndroidViewModel(application) {
     private val _donors = MutableLiveData<List<Donor>>()
     val donors: LiveData<List<Donor>> = _donors
 
-    private val _hospitalResults = MutableLiveData<List<Pair<String, LatLng>>>()
-    val hospitalResults: LiveData<List<Pair<String, LatLng>>> = _hospitalResults
+    private val _hospitalResults = MutableLiveData<List<HospitalApiModel>>()
+    val hospitalResults: LiveData<List<HospitalApiModel>> = _hospitalResults
+
+
 
     private val _bloodCenters = MutableLiveData<List<Pair<String, LatLng>>>()
     val bloodCenters: LiveData<List<Pair<String, LatLng>>> = _bloodCenters
@@ -47,6 +50,7 @@ class MapVM(application: Application) : AndroidViewModel(application) {
 
      */
 
+
     fun fetchNearbyHospitals(location: LatLng, apiKey: String) {
         val loc = "${location.latitude},${location.longitude}"
         ApiClient.apiService.getNearbyPlaces(loc, 10000, "hospital", apiKey)
@@ -57,10 +61,20 @@ class MapVM(application: Application) : AndroidViewModel(application) {
                         val hospitals = results?.map { place ->
                             val obj = place.asJsonObject
                             val name = obj.get("name").asString
-                            val lat = obj.getAsJsonObject("geometry").getAsJsonObject("location").get("lat").asDouble
-                            val lng = obj.getAsJsonObject("geometry").getAsJsonObject("location").get("lng").asDouble
-                            name to LatLng(lat, lng)
+                            val geometry = obj.getAsJsonObject("geometry").getAsJsonObject("location")
+                            val lat = geometry.get("lat").asDouble
+                            val lng = geometry.get("lng").asDouble
+                            val address = obj.get("vicinity")?.asString ?: ""
+
+                            // ✅ Kendi modeline uygun dönüşüm
+                            HospitalApiModel(
+                                name = name,
+                                latitude = lat,
+                                longitude = lng,
+                                address = address
+                            )
                         } ?: emptyList()
+
                         _hospitalResults.postValue(hospitals)
                     } else {
                         Log.e("API", "Yanıt başarısız: ${response.code()}")
@@ -72,6 +86,10 @@ class MapVM(application: Application) : AndroidViewModel(application) {
                 }
             })
     }
+
+
+
+
 
     fun fetchNearbyBloodCenters(location: LatLng, apiKey: String) {
         val loc = "${location.latitude},${location.longitude}"

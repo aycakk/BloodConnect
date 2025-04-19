@@ -29,6 +29,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import com.softwarengineering.bloodconnect.R
+import com.softwarengineering.bloodconnect.data.model.Hospital
+import com.softwarengineering.bloodconnect.data.model.HospitalApiModel
 import com.softwarengineering.bloodconnect.databinding.FragmentMapBinding
 import com.softwarengineering.bloodconnect.service.GeofenceBroadcastReceiver
 import com.softwarengineering.bloodconnect.viewmodel.MapVM
@@ -79,49 +81,56 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     }
 
     private fun observeViewModel() {
-        viewModel.hospitalResults.observe(viewLifecycleOwner) { locations ->
-            locations.forEach { (name, latLng) ->
-                mMap.addMarker(
+        //hastaneler
+        viewModel.hospitalResults.observe(viewLifecycleOwner) { hospitalList ->
+            Log.d("MapFragment", "Map'e eklenecek hastane sayısı: ${hospitalList.size}")
+            hospitalList.forEach { hospital ->
+                val latLng = LatLng(hospital.latitude, hospital.longitude)
+                val marker = mMap.addMarker(
                     MarkerOptions()
                         .position(latLng)
-                        .title(name)
+                        .title(hospital.name)
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
                 )
-                addGeofence(latLng, name)
+                marker?.tag = hospital  // 🔗 Tag olarak HospitalApiModel atanıyor
+                addGeofence(latLng, hospital.name)
             }
         }
-
+        //kan merkezleri
         viewModel.bloodCenters.observe(viewLifecycleOwner) { centers ->
             centers.forEach { (name, latLng) ->
-                mMap.addMarker(
+                val marker = mMap.addMarker(
                     MarkerOptions()
                         .position(latLng)
                         .title(name)
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
                 )
+                marker?.tag = name to latLng
                 addGeofence(latLng, name)
             }
         }
     }
-/*
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun simulateEmergencyRequest() {
-        val hospitalName = "Florence Nightingale Hospital"
-        val hospitalLocation = LatLng(41.0080, 28.9790)
-        val bloodType = "O-"
 
-        val matched = viewModel.findEligibleDonors(bloodType, hospitalLocation)
 
-        if (matched.isEmpty()) {
-            Toast.makeText(requireContext(), "Uygun donör bulunamadı", Toast.LENGTH_SHORT).show()
-        } else {
-            matched.forEach {
-                viewModel.sendNotification(requireContext(), it.name, hospitalName)
+    /*
+        @RequiresApi(Build.VERSION_CODES.O)
+        private fun simulateEmergencyRequest() {
+            val hospitalName = "Florence Nightingale Hospital"
+            val hospitalLocation = LatLng(41.0080, 28.9790)
+            val bloodType = "O-"
+
+            val matched = viewModel.findEligibleDonors(bloodType, hospitalLocation)
+
+            if (matched.isEmpty()) {
+                Toast.makeText(requireContext(), "Uygun donör bulunamadı", Toast.LENGTH_SHORT).show()
+            } else {
+                matched.forEach {
+                    viewModel.sendNotification(requireContext(), it.name, hospitalName)
+                }
             }
         }
-    }
 
- */
+     */
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
@@ -133,6 +142,18 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         val apiKey = getString(R.string.google_maps_key)
         viewModel.fetchNearbyHospitals(myLocation, apiKey)
         viewModel.fetchNearbyBloodCenters(myLocation, apiKey)
+
+        // Marker tıklamasında bottom sheet aç
+        mMap.setOnMarkerClickListener { marker ->
+            val hospital = marker.tag as? HospitalApiModel
+            if (hospital != null) {
+                val latLng = LatLng(hospital.latitude, hospital.longitude)
+                val bottomSheet = LocationBottomSheet(hospital, latLng)
+                bottomSheet.show(parentFragmentManager, bottomSheet.tag)
+            }
+            true
+        }
+
     }
 
     private fun addGeofence(location: LatLng, name: String) {

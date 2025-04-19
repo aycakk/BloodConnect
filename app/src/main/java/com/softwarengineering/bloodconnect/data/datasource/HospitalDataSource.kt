@@ -24,7 +24,6 @@ class HospitalDataSource(var collectionhospital :CollectionReference) {
 
                 val hospital = Hospital(
                     hospitalID = uid,
-                    name=name,
                      email=email,
                      phone=phone,
                      password = "",

@@ -25,6 +25,7 @@ class DonorDatasource(var collectiondonor: CollectionReference) {
             .addOnSuccessListener { result ->
                 val uid = result.user?.uid ?: return@addOnSuccessListener
 
+                /*
                 val donor = Donor(
                     donorID = uid,
                     name = name,
@@ -39,12 +40,16 @@ class DonorDatasource(var collectiondonor: CollectionReference) {
                     password = password
                 )
 
+
+
                 db.collection("donor").document(uid).set(donor)
                     .addOnSuccessListener {
                         Log.d("register", "registerDonor: yes",)}
                     .addOnFailureListener {
                         Log.d("register", "registerDonor: faile ",it)
                     }
+
+                 */
             }
             .addOnFailureListener { e ->
                 Log.d("register", "registerDonor: ",e)

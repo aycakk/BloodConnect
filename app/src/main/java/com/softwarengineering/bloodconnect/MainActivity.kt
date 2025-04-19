@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+        /*
         val hospital = Hospital(
              "HOSP_001",
             name = "Hospital1",
@@ -61,12 +62,16 @@ class MainActivity : AppCompatActivity() {
             status = "done"
         )
 
+         */
+
         val match = Match(
             donorID = "22222222222",
             recipientID = "11111111111",
             matchScore = 95,
             status = "matched"
         )
+
+
 
 
 
@@ -106,6 +111,7 @@ class MainActivity : AppCompatActivity() {
                 Log.e("Firestore", "Hata oluştu: ${e.message}")
             }
     }
+    /*
     fun addMatch(match: Match) {
         val db = FirebaseFirestore.getInstance()
         db.collection("match").document(match.matcID)
@@ -117,6 +123,8 @@ class MainActivity : AppCompatActivity() {
                 Log.e("Firestore", "Hata oluştu: ${e.message}")
             }
     }
+
+     */
     fun addBloodRequest(request: Request) {
         val db = FirebaseFirestore.getInstance()
         db.collection("request").document(request.requestID)

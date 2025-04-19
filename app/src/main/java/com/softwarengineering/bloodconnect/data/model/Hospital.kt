@@ -13,5 +13,6 @@ data class Hospital(
     var password: String = "",
     var address: String = "",
     val location: GeoPoint? = null,
-    var status: Boolean = false  // Onay durumu (true ise aktif)
+    var status: Boolean = false,  // Onay durumu (true ise aktif)
+    var urgentBloodType: String? = null
 )
