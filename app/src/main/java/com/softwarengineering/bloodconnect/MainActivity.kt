@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val hospital = Hospital(
              "HOSP_001",
-            name = "Hospital1",
+            hospitalName = "Hospital1",
             address = "İstanbul",
             email = "h1@gmail.com",
             phone = "5555555555",
@@ -37,12 +37,10 @@ class MainActivity : AppCompatActivity() {
             "11111111111",
             "Zeki",
              "Bayar",
-             22,
-            "A+",
-           "test@gmail.com",
+            bloodType = "A+",
+            mail = "test@gmail.com",
             phone = "5555555555",
-            gender = "male",
-            height = "180"
+            gender = "male"
         )
 
         val request =Request(
@@ -54,7 +52,6 @@ class MainActivity : AppCompatActivity() {
 
         val donation = Donation(
             bloodType = "O+",
-            donationTime = "March 10, 2025 at 6:10:57 PM",
             donorID = "22222222222",
             hospitalID = "HOSP_001",
             recipientID = "11111111111",
@@ -108,7 +105,7 @@ class MainActivity : AppCompatActivity() {
     }
     fun addMatch(match: Match) {
         val db = FirebaseFirestore.getInstance()
-        db.collection("match").document(match.matcID)
+        db.collection("match").document(match.matchID)
             .set(match)
             .addOnSuccessListener { documentReference ->
                 Log.d("Firestore", "Eşleştirme eklendi: ${documentReference}")

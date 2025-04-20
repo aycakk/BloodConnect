@@ -29,13 +29,13 @@ class DonorDatasource(var collectiondonor: CollectionReference) {
                     donorID = uid,
                     name = name,
                     surname = lastname,
-                    age = 0,
+                    birthDate = null,
                     bloodType = "",
                     email = email,
                     phone = "",
                     gender = "",
-                    height = "",
-                    weight = "",
+                    height = 0F,
+                    weight = 0F,
                     password = password
                 )
 
