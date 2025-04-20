@@ -12,6 +12,9 @@
         <variable
             name="profiefragment"
             type="com.softwarengineering.bloodconnect.ui.fragments.ProfileFragment" />
+        <variable
+            name="viewmodel"
+            type="com.softwarengineering.bloodconnect.viewmodel.DonorViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -49,7 +52,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/settingsButton" />
 
             <TextView
-                android:id="@+id/textView32"
+                android:id="@+id/gendertext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -62,7 +65,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
             <TextView
-                android:id="@+id/textView33"
+                android:id="@+id/birthdatetext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -70,11 +73,11 @@
                 android:text="Birth Date:"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@+id/textView32"
-                app:layout_constraintTop_toBottomOf="@+id/textView32" />
+                app:layout_constraintStart_toStartOf="@+id/gendertext"
+                app:layout_constraintTop_toBottomOf="@+id/gendertext" />
 
             <TextView
-                android:id="@+id/textView34"
+                android:id="@+id/bloodgrouptext"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -82,11 +85,11 @@
                 android:text="Blood Group:"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@+id/textView33"
-                app:layout_constraintTop_toBottomOf="@+id/textView33" />
+                app:layout_constraintStart_toStartOf="@+id/birthdatetext"
+                app:layout_constraintTop_toBottomOf="@+id/birthdatetext" />
 
             <TextView
-                android:id="@+id/textView35"
+                android:id="@+id/phonetext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -94,11 +97,11 @@
                 android:text="Phone Number:"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@+id/textView34"
-                app:layout_constraintTop_toBottomOf="@+id/textView34" />
+                app:layout_constraintStart_toStartOf="@+id/bloodgrouptext"
+                app:layout_constraintTop_toBottomOf="@+id/bloodgrouptext" />
 
             <TextView
-                android:id="@+id/textView36"
+                android:id="@+id/adresstext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -106,8 +109,8 @@
                 android:text="Adress:"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@+id/textView35"
-                app:layout_constraintTop_toBottomOf="@+id/textView35" />
+                app:layout_constraintStart_toStartOf="@+id/phonetext"
+                app:layout_constraintTop_toBottomOf="@+id/phonetext" />
 
             <ImageView
                 android:id="@+id/imageView5"
