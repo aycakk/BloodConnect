@@ -22,10 +22,26 @@ private lateinit var viewModel: DonorViewModel
         savedInstanceState: Bundle?
     ): View? {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_profile, container, false)
+        binding.profiefragment=this
+        binding.lifecycleOwner=viewLifecycleOwner
+        viewModel.loadCurrentDonor()
+        binding.viewmodel=viewModel
+
         binding.settingsButton.setOnClickListener {
 
             binding.editprofile.visibility=View.VISIBLE
         }
+        viewModel.donorData.observe(viewLifecycleOwner){
+            binding.fullname.text="${it.name + it.surname}"
+            binding.mail.text=it.email
+            binding.gendertext.text="Gender: ${it.gender}"
+            binding.birthdatetext.text="Birth Date: ${it.birthDate}"
+            binding.phonetext.text="Phone: ${it.phone}"
+            binding.adresstext.text="Adress: ${it.address}"
+
+        }
+
+
         // Inflate the layout for this fragment
         return binding.root
     }
