@@ -91,9 +91,17 @@
     <fragment
         android:id="@+id/hospitalHomeFragment"
         android:name="com.softwarengineering.bloodconnect.ui.fragments.hospitals.HospitalHomeFragment"
-        android:label="HospitalHomeFragment" />
+        android:label="HospitalHomeFragment" >
+        <action
+            android:id="@+id/action_hospitalHomeFragment_to_listmatchDonorFragment"
+            app:destination="@id/listmatchDonorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.softwarengineering.bloodconnect.ui.fragments.ProfileFragment"
         android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/listmatchDonorFragment"
+        android:name="com.softwarengineering.bloodconnect.ui.fragments.hospitals.ListmatchDonorFragment"
+        android:label="ListmatchDonorFragment" />
 </navigation>
