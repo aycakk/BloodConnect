@@ -11,7 +11,9 @@ import com.softwarengineering.bloodconnect.R
 import com.softwarengineering.bloodconnect.data.model.Request
 
 import com.softwarengineering.bloodconnect.databinding.RequestviewcardBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ViewRequestAdapter(var mcontext:Context,var list:List<Request>):RecyclerView.Adapter<ViewRequestAdapter.requestviewcardholder>(){
 
     inner class requestviewcardholder(var design:RequestviewcardBinding):RecyclerView.ViewHolder(design.root)
