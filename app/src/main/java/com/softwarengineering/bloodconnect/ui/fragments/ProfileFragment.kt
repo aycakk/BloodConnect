@@ -27,13 +27,20 @@ private lateinit var viewModel: DonorViewModel
         viewModel.loadCurrentDonor()
         binding.viewmodel=viewModel
 
+
         binding.settingsButton.setOnClickListener {
 
             binding.editprofile.visibility=View.VISIBLE
         }
         viewModel.donorData.observe(viewLifecycleOwner){
-            binding.fullname.text="${it.name + it.surname}"
-            binding.mail.text=it.email
+            binding.imageprofile.setImageResource(
+                if (it.gender=="male")
+                R.drawable.man
+                else
+                R.drawable.human
+            )
+            binding.fullname.text="${it.name} " +"${it.surname}"
+            binding.mail.text="${it.email}"
             binding.gendertext.text="Gender: ${it.gender}"
             binding.birthdatetext.text="Birth Date: ${it.birthDate}"
             binding.phonetext.text="Phone: ${it.phone}"
