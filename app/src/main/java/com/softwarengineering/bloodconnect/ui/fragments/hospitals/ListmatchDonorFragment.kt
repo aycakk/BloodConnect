@@ -54,7 +54,7 @@ class ListmatchDonorFragment : Fragment() {
     private fun fetchDonorsAndDisplay(recipientBloodType: String) {
         val uid = FirebaseAuth.getInstance().currentUser?.uid
         if (uid != null) {
-            FirebaseFirestore.getInstance().collection("hospitals").document(uid).get()
+            FirebaseFirestore.getInstance().collection("hospital").document(uid).get()
                 .addOnSuccessListener { document ->
                     if (document.exists()) {
                         val hospital = document.toObject(Hospital::class.java)

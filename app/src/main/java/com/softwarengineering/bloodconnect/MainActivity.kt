@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        /*
+        /*/*
         val hospital = Hospital(
              "HOSP_001",
             hospitalName = "Hospital1",
@@ -237,6 +237,8 @@ class MainActivity : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Log.e("TEST", "Match erişim hatası: ${e.message}")
             }
+            */
+
     }
 
 

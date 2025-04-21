@@ -27,7 +27,11 @@ class HospitalLoginFragment : Fragment() {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_hospital_login, container, false)
         binding.buttonLogin.setOnClickListener {
             viewModel.loginhospital(binding.edittextemail.text.toString(),binding.editTextpassword.text.toString(),
-                onSuccess = { Navigation.findNavController(it).navigate(R.id.action_hospitalLoginFragment_to_hospitalHomeFragment)},
+                onSuccess = { //Navigation.findNavController(it).navigate(R.id.action_hospitalLoginFragment_to_hospitalHomeFragment)
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragmentContainerView, ListmatchDonorFragment())
+                        .addToBackStack(null)
+                        .commit() },
                 onFailure = { Toast.makeText(context, "Login failed: ${it.message}", Toast.LENGTH_SHORT).show()},
             onUnapproved = {
                 Toast.makeText(requireContext(), "Your hospital account has not been approved yet.", Toast.LENGTH_LONG).show()
