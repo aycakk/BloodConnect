@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.softwarengineering.bloodconnect.R
 import com.softwarengineering.bloodconnect.databinding.FragmentListmatchDonorBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ListmatchDonorFragment : Fragment() {
 
 private lateinit var binding:FragmentListmatchDonorBinding
