@@ -24,19 +24,27 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         binding.homefragment = this
-binding.imageButtondonation.setOnClickListener {
-    Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_profileFragment)
-}
+
+
         with(binding){
             hospitalBtn.setOnClickListener {
                 Log.d("TEST", "hospitalBtn tıklandı")
-                findNavController().navigate(R.id.mapFragment)
+                findNavController().navigate(R.id.action_homeFragment_to_mapFragment)
+            }
+            //Geri butonu
+            buttonBack.setOnClickListener {
+                requireActivity().onBackPressedDispatcher.onBackPressed()
+            }
+            imageButtondonation.setOnClickListener {
+                Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_profileFragment)
             }
         }
 
         return binding.root
 
     }
+
+
 
 
 }
