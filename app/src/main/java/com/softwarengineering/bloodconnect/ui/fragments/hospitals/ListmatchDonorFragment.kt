@@ -20,8 +20,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.softwarengineering.bloodconnect.data.model.Hospital
 import android.util.Log
 import com.google.firebase.firestore.GeoPoint
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ListmatchDonorFragment : Fragment() {
 
     private lateinit var binding: FragmentListmatchDonorBinding

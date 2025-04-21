@@ -56,7 +56,10 @@
         android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            app:destination="@id/profileFragment"/>
+        <action
+            android:id="@+id/action_homeFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
     </fragment>
     <fragment
         android:id="@+id/hospitalLoginFragment"
@@ -91,9 +94,21 @@
     <fragment
         android:id="@+id/hospitalHomeFragment"
         android:name="com.softwarengineering.bloodconnect.ui.fragments.hospitals.HospitalHomeFragment"
-        android:label="HospitalHomeFragment" />
+        android:label="HospitalHomeFragment" >
+        <action
+            android:id="@+id/action_hospitalHomeFragment_to_listmatchDonorFragment"
+            app:destination="@id/listmatchDonorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.softwarengineering.bloodconnect.ui.fragments.ProfileFragment"
         android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/listmatchDonorFragment"
+        android:name="com.softwarengineering.bloodconnect.ui.fragments.hospitals.ListmatchDonorFragment"
+        android:label="ListmatchDonorFragment" />
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.softwarengineering.bloodconnect.ui.fragments.MapFragment"
+        android:label="MapFragment" />
 </navigation>

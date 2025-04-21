@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <!-- Hastane Adı -->
+    <TextView
+        android:id="@+id/tvHospitalName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Atakoy Private Hospital"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_marginBottom="8dp" />
+
+    <!--
+    <TextView
+        android:id="@+id/tvUrgentBloodType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Emergency: 0-Blood"
+        android:textSize="16sp"
+        android:textColor="#D32F2F"
+        android:layout_marginBottom="8dp" />
+    -->
+
+
+    <!-- Telefon Numarası -->
+    <TextView
+        android:id="@+id/tvPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Phone: (0212) 123 45 67"
+        android:textSize="15sp"
+        android:textColor="#333333"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Adres (İsteğe Bağlı) -->
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Adress: Bahçelievler, İstanbul"
+        android:textSize="14sp"
+        android:textColor="#333333"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Git Butonu -->
+    <Button
+        android:id="@+id/btnNavigate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Get Directions"
+        android:backgroundTint="@color/red"
+        android:textColor="@android:color/white"
+        android:drawableStart="@android:drawable/ic_menu_directions"
+        android:padding="8dp" />
+</LinearLayout>

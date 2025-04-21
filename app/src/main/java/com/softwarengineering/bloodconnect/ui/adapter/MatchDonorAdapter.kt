@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.softwarengineering.bloodconnect.R
 import com.softwarengineering.bloodconnect.data.model.Match
 import com.softwarengineering.bloodconnect.databinding.MatchdonorcardBinding
+import dagger.hilt.android.AndroidEntryPoint
 import androidx.databinding.DataBindingUtil
 
 class MatchDonorAdapter(val context:Context , val list:List<Match>):RecyclerView.Adapter<MatchDonorAdapter.Matchcardholder>() {
