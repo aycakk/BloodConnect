@@ -56,7 +56,10 @@
         android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            app:destination="@id/profileFragment"/>
+        <action
+            android:id="@+id/action_homeFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
     </fragment>
     <fragment
         android:id="@+id/hospitalLoginFragment"
@@ -104,4 +107,8 @@
         android:id="@+id/listmatchDonorFragment"
         android:name="com.softwarengineering.bloodconnect.ui.fragments.hospitals.ListmatchDonorFragment"
         android:label="ListmatchDonorFragment" />
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.softwarengineering.bloodconnect.ui.fragments.MapFragment"
+        android:label="MapFragment" />
 </navigation>
