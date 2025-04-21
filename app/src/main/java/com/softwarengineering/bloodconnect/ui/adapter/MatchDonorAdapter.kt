@@ -10,7 +10,7 @@ import com.softwarengineering.bloodconnect.data.model.Match
 import com.softwarengineering.bloodconnect.databinding.MatchdonorcardBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
+
 class MatchDonorAdapter(var mcontext:Context , var list:List<Match>):RecyclerView.Adapter<MatchDonorAdapter.matchcardholder>() {
     inner class matchcardholder(var design: MatchdonorcardBinding):RecyclerView.ViewHolder(design.root)
 
