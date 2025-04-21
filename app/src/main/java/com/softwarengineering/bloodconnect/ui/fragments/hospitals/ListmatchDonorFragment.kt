@@ -36,38 +36,22 @@ class ListmatchDonorFragment : Fragment() {
     ): View? {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_listmatch_donor, container, false)
-        // Inflate the layout for this fragment
-        //binding.listmatch=this
 
-        //!!!!!!!
         binding.spinnerbloodtype2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 val selectedBloodType = parent.getItemAtPosition(position).toString()
 
-                // Now call your fetchDonorsAndDisplay with selected blood type
                 fetchDonorsAndDisplay(selectedBloodType)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {}
         }
-        //fetchDonorsAndDisplay()
+
 
         return binding.root
     }
 
     private fun fetchDonorsAndDisplay(recipientBloodType: String) {
-        /*val dummyMatches = listOf(
-            Match(donorID = "John Doe", matchScore = 92),
-            Match(donorID = "Jane Smith", matchScore = 88),
-            Match(donorID = "Ali Yilmaz", matchScore = 75),
-            Match(donorID = "Maria Garcia", matchScore = 70),
-            Match(donorID = "Chen Wei", matchScore = 65)
-        )
-        val adapter = MatchDonorAdapter(requireContext(), dummyMatches)
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.adapter = adapter*/
-        //val recipientBloodType = "A+" // Replace with actual recipient's blood type
-        //val hospitalLocation = floatArrayOf(0f, 0f) // Replace with actual lat/long of hospital
         val uid = FirebaseAuth.getInstance().currentUser?.uid
         if (uid != null) {
             FirebaseFirestore.getInstance().collection("hospitals").document(uid).get()

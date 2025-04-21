@@ -25,15 +25,10 @@ class MatchDonorAdapter(val context:Context , val list:List<Match>):RecyclerView
 
     override fun onBindViewHolder(holder: Matchcardholder, position: Int) {
 
-        /*val match=list.get(position)
-        val m=holder.design
-        m.match=match*/
         val match = list[position]
         holder.binding.nametext.text = match.donorName
         holder.binding.scoretext.text = match.matchScore.toString()
         holder.binding.bloodgrouptext.text = match.donorBloodType
-        //holder.binding.match = match
-        //holder.binding.executePendingBindings()
 
     }
 }
