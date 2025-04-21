@@ -38,6 +38,9 @@ class HomeFragment : Fragment() {
             imageButtondonation.setOnClickListener {
                 Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_profileFragment)
             }
+            notification.setOnClickListener{
+                Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_notificationsFragment)
+            }
         }
 
         return binding.root
