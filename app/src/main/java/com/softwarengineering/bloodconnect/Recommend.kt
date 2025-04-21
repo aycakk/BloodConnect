@@ -3,24 +3,71 @@ package com.softwarengineering.bloodconnect
 import android.content.Context
 import com.softwarengineering.bloodconnect.data.model.Donor
 import com.softwarengineering.bloodconnect.data.model.Donation
-import com.google.firebase.firestore.FirebaseFirestore
-/*
+import java.util.Calendar
+import android.location.Location
+import com.google.firebase.firestore.GeoPoint
+
 class Recommend() {
-    fun scoreDonor(context: Context, donor: Donor, recipientBloodType: String, hospitalAddress: FloatArray): Float {
-        //donorDistance = haversine distance between donor and hospital. use simpler function later for optimization
+    fun scoreDonor(context: Context, donor: Donor, recipientBloodType: String, hospitalAddress: GeoPoint?, donations: List<Donation> ): Float {
+        if (donor.birthDate == null || donor.height == 0f || donor.weight == 0f || donor.bloodType == "" || donor.location == null || hospitalAddress == null) {
+            return 0f
+        }
+
         val donorBloodType = donor.bloodType
         val bmi = donor.weight / (donor.height * donor.height)
-        var gender = 0f
-        if (donor.gender == "Male") {
-            gender = 1f
+
+        val gender = if (donor.gender.lowercase() == "male") 1f else 0f
+        val smokes = if (donor.isSmoking) 1f else 0f
+
+        val birthCalendar = Calendar.getInstance().apply {
+            time = donor.birthDate!!.toDate()
         }
-        val healthData = floatArrayOf(donor.age.toFloat(), bmi, donor.smokes.toFloat(), gender)
+        val today = Calendar.getInstance()
 
-        //implement database queries after integration for predData
+        var age = today.get(Calendar.YEAR) - birthCalendar.get(Calendar.YEAR)
+        if (today.get(Calendar.DAY_OF_YEAR) < birthCalendar.get(Calendar.DAY_OF_YEAR)) {
+            age--
+        }
 
-        //sample data until database integration
-        val predData = floatArrayOf(2.0f, 5.0f, 1250.0f, 47.0f)
-        val donorDistance = 0.5f
+        val healthData = floatArrayOf(age.toFloat(), bmi, smokes, gender)
+
+        val now = Calendar.getInstance()
+
+        val donationDates = donations.mapNotNull { it.donationTime?.toDate() }.sorted()
+
+        val monthsSinceLastDonation = if (donationDates.isNotEmpty()) {
+            val lastDonation = Calendar.getInstance().apply { time = donationDates.last() }
+            (now.get(Calendar.YEAR) - lastDonation.get(Calendar.YEAR)) * 12 +
+                    (now.get(Calendar.MONTH) - lastDonation.get(Calendar.MONTH))
+        } else {
+            0
+        }
+
+        val monthsSinceFirstDonation = if (donationDates.isNotEmpty()) {
+            val firstDonation = Calendar.getInstance().apply { time = donationDates.first() }
+            (now.get(Calendar.YEAR) - firstDonation.get(Calendar.YEAR)) * 12 +
+                    (now.get(Calendar.MONTH) - firstDonation.get(Calendar.MONTH))
+        } else {
+            0
+        }
+
+        val totalDonations = donations.size
+        val totalAmount = donations.sumOf { it.amount.toInt() }
+
+        val predData = floatArrayOf(
+            monthsSinceLastDonation.toFloat(),
+            totalDonations.toFloat(),
+            totalAmount.toFloat(),
+            monthsSinceFirstDonation.toFloat()
+        )
+
+        val results = FloatArray(1)
+        Location.distanceBetween(
+            hospitalAddress.latitude, hospitalAddress.longitude,
+            donor.location.latitude, donor.location.longitude,
+            results
+        )
+        val donorDistance = results[0]
 
         val bloodCompatibility = mapOf(
             "O-" to listOf("O-"),
@@ -58,5 +105,5 @@ class Recommend() {
 
         return totalScore
 
-    }/
-}*/
+    }
+}

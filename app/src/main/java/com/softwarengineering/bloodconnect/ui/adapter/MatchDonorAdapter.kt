@@ -8,23 +8,31 @@ import androidx.recyclerview.widget.RecyclerView
 import com.softwarengineering.bloodconnect.R
 import com.softwarengineering.bloodconnect.data.model.Match
 import com.softwarengineering.bloodconnect.databinding.MatchdonorcardBinding
+import androidx.databinding.DataBindingUtil
 
-class MatchDonorAdapter(var mcontext:Context , var list:List<Match>):RecyclerView.Adapter<MatchDonorAdapter.matchcardholder>() {
-    inner class matchcardholder(var design: MatchdonorcardBinding):RecyclerView.ViewHolder(design.root)
+class MatchDonorAdapter(val context:Context , val list:List<Match>):RecyclerView.Adapter<MatchDonorAdapter.Matchcardholder>() {
+    inner class Matchcardholder(val binding: MatchdonorcardBinding):RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): matchcardholder {
-        val binding:MatchdonorcardBinding=inflate(LayoutInflater.from(mcontext), R.layout.matchdonorcard,parent,false)
-        return  matchcardholder(binding)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Matchcardholder {
+        val binding:MatchdonorcardBinding=inflate(LayoutInflater.from(context), R.layout.matchdonorcard,parent,false)
+        return  Matchcardholder(binding)
     }
 
     override fun getItemCount(): Int {
         return list.size
     }
 
-    override fun onBindViewHolder(holder: matchcardholder, position: Int) {
+    override fun onBindViewHolder(holder: Matchcardholder, position: Int) {
 
-        val match=list.get(position)
+        /*val match=list.get(position)
         val m=holder.design
-        m.match=match
+        m.match=match*/
+        val match = list[position]
+        holder.binding.nametext.text = match.donorName
+        holder.binding.scoretext.text = match.matchScore.toString()
+        holder.binding.bloodgrouptext.text = match.donorBloodType
+        //holder.binding.match = match
+        //holder.binding.executePendingBindings()
+
     }
 }
