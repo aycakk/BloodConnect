@@ -14,7 +14,8 @@ import com.softwarengineering.bloodconnect.databinding.FragmentRegister2Binding
 import com.softwarengineering.bloodconnect.viewmodel.LoginViewModel
 import com.softwarengineering.bloodconnect.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
-
+import com.softwarengineering.bloodconnect.utils.toBase64
+import com.softwarengineering.bloodconnect.utils.fromBase64
 @AndroidEntryPoint
 
 class Register2Fragment : Fragment() {
@@ -29,8 +30,8 @@ private lateinit var loginViewModel: LoginViewModel
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_register2, container, false)
 
         binding.buttonContinue.setOnClickListener {
-            registerviewModel.gender=binding.spinnergende.toString()
-            registerviewModel.blood=binding.spinnerbloodtype.toString()
+            registerviewModel.gender=binding.spinnergende.selectedItem.toString()
+            registerviewModel.blood=binding.spinnerbloodtype.selectedItem.toString()
             registerviewModel .email=binding.email.text.toString()
             registerviewModel. password=binding.password.text.toString()
             val confirmpassword=binding.confirmpassword.text.toString()

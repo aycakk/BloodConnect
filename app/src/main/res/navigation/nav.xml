@@ -105,6 +105,9 @@
         <action
             android:id="@+id/action_hospitalHomeFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_hospitalHomeFragment_to_createBloodRequestFragment"
+            app:destination="@id/createBloodRequestFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -123,5 +126,9 @@
         android:name="com.softwarengineering.bloodconnect.ui.fragments.NotificationsFragment"
         android:label="Notifications"
         tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/createBloodRequestFragment"
+        android:name="com.softwarengineering.bloodconnect.ui.fragments.hospitals.CreateBloodRequestFragment"
+        android:label="CreateBloodRequestFragment" />
 
 </navigation>

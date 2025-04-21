@@ -5,6 +5,7 @@ import com.google.firebase.firestore.GeoPoint
 
 data class Donor(
     var donorID: String = "",
+    var idnumber:String="",
     var name: String = "",
     var surname: String = "",
     var birthDate: Timestamp? = null,

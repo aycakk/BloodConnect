@@ -13,6 +13,9 @@ import com.softwarengineering.bloodconnect.databinding.FragmentRegister1Binding
 import com.softwarengineering.bloodconnect.viewmodel.LoginViewModel
 import com.softwarengineering.bloodconnect.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import com.softwarengineering.bloodconnect.utils.toBase64
+import com.softwarengineering.bloodconnect.utils.fromBase64
+
 
 @AndroidEntryPoint
 class Register1Fragment : Fragment() {
@@ -27,7 +30,7 @@ private lateinit var viewModel: RegisterViewModel
         binding.buttonContinue.setOnClickListener {
             viewModel.name=binding.name.text.toString()
             viewModel.lastname=binding.editTextLastname.text.toString()
-            viewModel.idnumber=binding.editTextadress.text.toString()
+            viewModel.idnumber=binding.idnumber.text.toString().toBase64()
             viewModel.phonenumber=binding.phonenumber.text.toString()
             viewModel.adress=binding.editTextadress.text.toString()
 

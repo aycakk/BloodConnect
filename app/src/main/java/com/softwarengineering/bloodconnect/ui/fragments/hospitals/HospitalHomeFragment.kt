@@ -27,6 +27,9 @@ private lateinit var binding: FragmentHospitalHomeBinding
         binding.imageButtonListdonor.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_hospitalHomeFragment_to_listmatchDonorFragment)
         }
+        binding.imageButtoncretaerequest.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_hospitalHomeFragment_to_createBloodRequestFragment)
+        }
 
         with(binding){
             hospitalBtn2.setOnClickListener {
