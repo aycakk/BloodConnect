@@ -111,6 +111,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/vreatebloodrequestcd"
+            android:clickable="true"
+            android:focusable="true"
             android:layout_width="150dp"
             android:layout_height="100dp"
             android:layout_marginStart="20dp"

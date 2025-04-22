@@ -24,12 +24,7 @@ private lateinit var binding: FragmentHospitalHomeBinding
     ): View? {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_hospital_home, container, false)
         // Inflate the layout for this fragment
-        binding.imageButtonListdonor.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_hospitalHomeFragment_to_listmatchDonorFragment)
-        }
-        binding.imageButtoncretaerequest.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_hospitalHomeFragment_to_createBloodRequestFragment)
-        }
+
 
         with(binding){
             hospitalBtn2.setOnClickListener {
@@ -38,6 +33,12 @@ private lateinit var binding: FragmentHospitalHomeBinding
                     putBoolean("showOnlyBloodCenters", true)
                 }
                 findNavController().navigate(R.id.action_hospitalHomeFragment_to_mapFragment, bundle)
+            }
+            imageButtonListdonor.setOnClickListener {
+                Navigation.findNavController(it).navigate(R.id.action_hospitalHomeFragment_to_listmatchDonorFragment)
+            }
+            vreatebloodrequestcd.setOnClickListener {
+                Navigation.findNavController(it).navigate(R.id.action_hospitalHomeFragment_to_createBloodRequestFragment)
             }
         }
         return binding.root
