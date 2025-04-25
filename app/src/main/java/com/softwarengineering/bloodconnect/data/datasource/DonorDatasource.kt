@@ -5,6 +5,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.softwarengineering.bloodconnect.data.model.Donor
+import com.softwarengineering.bloodconnect.utils.toBase64
+import com.softwarengineering.bloodconnect.utils.fromBase64
 
 class DonorDatasource(var collectiondonor: CollectionReference) {
      fun registerDonor(
@@ -25,19 +27,20 @@ class DonorDatasource(var collectiondonor: CollectionReference) {
             .addOnSuccessListener { result ->
                 val uid = result.user?.uid ?: return@addOnSuccessListener
 
-                /*
+
                 val donor = Donor(
                     donorID = uid,
+                    idnumber=idnumber,
                     name = name,
                     surname = lastname,
                     birthDate = null,
-                    bloodType = "",
+                    bloodType = blood,
                     email = email,
-                    phone = "",
-                    gender = "",
+                    phone = phonenumber,
+                    gender = gender,
                     height = 0F,
                     weight = 0F,
-                    password = password
+                    password =password
                 )
 
 
@@ -49,7 +52,7 @@ class DonorDatasource(var collectiondonor: CollectionReference) {
                         Log.d("register", "registerDonor: faile ",it)
                     }
 
-                 */
+
             }
             .addOnFailureListener { e ->
                 Log.d("register", "registerDonor: ",e)

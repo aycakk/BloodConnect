@@ -35,6 +35,12 @@ class HospitalLoginFragment : Fragment() {
             })
 
         }
+
+        //Geri butonu
+        binding.buttonBack.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
         return binding.root
     }
     override fun onCreate(savedInstanceState: Bundle?) {

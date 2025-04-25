@@ -17,12 +17,24 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="416dp"
-            android:layout_height="50dp"
-            android:background="#DE143C"
+            android:layout_height="75dp"
+            android:background="@color/red"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:context=".ui.fragments.HomeFragment">
+
+            <ImageButton
+                android:id="@+id/button_back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="17dp"
+                android:src="@drawable/ic_arrow_back"
+                android:contentDescription="Back"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/textView"
@@ -41,14 +53,15 @@
                 app:layout_constraintVertical_bias="0.5" />
 
             <ImageButton
-                android:id="@+id/imageButton_notifications"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginTop="13dp"
+                android:id="@+id/notification"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginEnd="25dp"
                 android:background="@null"
                 android:scaleType="centerInside"
                 android:src="@drawable/notifications"
+                app:layout_constraintBottom_toBottomOf="parent
+"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -60,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="WELCOME TO BLOOD CONNECT"
-            android:textColor="#F80202"
+            android:textColor="@color/red"
             android:textColorLink="#FBFBFB"
             android:textSize="20sp"
             android:textStyle="bold"

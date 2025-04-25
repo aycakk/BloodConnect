@@ -60,6 +60,9 @@
         <action
             android:id="@+id/action_homeFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_notificationsFragment"
+            app:destination="@id/notificationFragment" />
     </fragment>
     <fragment
         android:id="@+id/hospitalLoginFragment"
@@ -98,6 +101,13 @@
         <action
             android:id="@+id/action_hospitalHomeFragment_to_listmatchDonorFragment"
             app:destination="@id/listmatchDonorFragment" />
+
+        <action
+            android:id="@+id/action_hospitalHomeFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_hospitalHomeFragment_to_createBloodRequestFragment"
+            app:destination="@id/createBloodRequestFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -111,4 +121,14 @@
         android:id="@+id/mapFragment"
         android:name="com.softwarengineering.bloodconnect.ui.fragments.MapFragment"
         android:label="MapFragment" />
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.softwarengineering.bloodconnect.ui.fragments.NotificationsFragment"
+        android:label="Notifications"
+        tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/createBloodRequestFragment"
+        android:name="com.softwarengineering.bloodconnect.ui.fragments.hospitals.CreateBloodRequestFragment"
+        android:label="CreateBloodRequestFragment" />
+
 </navigation>

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -16,6 +15,20 @@
         android:layout_height="match_parent"
         tools:context=".ui.fragments.hospitals.HospitalLoginFragment">
 
+        <ImageButton
+            android:id="@+id/button_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/ic_arrow_back"
+            android:contentDescription="Back"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@android:color/black" />
+
+
         <Button
             android:id="@+id/button_login"
             android:layout_width="220dp"
@@ -23,13 +36,13 @@
             android:layout_marginTop="24dp"
             android:backgroundTint="@color/red"
             android:fontFamily="@font/roboto_medium"
-            android:text="Sing in"
+            android:text="LOG IN"
             android:textColor="@color/white"
             app:cornerRadius="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextpassword" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -74,8 +87,10 @@
             android:layout_height="40dp"
             android:background="@color/textbackground"
             android:ems="10"
+            android:hint="@string/hospital_email"
             android:fontFamily="@font/roboto_medium"
             android:inputType="textEmailAddress"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -87,8 +102,10 @@
             android:layout_height="40dp"
             android:background="@color/textbackground"
             android:ems="10"
+            android:hint="@string/password"
             android:fontFamily="@font/roboto_medium"
             android:inputType="textPassword"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -101,6 +118,8 @@
             android:layout_marginTop="50dp"
             android:fontFamily="@font/roboto_medium"
             android:text="Hospital ID or E-mail"
+            android:textStyle="bold"
+            android:textSize="15sp"
             app:layout_constraintStart_toStartOf="@+id/edittextemail"
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -110,17 +129,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="Password"
+            android:textStyle="bold"
+            android:textSize="15sp"
             app:layout_constraintStart_toStartOf="@+id/editTextpassword"
             app:layout_constraintTop_toBottomOf="@+id/edittextemail" />
 
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Keep me sing in"
-            app:layout_constraintStart_toStartOf="@+id/editTextpassword"
-            app:layout_constraintTop_toBottomOf="@+id/editTextpassword" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

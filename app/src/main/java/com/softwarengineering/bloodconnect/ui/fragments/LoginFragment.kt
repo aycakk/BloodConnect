@@ -31,6 +31,10 @@ class LoginFragment : Fragment() {
                 onFailure = { Toast.makeText(context, "Login failed: ${it.message}", Toast.LENGTH_SHORT).show()})
 
         }
+        //Geri butonu
+        binding.buttonBack.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
         return binding.root
     }
 

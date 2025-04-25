@@ -3,11 +3,15 @@ package com.softwarengineering.bloodconnect
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.ui.NavigationUI
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.softwarengineering.bloodconnect.data.model.Donation
@@ -15,15 +19,35 @@ import com.softwarengineering.bloodconnect.data.model.Donor
 import com.softwarengineering.bloodconnect.data.model.Hospital
 import com.softwarengineering.bloodconnect.data.model.Match
 import com.softwarengineering.bloodconnect.data.model.Request
+import com.softwarengineering.bloodconnect.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding:ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+
         setContentView(R.layout.activity_main)
-        /*/*
+       /* val navController = findNavController(R.id.fragmentContainerView)
+        val bottomNavView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+
+        NavigationUI.setupWithNavController(bottomNavView, navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.loginFragment,
+                R.id.welcomeFragment,
+                R.id.register2Fragment,
+                R.id.register1Fragment -> bottomNavView.visibility = View.GONE
+                else -> bottomNavView.visibility = View.VISIBLE
+            }
+        }*/
+
+        /*
         val hospital = Hospital(
              "HOSP_001",
             hospitalName = "Hospital1",
@@ -107,6 +131,8 @@ class MainActivity : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Log.e("Firestore", "Hata oluştu: ${e.message}")
             }
+
+
     }
     /*
     fun addMatch(match: Match) {
@@ -237,8 +263,6 @@ class MainActivity : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Log.e("TEST", "Match erişim hatası: ${e.message}")
             }
-            */
-
     }
 
 

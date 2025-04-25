@@ -23,6 +23,8 @@
     <string name="secim_yap">Bir seçenek seçin</string>
     <string name="google_maps_key">AIzaSyDddqwaCOMJ2RonVeY-vtvIkLqOzv5ORa4</string>
     <string name="email">Enter E-mail</string>
+    <string name="hospital_email">Enter Hospital ID or E-mail</string>
+
     <string name="password">Enter Password</string>
 
 

@@ -49,6 +49,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var geofencingClient: GeofencingClient
     private val viewModel: MapVM by viewModels()
+    private var showOnlyBloodCenters: Boolean = false
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -117,6 +119,14 @@ class MapFragment : Fragment(), OnMapReadyCallback {
          */
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // Fragment'a gelen argümanı al
+        arguments?.let {
+            showOnlyBloodCenters = it.getBoolean("showOnlyBloodCenters", false)
+        }
+    }
+/*
     private fun observeViewModel() {
         //hastaneler
         viewModel.hospitalResults.observe(viewLifecycleOwner) { hospitalList ->
@@ -150,26 +160,63 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     }
 
 
+ */
+private fun observeViewModel() {
+    // Eğer sadece kan merkezleri gösterilecekse, hastane kısmını atla
+    if (!showOnlyBloodCenters) {
+        viewModel.hospitalResults.observe(viewLifecycleOwner) { hospitalList ->
+            hospitalList.forEach { hospital ->
+                val latLng = LatLng(hospital.latitude, hospital.longitude)
+                val marker = mMap.addMarker(
+                    MarkerOptions()
+                        .position(latLng)
+                        .title(hospital.name)
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                )
+                marker?.tag = hospital
+                addGeofence(latLng, hospital.name)
+            }
+        }
+    }
 
-        /*
-            @RequiresApi(Build.VERSION_CODES.O)
-            private fun simulateEmergencyRequest() {
-                val hospitalName = "Florence Nightingale Hospital"
-                val hospitalLocation = LatLng(41.0080, 28.9790)
-                val bloodType = "O-"
+    // Kan merkezleri her zaman gösterilsin
+    viewModel.bloodCenters.observe(viewLifecycleOwner) { centers ->
+        centers.forEach { center ->
+            val latLng = LatLng(center.latitude, center.longitude)
+            val marker = mMap.addMarker(
+                MarkerOptions()
+                    .position(latLng)
+                    .title(center.name)
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+            )
+            marker?.tag = center
+            addGeofence(latLng, center.name)
+        }
+    }
+}
 
-                val matched = viewModel.findEligibleDonors(bloodType, hospitalLocation)
 
-                if (matched.isEmpty()) {
-                    Toast.makeText(requireContext(), "Uygun donör bulunamadı", Toast.LENGTH_SHORT).show()
-                } else {
-                    matched.forEach {
-                        viewModel.sendNotification(requireContext(), it.name, hospitalName)
-                    }
+
+
+    /*
+        @RequiresApi(Build.VERSION_CODES.O)
+        private fun simulateEmergencyRequest() {
+            val hospitalName = "Florence Nightingale Hospital"
+            val hospitalLocation = LatLng(41.0080, 28.9790)
+            val bloodType = "O-"
+
+            val matched = viewModel.findEligibleDonors(bloodType, hospitalLocation)
+
+            if (matched.isEmpty()) {
+                Toast.makeText(requireContext(), "Uygun donör bulunamadı", Toast.LENGTH_SHORT).show()
+            } else {
+                matched.forEach {
+                    viewModel.sendNotification(requireContext(), it.name, hospitalName)
                 }
             }
+        }
 
-         */
+     */
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
