@@ -90,7 +90,7 @@ class ListmatchDonorFragment : Fragment() {
                     )
 
                     Match(donorID = donor.donorID, matchScore = score.toInt(), donorName = donor.name, donorBloodType = donor.bloodType)
-                }.sortedByDescending { it.matchScore }
+                }.filter{it.matchScore > 0}.sortedByDescending { it.matchScore }
 
                 val adapter = MatchDonorAdapter(requireContext(), matches)
                 binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
