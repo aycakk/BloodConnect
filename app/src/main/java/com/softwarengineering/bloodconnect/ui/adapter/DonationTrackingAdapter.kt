@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.softwarengineering.bloodconnect.data.model.DonationTrackingModel
 import com.softwarengineering.bloodconnect.databinding.ItemDonationTrackingBinding
 
-class DonationTrackingAdapter(private val donationList: List<DonationTrackingModel>) :
+class DonationTrackingAdapter(private val donationList: List<DonationTrackingModel>,
+                              private val onDetailsClick: (DonationTrackingModel) -> Unit) :
     RecyclerView.Adapter<DonationTrackingAdapter.DonationViewHolder>() {
 
     inner class DonationViewHolder(val binding: ItemDonationTrackingBinding) :
@@ -25,6 +26,9 @@ class DonationTrackingAdapter(private val donationList: List<DonationTrackingMod
             donorNameTextView.text = donation.donorName
             hospitalNameTextView.text = donation.hospitalName
             donationDateTextView.text = donation.donationDate
+            detailsButton.setOnClickListener {
+                onDetailsClick.invoke(donation)
+            }
         }
     }
 

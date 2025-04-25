@@ -46,14 +46,41 @@ class DonationTrackingFragment : Fragment() {
 
     private fun setupRecyclerView() {
         val dummyDonations = listOf(
-            DonationTrackingModel("Ahmet Yılmaz", "İstanbul Kan Merkezi", "10 Eylül 2005"),
-            DonationTrackingModel("Ahmet Yılmaz", "Ankara Şehir Hastanesi", "2 Ocak 2018"),
-            DonationTrackingModel("Ahmet Yılmaz", "İzmir Kan Bağış Merkezi", "18 Mayıs 2021"),
-            DonationTrackingModel("Ahmet Yılmaz", "Bahçelievler Hastanesi", "27 Şubat 2025")
+            DonationTrackingModel(
+                donorName = "Ahmet Yılmaz",
+                donorIdNumber = "1234567890",
+                donationId = "DON-001",
+                donationDate = "10 Nisan 2025",
+                donationStatus = "Pending",
+                bloodGroup = "A+",
+                hospitalName = "İstanbul Kan Merkezi",
+            ),
+            DonationTrackingModel(
+                donorName = "Ahmet Yılmaz",
+                donorIdNumber = "0987654321",
+                donationId = "DON-002",
+                donationDate = "15 Nisan 2025",
+                donationStatus = "Completed",
+                bloodGroup = "O-",
+                hospitalName = "Ankara Şehir Hastanesi",
+            ),
+            DonationTrackingModel(
+                donorName = "Ahmet Yılmaz",
+                donorIdNumber = "5678901234",
+                donationId = "DON-003",
+                donationDate = "20 Nisan 2025",
+                donationStatus = "Canceled",
+                bloodGroup = "B+",
+                hospitalName = "İzmir Kan Bağış Merkezi",
+            )
 
         )
 
-        donationAdapter = DonationTrackingAdapter(dummyDonations)
+        donationAdapter = DonationTrackingAdapter(dummyDonations) { selectedDonation ->
+            val bottomSheet = DonationDetailsBottomSheet(selectedDonation)
+            bottomSheet.show(parentFragmentManager, bottomSheet.tag)
+        }
+
         binding.donationRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = donationAdapter
