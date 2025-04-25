@@ -108,6 +108,9 @@
         <action
             android:id="@+id/action_hospitalHomeFragment_to_createBloodRequestFragment"
             app:destination="@id/createBloodRequestFragment" />
+        <action
+            android:id="@+id/action_hospitalHomeFragment_to_wiewRequestBloodFragment"
+            app:destination="@id/wiewRequestBloodFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -130,5 +133,9 @@
         android:id="@+id/createBloodRequestFragment"
         android:name="com.softwarengineering.bloodconnect.ui.fragments.hospitals.CreateBloodRequestFragment"
         android:label="CreateBloodRequestFragment" />
+    <fragment
+        android:id="@+id/wiewRequestBloodFragment"
+        android:name="com.softwarengineering.bloodconnect.ui.fragments.hospitals.WiewRequestBloodFragment"
+        android:label="WiewRequestBloodFragment" />
 
 </navigation>

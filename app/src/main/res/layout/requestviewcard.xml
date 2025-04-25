@@ -3,9 +3,11 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="8dp">
 
     <data>
+
         <variable
             name="request"
             type="com.softwarengineering.bloodconnect.data.model.Request" />
@@ -13,50 +15,28 @@
     </data>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView21"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="32dp"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="Request ID:"
-                    android:textColor="@color/design_default_color_primary"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/requestid"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:text="TextView"
-                    app:layout_constraintStart_toEndOf="@+id/textView21"
-                    app:layout_constraintTop_toTopOf="@+id/textView21" />
-
-                <TextView
                     android:id="@+id/textView23"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="32dp"
                     android:fontFamily="@font/roboto_medium"
                     android:text="Desired Blood Groups:"
                     android:textColor="@color/design_default_color_primary"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="@+id/textView21"
-                    app:layout_constraintTop_toBottomOf="@+id/textView21" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="32dp" />
 
                 <TextView
                     android:id="@+id/textView24"
@@ -83,23 +63,11 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
                 <TextView
-                    android:id="@+id/textView26"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="Request Stating:"
-                    android:textColor="@color/design_default_color_primary"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="@+id/textView25"
-                    app:layout_constraintTop_toBottomOf="@+id/textView25" />
-
-                <TextView
                     android:id="@+id/bloodgroups"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:text="TextView"
+                    android:text="@{request.bloodType}"
                     app:layout_constraintStart_toEndOf="@+id/textView23"
                     app:layout_constraintTop_toTopOf="@+id/textView23" />
 
@@ -108,7 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:text="TextView"
+                    android:text=""
                     app:layout_constraintStart_toEndOf="@+id/textView24"
                     app:layout_constraintTop_toTopOf="@+id/textView24" />
 
@@ -117,32 +85,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="44dp"
-                    android:text="TextView"
+                    android:text=""
                     app:layout_constraintStart_toEndOf="@+id/textView25"
                     app:layout_constraintTop_toTopOf="@+id/textView25" />
-
-                <TextView
-                    android:id="@+id/stating"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="52dp"
-                    android:text="TextView"
-                    app:layout_constraintStart_toEndOf="@+id/textView26"
-                    app:layout_constraintTop_toTopOf="@+id/textView26" />
 
                 <Button
                     android:id="@+id/buttondetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="176dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="32dp"
                     android:backgroundTint="@color/red"
                     android:fontFamily="@font/roboto_medium"
                     android:text="Details"
                     android:textColor="@color/white"
                     app:cornerRadius="50dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/stating" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
                 <Button
                     android:id="@+id/button4"

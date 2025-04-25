@@ -9,8 +9,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.NavController
 import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -24,246 +28,31 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityMainBinding
+    private lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-
-
         setContentView(R.layout.activity_main)
-       /* val navController = findNavController(R.id.fragmentContainerView)
-        val bottomNavView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
-        NavigationUI.setupWithNavController(bottomNavView, navController)
+        // DOĞRU: FragmentContainerView üzerinden NavController'ı bul
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        navController = navHostFragment.navController
 
+        // BottomNavigationView'i NavController ile bağla
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        bottomNavigationView.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.loginFragment,
-                R.id.welcomeFragment,
-                R.id.register2Fragment,
-                R.id.register1Fragment -> bottomNavView.visibility = View.GONE
-                else -> bottomNavView.visibility = View.VISIBLE
-            }
-        }*/
-
-        /*
-        val hospital = Hospital(
-             "HOSP_001",
-            hospitalName = "Hospital1",
-            address = "İstanbul",
-            email = "h1@gmail.com",
-            phone = "5555555555",
-            password = "1234",
-            status = true
-        )
-
-        val donor = Donor(
-            "11111111111",
-            "Zeki",
-             "Bayar",
-            bloodType = "A+",
-            mail = "test@gmail.com",
-            phone = "5555555555",
-            gender = "male"
-        )
-
-        val request =Request(
-            hospitalID = "HOSP_001",
-            recipientID = "22222222222",
-            requestStatus = "waiting",
-            urgencyLevel = "High"
-        )
-
-        val donation = Donation(
-            bloodType = "O+",
-            donorID = "22222222222",
-            hospitalID = "HOSP_001",
-            recipientID = "11111111111",
-            status = "done"
-        )
-
-         */
-
-        val match = Match(
-            donorID = "22222222222",
-            recipientID = "11111111111",
-            matchScore = 95,
-            status = "matched"
-        )
-
-
-
-
-
-        testDonorAccess()
-        testHospitalAccess()
-        testMyRequests()
-        testMyDonations()
-        testMyMatches()
-
-
-
-
-
-
-
-
-    }
-    fun addHospital(hospital: Hospital) {
-        val db = FirebaseFirestore.getInstance()
-        db.collection("hospital").document(hospital.hospitalID)
-            .set(hospital)
-            .addOnSuccessListener { documentReference ->
-                Log.d("Firestore", "Hastane eklendi: ${documentReference}")
-            }
-            .addOnFailureListener { e ->
-                Log.e("Firestore", "Hata oluştu: ${e.message}")
-            }
-    }
-    fun addDonation(donation: Donation) {
-        val db = FirebaseFirestore.getInstance()
-        db.collection("donation").document(donation.donationID)
-            .set(donation)
-            .addOnSuccessListener { documentReference ->
-                Log.d("Firestore", "Bağış eklendi: ${documentReference}")
-            }
-            .addOnFailureListener { e ->
-                Log.e("Firestore", "Hata oluştu: ${e.message}")
-            }
-
-
-    }
-    /*
-    fun addMatch(match: Match) {
-        val db = FirebaseFirestore.getInstance()
-        db.collection("match").document(match.matchID)
-            .set(match)
-            .addOnSuccessListener { documentReference ->
-                Log.d("Firestore", "Eşleştirme eklendi: ${documentReference}")
-            }
-            .addOnFailureListener { e ->
-                Log.e("Firestore", "Hata oluştu: ${e.message}")
-            }
-    }
-
-     */
-    fun addBloodRequest(request: Request) {
-        val db = FirebaseFirestore.getInstance()
-        db.collection("request").document(request.requestID)
-            .set(request)
-            .addOnSuccessListener { documentReference ->
-                Log.d("Firestore", "Bağış talebi eklendi: ${documentReference}")
-            }
-            .addOnFailureListener { e ->
-                Log.e("Firestore", "Hata oluştu: ${e.message}")
-            }
-    }
-    fun addDonor(donor: Donor) {
-        val db = FirebaseFirestore.getInstance()
-        db.collection("donor").document(donor.donorID)
-            .set(donor)
-            .addOnSuccessListener { documentReference ->
-                Log.d("Firestore", "Donör eklendi: ${documentReference}")
-            }
-            .addOnFailureListener { e ->
-                Log.e("Firestore", "Hata oluştu: ${e.message}")
-            }
-    }
-    fun testDonorAccess() {
-
-
-        val db = FirebaseFirestore.getInstance()
-        val donorID = "11111111111" // test verisindeki ID
-        Log.d("TEST-CONTROL", "Fonksiyon başladı")
-
-        db.collection("donor").document(donorID).get()
-            .addOnSuccessListener { doc ->
-                if (doc.exists()) {
-                    Log.d("TEST", "Donor verisi çekildi: ${doc.id}")
-                } else {
-                    Log.e("TEST", "Donor verisi bulunamadı.")
+                R.id.welcomeFragment, R.id.loginFragment, R.id.register1Fragment,R.id.register2Fragment,R.id.hospitalLoginFragment,R.id.hospitalRegister2Fragment,R.id.hospitalRegister1Fragment  -> {
+                    // Bu fragmentlarda bottom navigation görünsün
+                    bottomNavigationView.visibility = View.GONE
+                }
+                else -> {
+                    // Diğer tüm fragmentlarda gizle
+                    bottomNavigationView.visibility = View.VISIBLE
                 }
             }
-            .addOnFailureListener { e ->
-                Log.e("TEST", "Donor erişim hatası: ${e.message}")
-            }
-    }
-
-    fun testHospitalAccess() {
-        Log.d("TEST-CONTROL", "Fonksiyon başladı")
-
-        val db = FirebaseFirestore.getInstance()
-        val hospitalID = "HOSP_001"
-
-        db.collection("hospital").document(hospitalID).get()
-            .addOnSuccessListener { doc ->
-                if (doc.exists()) {
-                    val status = doc.getBoolean("status") ?: false
-                    if (status) {
-                        Log.d("TEST", "Hastane onaylı. Veriler: ${doc.id}")
-                    } else {
-                        Log.e("TEST", "Hastane onaylı değil. Çıkış yapılmalı.")
-                    }
-                } else {
-                    Log.e("TEST", "Hastane kaydı bulunamadı.")
-                }
-            }
-            .addOnFailureListener { e ->
-                Log.e("TEST", "Hastane erişim hatası: ${e.message}")
-            }
-    }
-
-    fun testMyDonations() {
-        Log.d("TEST-CONTROL", "Fonksiyon başladı")
-
-        val db = FirebaseFirestore.getInstance()
-        val donorID = "11111111111" // kendi kullanıcı UID
-
-        db.collection("donation").whereEqualTo("donorID", donorID).get()
-            .addOnSuccessListener { docs ->
-                for (doc in docs) {
-                    Log.d("TEST", "Bağış: ${doc.data}")
-                }
-            }
-            .addOnFailureListener { e ->
-                Log.e("TEST", "Donation erişim hatası: ${e.message}")
-            }
-    }
-
-    fun testMyRequests() {
-        Log.d("TEST-CONTROL", "Fonksiyon başladı")
-
-        val db = FirebaseFirestore.getInstance()
-        val hospitalID = "HOSP_001"
-
-        db.collection("request").whereEqualTo("hospitalID", hospitalID).get()
-            .addOnSuccessListener { docs ->
-                for (doc in docs) {
-                    Log.d("TEST", "Talep: ${doc.data}")
-                }
-            }
-            .addOnFailureListener { e ->
-                Log.e("TEST", "Request erişim hatası: ${e.message}")
-            }
-    }
-
-    fun testMyMatches() {
-        Log.d("TEST-CONTROL", "Fonksiyon başladı")
-
-        val db = FirebaseFirestore.getInstance()
-        val donorID = "11111111111"
-
-        db.collection("match").whereEqualTo("donorID", donorID).get()
-            .addOnSuccessListener { docs ->
-                for (doc in docs) {
-                    Log.d("TEST", "Eşleşme: ${doc.data}")
-                }
-            }
-            .addOnFailureListener { e ->
-                Log.e("TEST", "Match erişim hatası: ${e.message}")
-            }
-    }
+    }}}
 
 
 
@@ -274,4 +63,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-}
+
+
+
+

@@ -1,6 +1,8 @@
 package com.softwarengineering.bloodconnect.ui.fragments
 
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +14,7 @@ import com.softwarengineering.bloodconnect.databinding.FragmentProfileBinding
 import com.softwarengineering.bloodconnect.viewmodel.DonorViewModel
 import com.softwarengineering.bloodconnect.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Locale
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
@@ -32,6 +35,9 @@ private lateinit var viewModel: DonorViewModel
 
             binding.editprofile.visibility=View.VISIBLE
         }
+        binding.viewprofile.setOnClickListener {
+            binding.editprofile.visibility=View.GONE
+        }
         viewModel.donorData.observe(viewLifecycleOwner){
             binding.imageprofile.setImageResource(
                 if (it.gender=="male")
@@ -42,9 +48,18 @@ private lateinit var viewModel: DonorViewModel
             binding.fullname.text="${it.name} " +"${it.surname}"
             binding.mail.text="${it.email}"
             binding.gendertext.text="Gender: ${it.gender}"
-            binding.birthdatetext.text="Birth Date: ${it.birthDate}"
+
             binding.phonetext.text="Phone: ${it.phone}"
             binding.adresstext.text="Adress: ${it.address}"
+            val timestamp = it.birthDate
+            if (timestamp != null) {
+                val date = timestamp.toDate()
+                val format = SimpleDateFormat("dd/MM/yyyy ", Locale.getDefault())
+                val formattedDate = format.format(date)
+                Log.d("Tarih", "Oluşturulma zamanı: $formattedDate")
+                binding.birthdatetext.text="Birth Date: ${formattedDate}"
+            }
+
 
         }
 
