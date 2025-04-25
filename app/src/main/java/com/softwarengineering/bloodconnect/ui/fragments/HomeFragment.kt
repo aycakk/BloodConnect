@@ -41,6 +41,9 @@ class HomeFragment : Fragment() {
             notification.setOnClickListener{
                 Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_notificationsFragment)
             }
+            donationTracking.setOnClickListener{
+                Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_donationTrackingFragment)
+            }
         }
 
         return binding.root

@@ -63,6 +63,9 @@
         <action
             android:id="@+id/action_homeFragment_to_notificationsFragment"
             app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_donationTrackingFragment"
+            app:destination="@id/donationTrackingFragment" />
     </fragment>
     <fragment
         android:id="@+id/hospitalLoginFragment"
@@ -123,12 +126,15 @@
         android:label="MapFragment" />
     <fragment
         android:id="@+id/notificationFragment"
-        android:name="com.softwarengineering.bloodconnect.ui.fragments.NotificationsFragment"
+        android:name="com.softwarengineering.bloodconnect.ui.fragments.NotificationFragment"
         android:label="Notifications"
         tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/createBloodRequestFragment"
         android:name="com.softwarengineering.bloodconnect.ui.fragments.hospitals.CreateBloodRequestFragment"
         android:label="CreateBloodRequestFragment" />
-
+    <fragment
+        android:id="@+id/donationTrackingFragment"
+        android:name="com.softwarengineering.bloodconnect.ui.fragments.DonationTrackingFragment"
+        android:label="DonationTrackingFragment" />
 </navigation>

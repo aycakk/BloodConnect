@@ -124,13 +124,15 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/vreatebloodrequestcd"
+            android:id="@+id/donationTracking"
             android:layout_width="160dp"
             android:layout_height="85dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="21dp"
             app:cardBackgroundColor="#D9D9E0"
             app:cardCornerRadius="16dp"
+            android:clickable="true"
+            android:focusable="true"
             app:layout_constraintStart_toEndOf="@+id/donorhistorycd"
             app:layout_constraintTop_toBottomOf="@+id/imageView6">
 
@@ -211,9 +213,9 @@
             android:layout_marginTop="29dp"
             app:cardBackgroundColor="#D9D9E0"
             app:cardCornerRadius="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/vreatebloodrequestcd"
-            app:layout_constraintStart_toStartOf="@+id/vreatebloodrequestcd"
-            app:layout_constraintTop_toBottomOf="@+id/vreatebloodrequestcd">
+            app:layout_constraintEnd_toEndOf="@+id/donationTracking"
+            app:layout_constraintStart_toStartOf="@+id/donationTracking"
+            app:layout_constraintTop_toBottomOf="@+id/donationTracking">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

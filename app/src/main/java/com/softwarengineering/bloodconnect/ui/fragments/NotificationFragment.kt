@@ -14,7 +14,7 @@ import com.softwarengineering.bloodconnect.data.model.NotificationItem
 import com.softwarengineering.bloodconnect.databinding.FragmentNotificationBinding
 import com.softwarengineering.bloodconnect.ui.adapter.NotificationAdapter
 
-class NotificationsFragment : Fragment() {
+class NotificationFragment : Fragment() {
 
     private var _binding: FragmentNotificationBinding? = null
     private val binding get() = _binding!!
