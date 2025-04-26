@@ -34,25 +34,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // DOĞRU: FragmentContainerView üzerinden NavController'ı bul
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-        navController = navHostFragment.navController
 
-        // BottomNavigationView'i NavController ile bağla
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        bottomNavigationView.setupWithNavController(navController)
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
-                R.id.welcomeFragment, R.id.loginFragment, R.id.register1Fragment,R.id.register2Fragment,R.id.hospitalLoginFragment,R.id.hospitalRegister2Fragment,R.id.hospitalRegister1Fragment  -> {
-                    // Bu fragmentlarda bottom navigation görünsün
-                    bottomNavigationView.visibility = View.GONE
-                }
-                else -> {
-                    // Diğer tüm fragmentlarda gizle
-                    bottomNavigationView.visibility = View.VISIBLE
-                }
-            }
-    }}}
+    }}
 
 
 

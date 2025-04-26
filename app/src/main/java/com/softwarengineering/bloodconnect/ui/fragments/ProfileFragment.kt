@@ -30,35 +30,43 @@ private lateinit var viewModel: DonorViewModel
         viewModel.loadCurrentDonor()
         binding.viewmodel=viewModel
 
+        with(binding){
+            settingsButton.setOnClickListener {
 
-        binding.settingsButton.setOnClickListener {
-
-            binding.editprofile.visibility=View.VISIBLE
-        }
-        binding.viewprofile.setOnClickListener {
-            binding.editprofile.visibility=View.GONE
-        }
-        viewModel.donorData.observe(viewLifecycleOwner){
-            binding.imageprofile.setImageResource(
-                if (it.gender=="male")
-                R.drawable.man
-                else
-                R.drawable.human
-            )
-            binding.fullname.text="${it.name} " +"${it.surname}"
-            binding.mail.text="${it.email}"
-            binding.gendertext.text="Gender: ${it.gender}"
-
-            binding.phonetext.text="Phone: ${it.phone}"
-            binding.adresstext.text="Adress: ${it.address}"
-            val timestamp = it.birthDate
-            if (timestamp != null) {
-                val date = timestamp.toDate()
-                val format = SimpleDateFormat("dd/MM/yyyy ", Locale.getDefault())
-                val formattedDate = format.format(date)
-                Log.d("Tarih", "Oluşturulma zamanı: $formattedDate")
-                binding.birthdatetext.text="Birth Date: ${formattedDate}"
+                editprofile.visibility=View.VISIBLE
             }
+            viewprofile.setOnClickListener {
+                editprofile.visibility=View.GONE
+            }
+            buttonBack.setOnClickListener {
+                requireActivity().onBackPressedDispatcher.onBackPressed()
+            }
+            viewModel.donorData.observe(viewLifecycleOwner){
+              imageprofile.setImageResource(
+                    if (it.gender=="male")
+                        R.drawable.man
+                    else
+                        R.drawable.human
+                )
+                fullname.text="${it.name} " +"${it.surname}"
+                mail.text="${it.email}"
+                gendertext.text="Gender: ${it.gender}"
+
+                phonetext.text="Phone: ${it.phone}"
+                adresstext.text="Adress: ${it.address}"
+                val timestamp = it.birthDate
+                if (timestamp != null) {
+                    val date = timestamp.toDate()
+                    val format = SimpleDateFormat("dd/MM/yyyy ", Locale.getDefault())
+                    val formattedDate = format.format(date)
+                    Log.d("Tarih", "Oluşturulma zamanı: $formattedDate")
+                    birthdatetext.text="Birth Date: ${formattedDate}"
+                }
+
+
+
+            }
+
 
 
         }

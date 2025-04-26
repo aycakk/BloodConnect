@@ -39,6 +39,9 @@ class HomeFragment : Fragment() {
             notification.setOnClickListener{
                 Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_notificationsFragment)
             }
+            profile.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+            }
         }
 
         return binding.root
