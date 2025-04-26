@@ -1,23 +1,22 @@
 package com.softwarengineering.bloodconnect.ui.fragments.hospitals
 
 import android.os.Bundle
-import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.google.firebase.firestore.FirebaseFirestore
 import com.softwarengineering.bloodconnect.R
 import com.softwarengineering.bloodconnect.databinding.FragmentManageBloodInventoryBinding
+import com.softwarengineering.bloodconnect.utils.SessionManager
 
 class ManageBloodInventoryFragment : Fragment() {
 
     private var _binding: FragmentManageBloodInventoryBinding? = null
     private val binding get() = _binding!!
-
-    // Hafızada tuttuğumuz veri
-    private val bloodInventoryMap = mutableMapOf<String, String>()
+    private val db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,42 +34,44 @@ class ManageBloodInventoryFragment : Fragment() {
     }
 
     private fun setupPublishButtons() {
-        setupPublishListener("A+", binding.availableUnitsAPlus.text, binding.publishButtonAPlus)
-        setupPublishListener("A-", binding.availableUnitsAMinus.text, binding.publishButtonAMinus)
-        setupPublishListener("B+", binding.availableUnitsBPlus.text, binding.publishButtonBPlus)
-        setupPublishListener("B-", binding.availableUnitsBMinus.text, binding.publishButtonBMinus)
-        setupPublishListener("AB+", binding.availableUnitsABPlus.text, binding.publishButtonABPlus)
-        setupPublishListener("AB-", binding.availableUnitsABMinus.text, binding.publishButtonABMinus)
-        setupPublishListener("O+", binding.availableUnitsOPlus.text, binding.publishButtonOPlus)
-        setupPublishListener("O-", binding.availableUnitsOMinus.text, binding.publishButtonOMinus)
+        setupPublishListener("A+", binding.publishButtonAPlus)
+        setupPublishListener("A-", binding.publishButtonAMinus)
+        setupPublishListener("B+", binding.publishButtonBPlus)
+        setupPublishListener("B-", binding.publishButtonBMinus)
+        setupPublishListener("AB+", binding.publishButtonABPlus)
+        setupPublishListener("AB-", binding.publishButtonABMinus)
+        setupPublishListener("O+", binding.publishButtonOPlus)
+        setupPublishListener("O-", binding.publishButtonOMinus)
     }
 
     private fun setupPublishListener(
         bloodType: String,
-        editable: Editable?,
         button: View
     ) {
         button.setOnClickListener {
-            val units = editable?.toString()?.trim() ?: ""
-
-            if (units.isNotBlank()) {
-                bloodInventoryMap[bloodType] = units
-
-                Toast.makeText(
-                    requireContext(),
-                    "$bloodType updated: $units units available!",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                Toast.makeText(
-                    requireContext(),
-                    "Please enter available units for $bloodType.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+            val hospitalName = SessionManager.currentHospitalName ?: "Unknown Hospital"
+            publishNotification(bloodType, hospitalName)
         }
     }
 
+
+    private fun publishNotification(bloodType: String, hospitalName: String) {
+        val db = FirebaseFirestore.getInstance()
+        val notification = hashMapOf(
+            "bloodType" to bloodType,
+            "hospitalName" to hospitalName,
+            "timestamp" to System.currentTimeMillis()
+        )
+
+        db.collection("notification")
+            .add(notification)
+            .addOnSuccessListener {
+                Toast.makeText(requireContext(), "$bloodType notification published at $hospitalName!", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(requireContext(), "Failed to publish: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
     private fun setupToolbar() {
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbarManageBlood)
         binding.toolbarManageBlood.title = "Donation Tracking"

@@ -1,15 +1,16 @@
 package com.softwarengineering.bloodconnect.ui.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.softwarengineering.bloodconnect.data.model.NotificationItem
 import com.softwarengineering.bloodconnect.databinding.ItemNotificationBinding
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class NotificationAdapter(
-    private val items: List<NotificationItem>
+    private val notificationsList: List<NotificationItem>
 ) : RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>() {
 
     inner class NotificationViewHolder(val binding: ItemNotificationBinding) :
@@ -21,18 +22,20 @@ class NotificationAdapter(
     }
 
     override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
-        val item = items[position]
+        val item = notificationsList[position]
         holder.binding.apply {
             textHospital.text = "${item.hospitalName} announced that it needs ${item.bloodType} blood."
-            textDate.text = item.dateTime
-            textUrgent.visibility = if (item.isUrgent) View.VISIBLE else View.GONE
-
-            buttonDetails.setOnClickListener {
-                Toast.makeText(root.context, "Details clicked for ${item.hospitalName}", Toast.LENGTH_SHORT).show()
-            }
+            textDate.text = formatTimestamp(item.timestamp)
+            //textUrgent.visibility = if (item.isUrgent) View.VISIBLE else View.GONE
         }
     }
 
-    override fun getItemCount(): Int = items.size
-}
+    override fun getItemCount(): Int = notificationsList.size
+
+    // Timestamp'ı tarih-saat string'e çeviriyoruz
+    private fun formatTimestamp(timestamp: Long): String {
+        val sdf = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
+        val date = Date(timestamp)
+        return sdf.format(date)
+    }}
 

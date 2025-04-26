@@ -26,7 +26,7 @@
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@id/imageHospital"
         app:layout_constraintTop_toTopOf="@id/imageHospital"
-        app:layout_constraintEnd_toStartOf="@+id/textUrgent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/textUrgent"
@@ -43,32 +43,18 @@
         android:id="@+id/textDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="15.03.2025    09:10"
+        android:text="15.03.2025 09:10"
         android:textSize="13sp"
         android:layout_marginTop="6dp"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintStart_toStartOf="@+id/textHospital"
         app:layout_constraintTop_toBottomOf="@+id/textHospital" />
 
-    <Button
-        android:id="@+id/buttonDetails"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:text="Details"
-        android:textColor="@android:color/white"
-        android:backgroundTint="@color/red"
-        android:textSize="13sp"
-        android:layout_marginTop="7dp"
-        app:cornerRadius="24dp"
-        app:layout_constraintTop_toBottomOf="@+id/textHospital"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/textDate" />
-
     <View
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="#CCCCCC"
-        app:layout_constraintTop_toBottomOf="@id/buttonDetails"
+        app:layout_constraintTop_toBottomOf="@id/textDate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="12dp"/>
