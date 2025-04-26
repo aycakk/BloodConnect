@@ -44,6 +44,9 @@ private lateinit var binding: FragmentHospitalHomeBinding
             viewbloodreguestcd.setOnClickListener {
                 findNavController().navigate(R.id.action_hospitalHomeFragment_to_wiewRequestBloodFragment)
             }
+            manageBloodInventory.setOnClickListener{
+                Navigation.findNavController(it).navigate(R.id.action_hospitalHomeFragment_to_manageBloodInventoryFragment)
+            }
 
         }
         return binding.root
