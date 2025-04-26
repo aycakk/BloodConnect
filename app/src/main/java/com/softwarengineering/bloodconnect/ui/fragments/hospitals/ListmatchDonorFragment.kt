@@ -21,6 +21,7 @@ import com.softwarengineering.bloodconnect.data.model.Hospital
 import android.util.Log
 import com.google.firebase.firestore.GeoPoint
 import dagger.hilt.android.AndroidEntryPoint
+import com.google.firebase.firestore.SetOptions
 
 @AndroidEntryPoint
 class ListmatchDonorFragment : Fragment() {
@@ -29,6 +30,7 @@ class ListmatchDonorFragment : Fragment() {
     private val firestore = FirebaseFirestore.getInstance()
     private val recommend = Recommend()
     private var hospitalLocation: GeoPoint? = null
+    private var hospID: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,6 +56,7 @@ class ListmatchDonorFragment : Fragment() {
     private fun fetchDonorsAndDisplay(recipientBloodType: String) {
         val uid = FirebaseAuth.getInstance().currentUser?.uid
         if (uid != null) {
+            hospID = uid
             FirebaseFirestore.getInstance().collection("hospital").document(uid).get()
                 .addOnSuccessListener { document ->
                     if (document.exists()) {
@@ -89,8 +92,22 @@ class ListmatchDonorFragment : Fragment() {
                         donorDonations
                     )
 
-                    Match(donorID = donor.donorID, matchScore = score.toInt(), donorName = donor.name, donorBloodType = donor.bloodType)
+                    Match(donorID = donor.donorID, matchScore = score.toInt(), donorName = donor.name, donorBloodType = donor.bloodType, hospitalID = hospID, neededBloodType = recipientBloodType )
                 }.filter{it.matchScore > 0}.sortedByDescending { it.matchScore }
+
+                for (match in matches) {
+                    val documentId = "${match.hospitalID}_${match.donorID}_${match.neededBloodType}"
+
+                    firestore.collection("match")
+                        .document(documentId)
+                        .set(match, SetOptions.merge())
+                        .addOnSuccessListener {
+                            Log.d("UploadMatch", "Match for ${match.donorID} uploaded/updated successfully")
+                        }
+                        .addOnFailureListener { e ->
+                            Log.e("UploadMatch", "Error uploading match for ${match.donorID}", e)
+                        }
+                }
 
                 val adapter = MatchDonorAdapter(requireContext(), matches)
                 binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
