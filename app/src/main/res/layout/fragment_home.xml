@@ -257,55 +257,7 @@
             app:cardCornerRadius="16dp"
             app:layout_constraintEnd_toEndOf="@+id/managebloodinventerycd"
             app:layout_constraintStart_toStartOf="@+id/viewbloodreguestcd"
-            app:layout_constraintTop_toBottomOf="@+id/viewbloodreguestcd">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Hospitals and Blood Banks"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/image_Buttonhospital"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="80dp"
-                    android:layout_marginEnd="12dp"
-                    android:text="Discover the hospitals and bloodbanks closest
-                    to you and contact them in case of urgent blood needs."
-                    android:textSize="12sp"
-                    android:ellipsize="end"
-                    android:maxLines="3"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/image_Buttonhospital"
-                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-                <ImageButton
-                    android:id="@+id/image_Buttonhospital"
-                    android:focusable="false"
-                    android:clickable="false"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@null"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/hospital"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+            app:layout_constraintTop_toBottomOf="@+id/viewbloodreguestcd"/>
 
 
 

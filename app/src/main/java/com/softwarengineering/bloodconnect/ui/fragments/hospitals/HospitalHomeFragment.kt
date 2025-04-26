@@ -33,6 +33,7 @@ private lateinit var binding: FragmentHospitalHomeBinding
                     putBoolean("showOnlyBloodCenters", true)
                 }
                 findNavController().navigate(R.id.action_hospitalHomeFragment_to_mapFragment, bundle)
+
             }
             imageButtonListdonor.setOnClickListener {
                 Navigation.findNavController(it).navigate(R.id.action_hospitalHomeFragment_to_listmatchDonorFragment)
@@ -40,6 +41,10 @@ private lateinit var binding: FragmentHospitalHomeBinding
             vreatebloodrequestcd.setOnClickListener {
                 Navigation.findNavController(it).navigate(R.id.action_hospitalHomeFragment_to_createBloodRequestFragment)
             }
+            viewbloodreguestcd.setOnClickListener {
+                findNavController().navigate(R.id.action_hospitalHomeFragment_to_wiewRequestBloodFragment)
+            }
+
         }
         return binding.root
     }

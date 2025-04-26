@@ -63,9 +63,6 @@
         <action
             android:id="@+id/action_homeFragment_to_notificationsFragment"
             app:destination="@id/notificationFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_donationTrackingFragment"
-            app:destination="@id/donationTrackingFragment" />
     </fragment>
     <fragment
         android:id="@+id/hospitalLoginFragment"
@@ -111,6 +108,9 @@
         <action
             android:id="@+id/action_hospitalHomeFragment_to_createBloodRequestFragment"
             app:destination="@id/createBloodRequestFragment" />
+        <action
+            android:id="@+id/action_hospitalHomeFragment_to_wiewRequestBloodFragment"
+            app:destination="@id/wiewRequestBloodFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -126,7 +126,7 @@
         android:label="MapFragment" />
     <fragment
         android:id="@+id/notificationFragment"
-        android:name="com.softwarengineering.bloodconnect.ui.fragments.NotificationFragment"
+        android:name="com.softwarengineering.bloodconnect.ui.fragments.NotificationsFragment"
         android:label="Notifications"
         tools:layout="@layout/fragment_notification" />
     <fragment
@@ -134,7 +134,8 @@
         android:name="com.softwarengineering.bloodconnect.ui.fragments.hospitals.CreateBloodRequestFragment"
         android:label="CreateBloodRequestFragment" />
     <fragment
-        android:id="@+id/donationTrackingFragment"
-        android:name="com.softwarengineering.bloodconnect.ui.fragments.DonationTrackingFragment"
-        android:label="DonationTrackingFragment" />
+        android:id="@+id/wiewRequestBloodFragment"
+        android:name="com.softwarengineering.bloodconnect.ui.fragments.hospitals.WiewRequestBloodFragment"
+        android:label="WiewRequestBloodFragment" />
+
 </navigation>

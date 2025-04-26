@@ -35,14 +35,9 @@ class HomeFragment : Fragment() {
             buttonBack.setOnClickListener {
                 requireActivity().onBackPressedDispatcher.onBackPressed()
             }
-            imageButtondonation.setOnClickListener {
-                Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_profileFragment)
-            }
+
             notification.setOnClickListener{
                 Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_notificationsFragment)
-            }
-            donationTracking.setOnClickListener{
-                Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_donationTrackingFragment)
             }
         }
 
