@@ -16,7 +16,7 @@ import com.softwarengineering.bloodconnect.data.model.NotificationItem
 import com.softwarengineering.bloodconnect.databinding.FragmentNotificationBinding
 import com.softwarengineering.bloodconnect.ui.adapter.NotificationAdapter
 
-class NotificationsFragment : Fragment() {
+class NotificationFragment : Fragment() {
 
     private var _binding: FragmentNotificationBinding? = null
     private val binding get() = _binding!!
@@ -36,6 +36,8 @@ class NotificationsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.red)
 
         setupToolbar()
         setupRecyclerView()

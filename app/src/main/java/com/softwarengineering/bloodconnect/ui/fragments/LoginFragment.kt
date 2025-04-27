@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -35,6 +36,8 @@ class LoginFragment : Fragment() {
         binding.buttonBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
+        requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.white)
+
         return binding.root
     }
 

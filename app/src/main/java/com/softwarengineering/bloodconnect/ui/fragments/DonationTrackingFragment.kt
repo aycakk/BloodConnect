@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.softwarengineering.bloodconnect.R
@@ -42,6 +43,8 @@ class DonationTrackingFragment : Fragment() {
             requireActivity().onBackPressedDispatcher.onBackPressed()
 
         }
+        requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.red)
+
     }
 
     private fun setupRecyclerView() {

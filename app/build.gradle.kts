@@ -122,5 +122,9 @@ dependencies {
     implementation("com.google.firebase:firebase-messaging-ktx:24.1.0")
     implementation("com.google.firebase:firebase-analytics-ktx:21.4.0")
 
+    implementation ("androidx.viewpager2:viewpager2:1.0.0")
+    implementation ("com.tbuonomo:dotsindicator:4.3")
+
+
 }
 

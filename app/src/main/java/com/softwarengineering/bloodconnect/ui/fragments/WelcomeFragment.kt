@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import com.softwarengineering.bloodconnect.R
@@ -35,6 +36,9 @@ class WelcomeFragment : Fragment() {
         binding.buttonForm.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_welcomeFragment_to_hospitalRegister1Fragment)
         }
+
+        requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.white)
+
         return binding.root
     }
 
