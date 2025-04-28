@@ -24,6 +24,8 @@ class WelcomeFragment : Fragment() {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_welcome,container,false)
         binding.welcomefragment=this
         // Inflate the layout for this fragment
+        requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.white)
+
         binding.buttonCreateaccount.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_welcomeFragment_to_register1Fragment)
         }
