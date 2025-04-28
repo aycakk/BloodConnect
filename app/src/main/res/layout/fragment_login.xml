@@ -97,7 +97,7 @@
 
         <EditText
             android:id="@+id/editTextpassword"
-            android:layout_width="308dp"
+            android:layout_width="300dp"
             android:layout_height="40dp"
             android:background="@color/textbackground"
             android:ems="10"

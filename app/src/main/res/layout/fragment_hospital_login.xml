@@ -5,7 +5,7 @@
 
     <data>
         <variable
-            name="loginfragment"
+            name="hospitalLoginfragment"
             type="com.softwarengineering.bloodconnect.ui.fragments.hospitals.HospitalLoginFragment" />
 
     </data>
@@ -83,7 +83,7 @@
 
         <EditText
             android:id="@+id/edittextemail"
-            android:layout_width="238dp"
+            android:layout_width="300dp"
             android:layout_height="40dp"
             android:background="@color/textbackground"
             android:ems="10"
@@ -98,7 +98,7 @@
 
         <EditText
             android:id="@+id/editTextpassword"
-            android:layout_width="238dp"
+            android:layout_width="300dp"
             android:layout_height="40dp"
             android:background="@color/textbackground"
             android:ems="10"
@@ -115,7 +115,7 @@
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/roboto_medium"
             android:text="Hospital ID or E-mail"
             android:textStyle="bold"
