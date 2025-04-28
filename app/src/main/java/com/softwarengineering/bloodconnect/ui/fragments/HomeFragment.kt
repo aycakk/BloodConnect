@@ -34,7 +34,6 @@ class HomeFragment : Fragment() {
         binding.homefragment = this
 
         requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.red)
-
         return binding.root
     }
 

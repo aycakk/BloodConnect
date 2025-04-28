@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -29,6 +30,9 @@ class HospitalLoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_hospital_login, container, false)
+        requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.white)
+
+
         binding.buttonLogin.setOnClickListener {
             viewModel.loginhospital(
                 binding.edittextemail.text.toString(),

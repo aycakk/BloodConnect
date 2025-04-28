@@ -15,42 +15,40 @@
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="416dp"
-            android:layout_height="100dp"
-            android:background="#DE143C"
+            android:id="@+id/toolbarLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/red"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:context=".ui.fragments.HomeFragment">
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/button_back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_arrow_back"
+                android:contentDescription="Back"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
                 android:text="HOME"
-                android:textColor="#FFFFFF"
-                android:textColorLink="#FBFBFB"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.5" />
 
-            <ImageButton
-                android:id="@+id/imageButton_notifications"
-                android:layout_width="25dp"
-                android:layout_height="21dp"
-                android:layout_marginTop="60dp"
-                android:layout_marginEnd="64dp"
-                android:background="@null"
-                android:scaleType="centerInside"
-                android:src="@drawable/notifications"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -60,45 +58,73 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="WELCOME TO BLOOD CONNECT"
-            android:textColor="#F80202"
+            android:textColor="@color/black"
             android:textColorLink="#FBFBFB"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbarLayout2" />
+
+        <!-- ViewPager for Slider -->
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="14dp"
+            android:layoutDirection="ltr"
+            app:layout_constraintTop_toBottomOf="@id/privatechoose"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- DotsIndicator -->
+        <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+            android:id="@+id/dotsIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:dotsColor="@color/red"
+            app:selectedDotColor="@color/red"
+            app:dotsSize="8dp"
+            app:dotsSpacing="6dp"
+            app:dotsCornerRadius="4dp"
+            app:layout_constraintTop_toBottomOf="@id/viewPager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/donorhistorycd"
-            android:layout_width="150dp"
+            android:layout_width="170dp"
             android:layout_height="100dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="30dp"
             app:cardBackgroundColor="#D9D9E0"
             app:cardCornerRadius="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/viewbloodreguestcd"
-            app:layout_constraintStart_toStartOf="@+id/viewbloodreguestcd"
-            app:layout_constraintTop_toBottomOf="@+id/privatechoose">
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/vreatebloodrequestcd"
+            app:layout_constraintTop_toBottomOf="@+id/viewPager">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="76dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="28dp"
                     android:text="List of Donors"
                     android:textStyle="bold"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/imageButton_listdonor"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
                     android:id="@+id/imageButton_listdonor"
-                    android:layout_width="36dp"
-                    android:layout_height="43dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="12dp"
                     android:layout_marginTop="20dp"
                     android:background="@null"
                     android:scaleType="centerInside"
@@ -113,14 +139,16 @@
             android:id="@+id/vreatebloodrequestcd"
             android:clickable="true"
             android:focusable="true"
-            android:layout_width="150dp"
+            android:layout_width="170dp"
             android:layout_height="100dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="8dp"
             app:cardBackgroundColor="#D9D9E0"
             app:cardCornerRadius="16dp"
             app:layout_constraintStart_toEndOf="@+id/donorhistorycd"
-            app:layout_constraintTop_toBottomOf="@+id/privatechoose">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewPager">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -131,18 +159,19 @@
                     android:layout_width="64dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="20dp"
                     android:text="Create Blood Request"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/image_Buttoncretaerequest"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
                     android:id="@+id/image_Buttoncretaerequest"
-                    android:layout_width="38dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="20dp"
                     android:background="@null"
                     android:scaleType="centerInside"
                     android:src="@drawable/donation_tracking"
@@ -153,15 +182,17 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/viewbloodreguestcd"
-            android:layout_width="150dp"
+            android:layout_width="170dp"
             android:layout_height="100dp"
             android:clickable="true"
             android:focusable="true"
-            android:layout_marginStart="45dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="8dp"
             app:cardBackgroundColor="#D9D9E0"
             app:cardCornerRadius="16dp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/manageBloodInventory"
             app:layout_constraintTop_toBottomOf="@+id/donorhistorycd">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -176,14 +207,15 @@
                     android:layout_marginTop="16dp"
                     android:text="View Request Blood"
                     android:textStyle="bold"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/image_buttonrequest"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
                     android:id="@+id/image_buttonrequest"
-                    android:layout_width="39dp"
-                    android:layout_height="42dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="12dp"
                     android:layout_marginTop="21dp"
                     android:background="@null"
                     android:scaleType="centerInside"
@@ -196,14 +228,16 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/manageBloodInventory"
-            android:layout_width="150dp"
+            android:layout_width="170dp"
             android:layout_height="100dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="15dp"
             app:cardBackgroundColor="#D9D9E0"
             app:cardCornerRadius="16dp"
             android:clickable="true"
             android:focusable="true"
-            app:layout_constraintEnd_toEndOf="@+id/vreatebloodrequestcd"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/vreatebloodrequestcd"
             app:layout_constraintTop_toBottomOf="@+id/vreatebloodrequestcd">
 
@@ -213,12 +247,13 @@
 
                 <TextView
                     android:id="@+id/textView5"
-                    android:layout_width="64dp"
+                    android:layout_width="75dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="20dp"
                     android:text="Manage Blood Inventory"
                     android:textStyle="bold"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/imageButton_donateunion"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -226,8 +261,8 @@
                     android:id="@+id/imageButton_donateunion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="19dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="20dp"
                     android:background="@null"
                     android:src="@drawable/donate_union"
                     app:layout_constraintStart_toStartOf="parent"
@@ -238,12 +273,12 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/hospitalBtn2"
-            android:layout_width="320dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="32dp"
+            android:layout_width="360dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="15dp"
             app:cardBackgroundColor="#D9D9E0"
             app:cardCornerRadius="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/managebloodinventerycd"
+            app:layout_constraintEnd_toEndOf="@+id/manageBloodInventory"
             app:layout_constraintStart_toStartOf="@+id/viewbloodreguestcd"
             app:layout_constraintTop_toBottomOf="@+id/viewbloodreguestcd">
 
@@ -257,6 +292,7 @@
                     android:layout_height="wrap_content"
                     android:text="Partner Blood Banks"
                     android:textStyle="bold"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -266,9 +302,9 @@
 
                 <ImageButton
                     android:id="@+id/image_Buttonhospital"
-                    android:layout_width="32dp"
-                    android:layout_height="37dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="26dp"
                     android:layout_marginTop="8dp"
                     android:background="@null"
                     android:scaleType="centerInside"

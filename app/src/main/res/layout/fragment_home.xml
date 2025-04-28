@@ -116,7 +116,8 @@
                 android:id="@+id/donationTracking"
                 android:layout_width="0dp"
                 android:layout_height="140dp"
-                android:layout_margin="8dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 app:cardBackgroundColor="#D9D9E0"
                 app:cardCornerRadius="16dp">
@@ -156,7 +157,8 @@
                 android:id="@+id/managebloodinventerycd"
                 android:layout_width="0dp"
                 android:layout_height="140dp"
-                android:layout_margin="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="12dp"
                 android:layout_weight="1"
                 app:cardBackgroundColor="#D9D9E0"
                 app:cardCornerRadius="16dp">
@@ -193,7 +195,7 @@
 
         </LinearLayout>
 
-        <!-- Wide Hospital and Blood Bank Card -->
+        <!-- Hospital and Blood Bank Card -->
         <androidx.cardview.widget.CardView
             android:id="@+id/hospitalBtn"
             android:layout_width="0dp"
@@ -206,8 +208,8 @@
             app:layout_constraintTop_toBottomOf="@id/smallButtonsLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp">
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
