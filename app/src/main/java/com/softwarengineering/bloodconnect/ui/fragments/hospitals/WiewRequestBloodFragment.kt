@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.softwarengineering.bloodconnect.R
 
 
@@ -36,6 +37,9 @@ class WiewRequestBloodFragment : Fragment() {
             val requestadapter=ViewRequestAdapter(requireContext(),it,viewmodel)
             binding.requestadapter=requestadapter
 
+        }
+        binding.buttonBack.setOnClickListener {
+            findNavController().popBackStack()
         }
         onResume()
 

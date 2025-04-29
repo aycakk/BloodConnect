@@ -15,7 +15,7 @@
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
+            android:id="@+id/c2"
             android:layout_width="416dp"
             android:layout_height="100dp"
             android:background="#DE143C"
@@ -40,18 +40,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.5" />
 
-            <ImageButton
-                android:id="@+id/imageButton_notifications"
-                android:layout_width="25dp"
-                android:layout_height="21dp"
-                android:layout_marginTop="60dp"
-                android:layout_marginEnd="64dp"
-                android:background="@null"
-                android:scaleType="centerInside"
-                android:src="@drawable/notifications"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
@@ -67,12 +55,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/c2" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/donorhistorycd"
+            android:id="@+id/donorlist"
             android:layout_width="150dp"
             android:layout_height="100dp"
+            android:clickable="true"
+            android:focusable="true"
             android:layout_marginTop="64dp"
             app:cardBackgroundColor="#D9D9E0"
             app:cardCornerRadius="16dp"
@@ -119,7 +109,7 @@
             android:layout_marginTop="64dp"
             app:cardBackgroundColor="#D9D9E0"
             app:cardCornerRadius="16dp"
-            app:layout_constraintStart_toEndOf="@+id/donorhistorycd"
+            app:layout_constraintStart_toEndOf="@+id/donorlist"
             app:layout_constraintTop_toBottomOf="@+id/privatechoose">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -162,7 +152,7 @@
             app:cardBackgroundColor="#D9D9E0"
             app:cardCornerRadius="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/donorhistorycd">
+            app:layout_constraintTop_toBottomOf="@+id/donorlist">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -252,7 +242,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView7"
+                    android:id="@+id/textViewemail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Partner Blood Banks"

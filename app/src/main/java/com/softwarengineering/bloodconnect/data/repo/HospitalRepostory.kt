@@ -6,11 +6,13 @@ import com.softwarengineering.bloodconnect.data.datasource.HospitalDataSource
 class HospitalRepostory(var hospitalDataSource: HospitalDataSource) {
     fun registerhospital(
         name:String,
+
+        authname:String,
         email:String,
         phone:String,
         password:String
 
-    )=hospitalDataSource.registerhospital(name,email,phone,password)
+    )=hospitalDataSource.registerhospital(name, authname,email,phone,password)
 
     fun createRequest(
         patientName: String,

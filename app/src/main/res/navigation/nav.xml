@@ -29,16 +29,7 @@
         android:label="fragment_register1"
         tools:layout="@layout/fragment_register1" >
         <action
-            android:id="@+id/action_register1Fragment_to_register2Fragment"
-            app:destination="@id/register2Fragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/register2Fragment"
-        android:name="com.softwarengineering.bloodconnect.ui.fragments.Register2Fragment"
-        android:label="fragment_register2"
-        tools:layout="@layout/fragment_register2" >
-        <action
-            android:id="@+id/action_register2Fragment_to_homeFragment"
+            android:id="@+id/action_register1Fragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
     <fragment
@@ -69,9 +60,6 @@
         android:name="com.softwarengineering.bloodconnect.ui.fragments.hospitals.HospitalLoginFragment"
         android:label="HospitalLoginFragment" >
         <action
-            android:id="@+id/action_hospitalLoginFragment_to_hospitalRegister1Fragment"
-            app:destination="@id/hospitalRegister1Fragment" />
-        <action
             android:id="@+id/action_hospitalLoginFragment_to_hospitalHomeFragment"
             app:destination="@id/hospitalHomeFragment" />
     </fragment>
@@ -80,18 +68,10 @@
         android:name="com.softwarengineering.bloodconnect.ui.fragments.hospitals.HospitalRegister1Fragment"
         android:label="HospitalRegister1Fragment" >
         <action
-            android:id="@+id/action_hospitalRegister1Fragment_to_hospitalRegister2Fragment"
-            app:destination="@id/hospitalRegister2Fragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/hospitalRegister2Fragment"
-        android:name="com.softwarengineering.bloodconnect.ui.fragments.hospitals.HospitalRegister2Fragment"
-        android:label="HospitalRegister2Fragment" >
-        <action
-            android:id="@+id/action_hospitalRegister2Fragment_to_hospitalHomeFragment2"
+            android:id="@+id/action_hospitalRegister1Fragment_to_hospitalHomeFragment"
             app:destination="@id/hospitalHomeFragment" />
         <action
-            android:id="@+id/action_hospitalRegister2Fragment_to_welcomeFragment"
+            android:id="@+id/action_hospitalRegister1Fragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />
     </fragment>
     <fragment

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -21,6 +22,7 @@ import com.softwarengineering.bloodconnect.utils.fromBase64
 class Register1Fragment : Fragment() {
 private lateinit var binding: FragmentRegister1Binding
 private lateinit var viewModel: RegisterViewModel
+private lateinit var loginViewModel:LoginViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,15 +30,61 @@ private lateinit var viewModel: RegisterViewModel
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_register1, container, false)
 
         binding.buttonContinue.setOnClickListener {
-            viewModel.name=binding.name.text.toString()
-            viewModel.lastname=binding.editTextLastname.text.toString()
-            viewModel.idnumber=binding.idnumber.text.toString().toBase64()
-            viewModel.phonenumber=binding.phonenumber.text.toString()
-            viewModel.adress=binding.editTextadress.text.toString()
+            val name = binding.name.text.toString().trim()
+            val lastname = binding.editTextLastname.text.toString().trim()
+            val idnumber = binding.idnumber.text.toString().trim()
+            val phonenumber = binding.phonenumber.text.toString().trim()
+            val birthdate = binding.birthdate.text.toString().trim()
+            val adress = binding.editTextadress.text.toString().trim()
+            val gender = binding.spinnergende.selectedItem.toString()
+            val blood = binding.spinnerbloodtype.selectedItem.toString()
+            val email = binding.email.text.toString().trim()
+            val password = binding.password.text.toString().trim()
+            val confirmpassword = binding.confirmpassword.text.toString().trim()
 
+            // Boş alan kontrolü
+            if (name.isEmpty() || lastname.isEmpty() || idnumber.isEmpty() || phonenumber.isEmpty()
+                || birthdate.isEmpty() || adress.isEmpty() || gender.isEmpty() || blood.isEmpty()
+                || email.isEmpty() || password.isEmpty() || confirmpassword.isEmpty()
+            ) {
+                Toast.makeText(context, "Please fill all fields!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
-            Navigation.findNavController(it).navigate(R.id.action_register1Fragment_to_register2Fragment)
+            // Şifre eşleşmesi kontrolü
+            if (password != confirmpassword) {
+                Toast.makeText(context, "Passwords do not match!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Eğer her şey doğruysa verileri ViewModel'e aktar
+            viewModel.name = name
+            viewModel.lastname = lastname
+            viewModel.idnumber = idnumber
+            viewModel.phonenumber = phonenumber
+            viewModel.birthdate = birthdate
+            viewModel.adress = adress
+            viewModel.gender = gender
+            viewModel.blood = blood
+            viewModel.email = email
+            viewModel.password = password
+
+            // Kaydı başlat
+            viewModel.registerDonor()
+
+            // Kayıt başarılıysa login yap ve home'a git
+            loginViewModel.loginUser(viewModel.email, viewModel.password,
+                onSuccess = {
+                    Navigation.findNavController(it).navigate(R.id.action_register1Fragment_to_homeFragment)
+                },
+                onFailure = {
+                    Toast.makeText(context, "Login failed: ${it.message}", Toast.LENGTH_SHORT).show()
+                }
+            )
         }
+
+
+
         // Inflate the layout for this fragment
         return binding.root
     }
@@ -44,6 +92,8 @@ private lateinit var viewModel: RegisterViewModel
         super.onCreate(savedInstanceState)
         val tempviewmodel: RegisterViewModel by viewModels()
         viewModel=tempviewmodel
+        val temviewmodel:LoginViewModel by viewModels()
+        loginViewModel=temviewmodel
     }
 
 

@@ -1,9 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.BloodConnect" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.BloodConnectt" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/white</item>
         <item name="colorOnPrimary">@color/black</item>
     </style>
+    <style name="Theme.BloodConnect" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@color/red</item>
+    </style>
+
 
 </resources>
