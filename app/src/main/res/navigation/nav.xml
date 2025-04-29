@@ -70,7 +70,8 @@
     <fragment
         android:id="@+id/hospitalLoginFragment"
         android:name="com.softwarengineering.bloodconnect.ui.fragments.hospitals.HospitalLoginFragment"
-        android:label="HospitalLoginFragment" >
+        android:label="HospitalLoginFragment"
+        tools:layout="@layout/fragment_hospital_login">
         <action
             android:id="@+id/action_hospitalLoginFragment_to_hospitalRegister1Fragment"
             app:destination="@id/hospitalRegister1Fragment" />

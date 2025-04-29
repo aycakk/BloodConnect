@@ -38,7 +38,9 @@ class HospitalLoginFragment : Fragment() {
                 binding.edittextemail.text.toString(),
                 binding.editTextpassword.text.toString(),
                 onSuccess = {
-                    fetchHospitalName() // Önce hospitalName al
+                    SessionManager.currentHospitalName = "Hastane"
+
+                    //fetchHospitalName() // Önce hospitalName al
                     Navigation.findNavController(it).navigate(R.id.action_hospitalLoginFragment_to_hospitalHomeFragment)
                 },
                 onFailure = {
@@ -56,6 +58,8 @@ class HospitalLoginFragment : Fragment() {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 
+
+
         return binding.root
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,7 +72,7 @@ class HospitalLoginFragment : Fragment() {
         val uid = FirebaseAuth.getInstance().currentUser?.uid
         val db = FirebaseFirestore.getInstance()
 
-        db.collection("hospitals")
+        db.collection("hospital")
             .document(uid ?: "")
             .get()
             .addOnSuccessListener { document ->

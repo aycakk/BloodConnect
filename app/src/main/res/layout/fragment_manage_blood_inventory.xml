@@ -73,7 +73,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Available Units"
+                    android:text="Current Units"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:gravity="center"/>
@@ -107,21 +107,20 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/availableUnitsAPlus"
+                <TextView
+                    android:id="@+id/currentUnitsAPlus"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:inputType="number"
-                    android:hint="Units"
-                    android:textSize="16sp"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/publishButtonAPlus"
+                    android:id="@+id/editButtonAPlus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Publish"
+                    android:text="Edit"
                     android:textSize="14sp"
                     android:backgroundTint="#D32F2F"
                     android:textColor="#FFFFFF"
@@ -146,21 +145,20 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/availableUnitsAMinus"
+                <TextView
+                    android:id="@+id/currentUnitsAMinus"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:inputType="number"
-                    android:hint="Units"
-                    android:textSize="16sp"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/publishButtonAMinus"
+                    android:id="@+id/editButtonAMinus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Publish"
+                    android:text="EDIT"
                     android:textSize="14sp"
                     android:backgroundTint="#D32F2F"
                     android:textColor="#FFFFFF"
@@ -185,21 +183,20 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/availableUnitsBPlus"
+                <TextView
+                    android:id="@+id/currentUnitsBPlus"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:inputType="number"
-                    android:hint="Units"
-                    android:textSize="16sp"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/publishButtonBPlus"
+                    android:id="@+id/editButtonBPlus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Publish"
+                    android:text="Edit"
                     android:textSize="14sp"
                     android:backgroundTint="#D32F2F"
                     android:textColor="#FFFFFF"
@@ -224,21 +221,20 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/availableUnitsBMinus"
+                <TextView
+                    android:id="@+id/currentUnitsBMinus"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:inputType="number"
-                    android:hint="Units"
-                    android:textSize="16sp"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/publishButtonBMinus"
+                    android:id="@+id/editButtonBMinus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Publish"
+                    android:text="Edit"
                     android:textSize="14sp"
                     android:backgroundTint="#D32F2F"
                     android:textColor="#FFFFFF"
@@ -263,21 +259,20 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/availableUnitsABPlus"
+                <TextView
+                    android:id="@+id/currentUnitsABPlus"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:inputType="number"
-                    android:hint="Units"
-                    android:textSize="16sp"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/publishButtonABPlus"
+                    android:id="@+id/editButtonABPlus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Publish"
+                    android:text="Edit"
                     android:textSize="14sp"
                     android:backgroundTint="#D32F2F"
                     android:textColor="#FFFFFF"
@@ -302,21 +297,20 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/availableUnitsABMinus"
+                <TextView
+                    android:id="@+id/currentUnitsABMinus"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:inputType="number"
-                    android:hint="Units"
-                    android:textSize="16sp"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/publishButtonABMinus"
+                    android:id="@+id/editButtonABMinus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Publish"
+                    android:text="Edit"
                     android:textSize="14sp"
                     android:backgroundTint="#D32F2F"
                     android:textColor="#FFFFFF"
@@ -341,21 +335,20 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/availableUnitsOPlus"
+                <TextView
+                    android:id="@+id/currentUnits0Plus"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:inputType="number"
-                    android:hint="Units"
-                    android:textSize="16sp"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/publishButtonOPlus"
+                    android:id="@+id/editButtonOPlus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Publish"
+                    android:text="Edit"
                     android:textSize="14sp"
                     android:backgroundTint="#D32F2F"
                     android:textColor="#FFFFFF"
@@ -380,28 +373,64 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/availableUnitsOMinus"
+                <TextView
+                    android:id="@+id/currentUnits0Minus"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:inputType="number"
-                    android:hint="Units"
-                    android:textSize="16sp"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/publishButtonOMinus"
+                    android:id="@+id/editButtonOMinus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Publish"
+                    android:text="Edit"
                     android:textSize="14sp"
                     android:backgroundTint="#D32F2F"
                     android:textColor="#FFFFFF"
                     android:layout_marginStart="8dp" />
             </LinearLayout>
 
+
+            <!-- ScrollView içinde en alta ekleyeceğimiz yeni layout -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="24dp"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select blood group in high demand:"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"/>
+
+                <Spinner
+                    android:id="@+id/bloodGroupSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="12dp"/>
+
+                <Button
+                    android:id="@+id/publishBloodGroupButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Publish"
+                    android:backgroundTint="@color/red"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+
+
         </LinearLayout>
+
+
 
     </ScrollView>
 

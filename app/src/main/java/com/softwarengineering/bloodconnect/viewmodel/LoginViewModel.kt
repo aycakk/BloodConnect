@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.softwarengineering.bloodconnect.data.repo.DonorRepostory
+import com.softwarengineering.bloodconnect.utils.SessionManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 @HiltViewModel
@@ -41,18 +42,21 @@ class LoginViewModel @Inject constructor (var donorRepostory: DonorRepostory): V
                     FirebaseFirestore.getInstance().collection("hospital").document(uid)
                         .get()
                         .addOnSuccessListener { doc ->
+                            val hospitalName = doc.getString("hospitalName") // Firestore'daki alan adı
                             val approved = doc.getBoolean("status") ?: false
                             if (!approved) {
                                 FirebaseAuth.getInstance().signOut()
                                 onUnapproved()
                                 return@addOnSuccessListener
                             }
-                            onSuccess()
+                            if (!hospitalName.isNullOrBlank()) {
+                                SessionManager.currentHospitalName = hospitalName.trim()
+                                onSuccess()
+                            } else {
+                                onFailure(Exception("Hospital name is missing in Firestore."))
+                            }
                         }
                         .addOnFailureListener { onFailure(it) }
-                }.addOnFailureListener{onFailure(it)}
-
+                }
         }
-
-
     }
