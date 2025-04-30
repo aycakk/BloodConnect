@@ -94,7 +94,9 @@
             android:layout_marginTop="8dp" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/donorhistorycd"
+            android:id="@+id/donorlist"
+            android:clickable="true"
+            android:focusable="true"
             android:layout_width="170dp"
             android:layout_height="100dp"
             android:layout_marginTop="30dp"
@@ -146,7 +148,7 @@
             android:layout_marginStart="8dp"
             app:cardBackgroundColor="#D9D9E0"
             app:cardCornerRadius="16dp"
-            app:layout_constraintStart_toEndOf="@+id/donorhistorycd"
+            app:layout_constraintStart_toEndOf="@+id/donorlist"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/viewPager">
 
@@ -193,7 +195,7 @@
             app:cardCornerRadius="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/manageBloodInventory"
-            app:layout_constraintTop_toBottomOf="@+id/donorhistorycd">
+            app:layout_constraintTop_toBottomOf="@+id/donorlist">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

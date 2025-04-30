@@ -57,6 +57,7 @@ private lateinit var loginViewModel:LoginViewModel
                 return@setOnClickListener
             }
 
+
             // Eğer her şey doğruysa verileri ViewModel'e aktar
             viewModel.name = name
             viewModel.lastname = lastname
@@ -81,6 +82,9 @@ private lateinit var loginViewModel:LoginViewModel
                     Toast.makeText(context, "Login failed: ${it.message}", Toast.LENGTH_SHORT).show()
                 }
             )
+        }
+        binding.buttonBack.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 
 

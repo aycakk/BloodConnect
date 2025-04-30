@@ -87,6 +87,9 @@ class HospitalRegister1Fragment : Fragment() {
                 }
             )
         }
+        binding.buttonBack.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
 
         return binding.root
     }

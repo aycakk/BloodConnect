@@ -95,6 +95,7 @@
             android:layout_width="297dp"
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
+            android:backgroundTint="@color/white"
             android:backgroundTintMode="src_over"
             android:fontFamily="@font/roboto_medium"
             android:text="LOG IN FOR HOSPITALS"
