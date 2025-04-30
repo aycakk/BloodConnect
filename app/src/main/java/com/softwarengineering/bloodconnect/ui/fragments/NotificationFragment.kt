@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.softwarengineering.bloodconnect.R
@@ -63,34 +65,44 @@ class NotificationFragment : Fragment() {
     }
 
     private fun fetchNotificationsFromFirestore() {
+        val currentUserId = FirebaseAuth.getInstance().currentUser?.uid ?: return
+
         db.collection("notification")
+            .whereEqualTo("donorID", currentUserId) //SADECE o kullanıcıya ait olanlar
             .orderBy("timestamp", Query.Direction.DESCENDING)
-            .addSnapshotListener { snapshots, error ->
-                if (error != null) {
-                    return@addSnapshotListener
-                }
-
+            .get()
+            .addOnSuccessListener { snapshots ->
                 notificationsList.clear()
-                if (snapshots != null) {
-                    for (doc in snapshots) {
-                        val bloodType = doc.getString("bloodType") ?: ""
-                        val hospitalName = doc.getString("hospitalName") ?: ""
-                        val timestamp: Long = when (val value = doc.get("timestamp")) {
-                            is Number -> value.toLong()
-                            else -> 0L
-                        }
 
-                        val notificationItem = NotificationItem(
-                            bloodType = bloodType,
-                            hospitalName = hospitalName,
+                for (doc in snapshots) {
+                    val message = doc.getString("message") ?: continue
+
+                    val timestamp: Long = when (val raw = doc.get("timestamp")) {
+                        is com.google.firebase.Timestamp -> raw.toDate().time
+                        is Number -> raw.toLong()
+                        else -> 0L
+                    }
+
+
+                    notificationsList.add(
+                        NotificationItem(
+                            message = message,
                             timestamp = timestamp
                         )
-                        notificationsList.add(notificationItem)
-                    }
-                    adapter.notifyDataSetChanged()
+                    )
+                }
+
+                adapter.notifyDataSetChanged()
+                // Bildirim yoksa kullanıcıya bilgi ver
+                if (notificationsList.isEmpty()) {
+                    Toast.makeText(requireContext(), "No notifications yet.", Toast.LENGTH_SHORT).show()
                 }
             }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Failed to fetch notifications: ${it.message}", Toast.LENGTH_SHORT).show()
+            }
     }
+
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

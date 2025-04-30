@@ -52,7 +52,7 @@ class HospitalHomeFragment : Fragment() {
             imageButtonListdonor.setOnClickListener {
                 Navigation.findNavController(it).navigate(R.id.action_hospitalHomeFragment_to_listmatchDonorFragment)
             }
-            vreatebloodrequestcd.setOnClickListener {
+            createBloodRequest.setOnClickListener {
                 Navigation.findNavController(it).navigate(R.id.action_hospitalHomeFragment_to_createBloodRequestFragment)
             }
             viewbloodreguestcd.setOnClickListener {

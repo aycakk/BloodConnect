@@ -24,9 +24,8 @@ class NotificationAdapter(
     override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
         val item = notificationsList[position]
         holder.binding.apply {
-            textHospital.text = "${item.hospitalName} announced that it needs ${item.bloodType} blood."
+            textHospital.text = item.message
             textDate.text = formatTimestamp(item.timestamp)
-            //textUrgent.visibility = if (item.isUrgent) View.VISIBLE else View.GONE
         }
     }
 

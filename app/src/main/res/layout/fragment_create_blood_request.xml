@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -14,64 +13,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Spinner
-            android:id="@+id/spinnerbloodtype"
-            android:layout_width="300dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="16dp"
-            android:background="@color/textbackground"
-            android:entries="@array/bloodtype"
-            android:prompt="@string/secim_yap"
-            android:spinnerMode="dropdown"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.492"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="416dp"
-            android:layout_height="100dp"
-            android:background="#DE143C"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarCreateRequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/red"
+            app:title="Create Request"
+            app:titleTextColor="@android:color/white"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:layout_constraintTop_toTopOf="parent"
-            tools:context=".ui.fragments.HomeFragment">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Create Blood Request"
-                android:textColor="#FFFFFF"
-                android:textColorLink="#FBFBFB"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <EditText
-            android:id="@+id/patient_name"
-            android:layout_width="300dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="16dp"
-            android:background="@color/textbackground"
-            android:ems="10"
-            android:inputType="text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/patientNametv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -81,38 +41,27 @@
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/patient_name"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
-
-        <TextView
-            android:id="@+id/textView18"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/roboto_medium"
-            android:text="Units Needed"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/unitsneeded"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerbloodtype" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbarCreateRequest" />
 
         <EditText
-            android:id="@+id/unitsneeded"
+            android:id="@+id/patient_name"
             android:layout_width="300dp"
             android:layout_height="40dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:background="@color/textbackground"
             android:ems="10"
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+            app:layout_constraintTop_toBottomOf="@+id/patientNametv" />
+
 
         <TextView
-            android:id="@+id/textView19"
+            android:id="@+id/bloodType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/roboto_medium"
             android:text="Blood Type"
             android:textColor="@color/black"
@@ -120,45 +69,71 @@
             app:layout_constraintStart_toStartOf="@+id/spinnerbloodtype"
             app:layout_constraintTop_toBottomOf="@+id/patient_name" />
 
+        <Spinner
+            android:id="@+id/spinnerbloodtype"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/textbackground"
+            android:entries="@array/bloodtype"
+            android:prompt="@string/secim_yap"
+            android:spinnerMode="dropdown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bloodType" />
+
         <TextView
-            android:id="@+id/textView20"
+            android:id="@+id/unitsNeededtv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Units Needed"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/unitsNeeded"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerbloodtype" />
+
+        <EditText
+            android:id="@+id/unitsNeeded"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/textbackground"
+            android:ems="10"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/unitsNeededtv" />
+
+        <TextView
+            android:id="@+id/notes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/roboto_medium"
             android:text="Notes"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/note"
-            app:layout_constraintTop_toBottomOf="@+id/unitsneeded" />
+            app:layout_constraintTop_toBottomOf="@+id/unitsNeeded" />
 
         <EditText
             android:id="@+id/note"
             android:layout_width="300dp"
             android:layout_height="40dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:background="@color/textbackground"
             android:ems="10"
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView20" />
+            app:layout_constraintTop_toBottomOf="@+id/notes" />
 
         <Button
-            android:id="@+id/buttoncreate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:backgroundTint="@color/red"
-            android:fontFamily="@font/roboto_medium"
-            android:text="Create"
-            android:textColor="@color/white"
-            app:cornerRadius="50dp"
-            app:layout_constraintStart_toStartOf="@+id/note"
-            app:layout_constraintTop_toBottomOf="@+id/note" />
-
-        <Button
-            android:id="@+id/button2"
+            android:id="@+id/buttonCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -167,10 +142,27 @@
             android:text="Cancel"
             android:textColor="@color/red"
             app:cornerRadius="50dp"
-            app:layout_constraintEnd_toEndOf="@+id/note"
+            app:layout_constraintEnd_toStartOf="@+id/buttonNotification"
             app:layout_constraintTop_toBottomOf="@+id/note"
+            app:layout_constraintStart_toStartOf="parent"
             app:strokeColor="@color/red"
             app:strokeWidth="2dp" />
+
+        <Button
+            android:id="@+id/buttonNotification"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="45dp"
+            android:backgroundTint="@color/red"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Send Notification"
+            android:textColor="@color/white"
+            app:cornerRadius="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/note" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

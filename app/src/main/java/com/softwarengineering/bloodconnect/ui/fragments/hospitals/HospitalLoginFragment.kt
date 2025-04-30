@@ -38,10 +38,7 @@ class HospitalLoginFragment : Fragment() {
                 binding.edittextemail.text.toString(),
                 binding.editTextpassword.text.toString(),
                 onSuccess = {
-                    SessionManager.currentHospitalName = "Hastane"
-
-                    //fetchHospitalName() // Önce hospitalName al
-                    Navigation.findNavController(it).navigate(R.id.action_hospitalLoginFragment_to_hospitalHomeFragment)
+                    fetchHospitalInfoAndNavigate(it)
                 },
                 onFailure = {
                     Toast.makeText(context, "Login failed: ${it.message}", Toast.LENGTH_SHORT).show()
@@ -68,18 +65,34 @@ class HospitalLoginFragment : Fragment() {
         viewModel=tempviewmodel
     }
 
-    private fun fetchHospitalName() {
+    private fun fetchHospitalInfoAndNavigate(view: View) {
         val uid = FirebaseAuth.getInstance().currentUser?.uid
         val db = FirebaseFirestore.getInstance()
 
+        if (uid == null) {
+            Toast.makeText(context, "User ID not found. Please login again.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         db.collection("hospital")
-            .document(uid ?: "")
+            .document(uid)
             .get()
             .addOnSuccessListener { document ->
                 if (document != null && document.exists()) {
                     val hospitalName = document.getString("hospitalName")
-                    SessionManager.currentHospitalName = hospitalName
+                    if (!hospitalName.isNullOrBlank()) {
+                        SessionManager.currentHospitalName = hospitalName
+                        SessionManager.currentHospitalId = uid  // 🔥 Burada hospitalId set ediyoruz
+                        Navigation.findNavController(view).navigate(R.id.action_hospitalLoginFragment_to_hospitalHomeFragment)
+                    } else {
+                        Toast.makeText(context, "Hospital information is incomplete. Contact support.", Toast.LENGTH_LONG).show()
+                    }
+                } else {
+                    Toast.makeText(context, "Hospital record not found. Please contact admin.", Toast.LENGTH_LONG).show()
                 }
+            }
+            .addOnFailureListener {
+                Toast.makeText(context, "Failed to fetch hospital info: ${it.message}", Toast.LENGTH_SHORT).show()
             }
     }
 
