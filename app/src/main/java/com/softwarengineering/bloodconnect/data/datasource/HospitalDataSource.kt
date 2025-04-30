@@ -15,6 +15,7 @@ class HospitalDataSource(var collectionhospital :CollectionReference) {
     var requestlist = MutableLiveData<List<Request>>()
     fun registerhospital(
         name: String,
+        authname:String,
         email: String,
         phone: String,
         password: String
@@ -30,6 +31,7 @@ class HospitalDataSource(var collectionhospital :CollectionReference) {
                 val hospital = Hospital(
                     hospitalID = uid,
                     hospitalName = name,
+                    personName = authname,
                     email = email,
                     phone = phone,
                     password = "",

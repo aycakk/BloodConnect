@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.Timestamp
 import com.softwarengineering.bloodconnect.data.model.Donor
 import com.softwarengineering.bloodconnect.data.repo.DonorRepostory
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,4 +24,12 @@ class DonorViewModel @Inject constructor(
             onFailure = { Log.e("DonorVM", "Veri alınamadı: ${it.message}") }
         )
     }
+    fun editprofile(
+        idnumber:String,
+        phonenumber:String,
+        gender:String,
+        blood:String,
+        adress:String,
+        birthdate: String
+    )=donorRepository.editprofile(idnumber,phonenumber,gender,blood,adress,birthdate)
 }

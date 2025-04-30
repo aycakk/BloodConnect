@@ -11,15 +11,14 @@ import javax.inject.Inject
 class HospitalregisterViewModel@Inject constructor (var hospitalRepostory: HospitalRepostory): ViewModel() {
 
     var hospitalname=""
-    var private=""
-    var province=""
-    var distance=""
-    var code=""
+
+
     var authname=""
     var phone=""
     var mail=""
     var password=""
-    fun registerhospital()=hospitalRepostory.registerhospital(hospitalname,mail,phone,password)
+
+    fun registerhospital()=hospitalRepostory.registerhospital(hospitalname,authname,mail,phone,password)
 
     /*
     fun registerhospital() {

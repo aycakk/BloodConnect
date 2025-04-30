@@ -41,7 +41,7 @@ private lateinit var viewmodel:HospitalviewModel
                 })
 
         }
-        binding.button2.setOnClickListener {
+        binding.buttonBack.setOnClickListener {
             findNavController().popBackStack()
         }
         return binding.root
