@@ -102,7 +102,7 @@
             android:layout_marginTop="10dp"
             android:background="@color/textbackground"
             android:ems="10"
-            android:inputType="number"
+            android:inputType="number|numberDecimal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"

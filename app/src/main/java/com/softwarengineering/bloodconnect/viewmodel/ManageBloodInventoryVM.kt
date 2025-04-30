@@ -60,7 +60,7 @@ class ManageBloodInventoryVM : ViewModel() {
     }
 
 
-
+/*
     fun publishNotification(bloodType: String, hospitalName: String) {
         val notification = hashMapOf(
             "bloodType" to bloodType,
@@ -77,4 +77,8 @@ class ManageBloodInventoryVM : ViewModel() {
                 _publishStatus.value = false
             }
     }
+
+ */
 }
+
+

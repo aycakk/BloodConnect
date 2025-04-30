@@ -45,7 +45,7 @@ class ManageBloodInventoryFragment : Fragment() {
         setupToolbar()
         observeViewModel()
         setupEditButtons()
-        setupSpinnerAndPublish()
+        //setupSpinnerAndPublish()
 
         SessionManager.currentHospitalName?.let { name ->
             viewModel.fetchBloodUnits(name)
@@ -140,7 +140,7 @@ class ManageBloodInventoryFragment : Fragment() {
             alertDialog.show()
         }
     }
-
+/*
     private fun setupSpinnerAndPublish() {
         val bloodGroups = listOf("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, bloodGroups)
@@ -153,6 +153,8 @@ class ManageBloodInventoryFragment : Fragment() {
             viewModel.publishNotification(selectedBloodGroup, hospitalName)
         }
     }
+
+ */
     private fun setupToolbar() {
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbarManageBlood)
         binding.toolbarManageBlood.setNavigationIcon(R.drawable.ic_arrow_back)
