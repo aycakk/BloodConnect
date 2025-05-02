@@ -92,7 +92,8 @@ class ListmatchDonorFragment : Fragment() {
                         donorDonations
                     )
 
-                    Match(donorID = donor.donorID, matchScore = score.toInt(), donorName = donor.name, donorBloodType = donor.bloodType, hospitalID = hospID, neededBloodType = recipientBloodType )
+                    Match(donorID = donor.donorID, matchScore = score.toInt(), donorName = donor.name, donorBloodType = donor.bloodType,
+                        hospitalID = hospID, neededBloodType = recipientBloodType, donorPhone = donor.phone )
                 }.filter{it.matchScore > 0}.sortedByDescending { it.matchScore }
 
                 for (match in matches) {

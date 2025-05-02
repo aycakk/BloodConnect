@@ -29,6 +29,7 @@ class MatchDonorAdapter(val context:Context , val list:List<Match>):RecyclerView
         holder.binding.nametext.text = match.donorName
         holder.binding.scoretext.text = match.matchScore.toString()
         holder.binding.bloodgrouptext.text = match.donorBloodType
+        holder.binding.phone.text = match.donorPhone
 
     }
 }

@@ -4,6 +4,7 @@ data class Match(
     //var matchID: String = "",
     var donorID: String = "",
     var donorName: String = "",
+    var donorPhone: String = "",
     var donorBloodType: String = "",
     var hospitalID: String = "",
     var matchScore: Int = 0,

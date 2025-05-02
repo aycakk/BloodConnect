@@ -51,8 +51,8 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/piroritytext"
-                    app:layout_constraintEnd_toStartOf="@+id/scoretext"
-                    android:layout_marginEnd="8dp">
+                    app:layout_constraintEnd_toStartOf="@+id/phone"
+                    android:layout_marginEnd="1dp">
 
                     <TextView
                         android:id="@+id/nametext"
@@ -74,11 +74,26 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+90 111 111 11 11"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/roboto_medium"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/linearLayout"
+                    app:layout_constraintEnd_toStartOf="@+id/scoretext"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <TextView
                     android:id="@+id/scoretext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="90"
-                    android:textColor="@color/black"
+                    android:textColor="@color/red"
                     android:textSize="24sp"
                     android:fontFamily="@font/roboto_medium"
                     app:layout_constraintTop_toTopOf="parent"
