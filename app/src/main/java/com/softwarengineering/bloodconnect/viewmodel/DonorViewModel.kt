@@ -4,15 +4,14 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.firebase.Timestamp
 import com.softwarengineering.bloodconnect.data.model.Donor
-import com.softwarengineering.bloodconnect.data.repo.DonorRepostory
+import com.softwarengineering.bloodconnect.data.repo.DonorRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class DonorViewModel @Inject constructor(
-   var donorRepository:DonorRepostory
+   var donorRepository: DonorRepository
 ) : ViewModel() {
 
     private val _donorData = MutableLiveData<Donor>()

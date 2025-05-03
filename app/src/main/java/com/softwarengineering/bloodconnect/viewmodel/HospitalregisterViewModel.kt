@@ -3,26 +3,21 @@ package com.softwarengineering.bloodconnect.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
-import com.softwarengineering.bloodconnect.data.repo.DonorRepostory
-import com.softwarengineering.bloodconnect.data.repo.HospitalRepostory
+import com.softwarengineering.bloodconnect.data.repo.HospitalRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+
 @HiltViewModel
-class HospitalregisterViewModel@Inject constructor (var hospitalRepostory: HospitalRepostory): ViewModel() {
+class HospitalregisterViewModel@Inject constructor (var hospitalRepository: HospitalRepository): ViewModel() {
 
     var hospitalname=""
-
-
     var authname=""
     var phone=""
     var mail=""
     var password=""
 
-    fun registerhospital()=hospitalRepostory.registerhospital(hospitalname,authname,mail,phone,password)
-
-    /*
     fun registerhospital() {
-        hospitalRepostory.registerhospital(hospitalname, mail, phone, password)
+        hospitalRepository.registerhospital(hospitalname, authname, mail, phone, password)
             .addOnSuccessListener {
                 Log.d("Register", "Hospital registration successful")
                 initializeBloodInventoryForHospital(hospitalname)
@@ -30,10 +25,7 @@ class HospitalregisterViewModel@Inject constructor (var hospitalRepostory: Hospi
             .addOnFailureListener { e ->
                 Log.e("Register", "Hospital registration failed: ${e.message}")
             }
-
-
     }
-
 
     fun initializeBloodInventoryForHospital(hospitalName: String) {
         Log.d("HospitalDebug", "Hospital name used in Firestore: '$hospitalname'")
@@ -63,7 +55,7 @@ class HospitalregisterViewModel@Inject constructor (var hospitalRepostory: Hospi
 
     }
 
-     */
+
 
 
 }

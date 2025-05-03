@@ -1,11 +1,20 @@
 package com.softwarengineering.bloodconnect.data.repo
 
-import com.google.firebase.Timestamp
+import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.Tasks
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 import com.softwarengineering.bloodconnect.data.datasource.HospitalDataSource
 
-class HospitalRepostory(var hospitalDataSource: HospitalDataSource) {
-/*
-    fun registerhospital(name: String, email: String, phone: String, password: String): Task<Void> {
+class HospitalRepository(var hospitalDataSource: HospitalDataSource) {
+
+    fun registerhospital(
+        name: String,
+        authname:String,
+        email: String,
+        phone: String,
+        password: String): Task<DocumentReference> {
         val uid = FirebaseAuth.getInstance().currentUser?.uid
             ?: return Tasks.forException(Exception("User not logged in"))
 
@@ -18,12 +27,11 @@ class HospitalRepostory(var hospitalDataSource: HospitalDataSource) {
 
         return FirebaseFirestore.getInstance()
             .collection("hospital")
-            .document(uid)
-            .set(hospitalData)
+            .add(hospitalData)
     }
 
- */
 
+/*
     fun registerhospital(
         name:String,
 
@@ -33,6 +41,8 @@ class HospitalRepostory(var hospitalDataSource: HospitalDataSource) {
         password:String
 
     )=hospitalDataSource.registerhospital(name, authname,email,phone,password)
+
+ */
 
     fun createRequest(
         patientName: String,

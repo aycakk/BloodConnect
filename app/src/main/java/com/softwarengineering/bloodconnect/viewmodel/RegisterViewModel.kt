@@ -2,15 +2,15 @@ package com.softwarengineering.bloodconnect.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.softwarengineering.bloodconnect.data.repo.DonorRepostory
+import com.softwarengineering.bloodconnect.data.repo.DonorRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class RegisterViewModel @Inject constructor(var donorRepostory: DonorRepostory):ViewModel() {
+class RegisterViewModel @Inject constructor(var donorRepository: DonorRepository):ViewModel() {
     fun registerDonor(
 
-    ){donorRepostory.registerDonor(name,lastname,idnumber,phonenumber,birthdate,adress,gender,blood,email,password)
+    ){donorRepository.registerDonor(name,lastname,idnumber,phonenumber,birthdate,adress,gender,blood,email,password)
         Log.d("registerdonor", "$name,$idnumber")}
     var name :String= ""
     var lastname:String = ""
