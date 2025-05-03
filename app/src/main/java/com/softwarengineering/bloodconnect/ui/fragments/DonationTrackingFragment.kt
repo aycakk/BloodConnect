@@ -4,14 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.softwarengineering.bloodconnect.R
 import com.softwarengineering.bloodconnect.data.model.DonationTrackingModel
 import com.softwarengineering.bloodconnect.databinding.FragmentDonationTrackingBinding
 import com.softwarengineering.bloodconnect.ui.adapter.DonationTrackingAdapter
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class DonationTrackingFragment : Fragment() {
 
@@ -48,47 +54,66 @@ class DonationTrackingFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        val dummyDonations = listOf(
-            DonationTrackingModel(
-                donorName = "Ahmet Yılmaz",
-                donorIdNumber = "1234567890",
-                donationId = "DON-001",
-                donationDate = "10 Nisan 2025",
-                donationStatus = "Pending",
-                bloodGroup = "A+",
-                hospitalName = "İstanbul Kan Merkezi",
-            ),
-            DonationTrackingModel(
-                donorName = "Ahmet Yılmaz",
-                donorIdNumber = "0987654321",
-                donationId = "DON-002",
-                donationDate = "15 Nisan 2025",
-                donationStatus = "Completed",
-                bloodGroup = "O-",
-                hospitalName = "Ankara Şehir Hastanesi",
-            ),
-            DonationTrackingModel(
-                donorName = "Ahmet Yılmaz",
-                donorIdNumber = "5678901234",
-                donationId = "DON-003",
-                donationDate = "20 Nisan 2025",
-                donationStatus = "Canceled",
-                bloodGroup = "B+",
-                hospitalName = "İzmir Kan Bağış Merkezi",
-            )
+        val db = FirebaseFirestore.getInstance()
+        val auth = FirebaseAuth.getInstance()
+        val currentUserId = auth.currentUser?.uid ?: return
 
-        )
+        // 💾 Girişte saklanan ad burada alınır
+        val donorName = requireActivity()
+            .getSharedPreferences("user_info", 0)
+            .getString("donor_name", "Unknown") ?: "Unknown"
 
-        donationAdapter = DonationTrackingAdapter(dummyDonations) { selectedDonation ->
-            val bottomSheet = DonationDetailsBottomSheet(selectedDonation)
-            bottomSheet.show(parentFragmentManager, bottomSheet.tag)
-        }
+        val donationList = mutableListOf<DonationTrackingModel>()
 
-        binding.donationRecyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = donationAdapter
-        }
+        db.collection("donation")
+            .orderBy("donationTime", Query.Direction.DESCENDING)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    val donorId = document.getString("donorID") ?: continue
+
+                    if (donorId == currentUserId) {
+                        val donationId = document.id
+                        val timestamp = document.getTimestamp("donationTime")
+                        val donationDate = timestamp?.toDate()?.let {
+                            SimpleDateFormat("dd MMM yyyy - HH:mm", Locale.getDefault()).format(it)
+                        } ?: ""
+                        val bloodType = document.getString("bloodType") ?: ""
+                        val status = document.getString("status") ?: ""
+                        val hospitalId = document.getString("hospitalID") ?: ""
+
+                        val donation = DonationTrackingModel(
+                            donorName = donorName,
+                            donorIdNumber = donorId,
+                            donationId = donationId,
+                            donationDate = donationDate,
+                            donationStatus = status,
+                            bloodGroup = bloodType,
+                            hospitalName = hospitalId
+                        )
+
+                        donationList.add(donation)
+                    }
+                }
+                if (donationList.isEmpty()) {
+                    Toast.makeText(requireContext(), "You don't have a donation record yet.", Toast.LENGTH_SHORT).show()
+                }
+
+                donationAdapter = DonationTrackingAdapter(donationList) { selectedDonation ->
+                    val bottomSheet = DonationDetailsBottomSheet(selectedDonation)
+                    bottomSheet.show(parentFragmentManager, bottomSheet.tag)
+                }
+
+                binding.donationRecyclerView.apply {
+                    layoutManager = LinearLayoutManager(requireContext())
+                    adapter = donationAdapter
+                }
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Failed to load donation records", Toast.LENGTH_SHORT).show()
+            }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
