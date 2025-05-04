@@ -27,7 +27,14 @@ class LoginFragment : Fragment() {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_login, container, false)
         // Inflate the layout for this fragment
         binding.buttonLogin.setOnClickListener {
-            loginViewModel.loginUser(binding.edittextemail.text.toString(), binding.editTextpassword.text.toString(),
+            val email = binding.edittextemail.text.toString().trim()
+            val password = binding.editTextpassword.text.toString().trim()
+
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(context, "Please enter both email and password.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            loginViewModel.loginUser(email, password,
                 onSuccess = {Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_homeFragment)},
                 onFailure = { Toast.makeText(context, "Login failed: ${it.message}", Toast.LENGTH_SHORT).show()})
 

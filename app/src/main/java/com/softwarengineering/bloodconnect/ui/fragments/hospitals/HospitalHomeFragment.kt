@@ -65,6 +65,9 @@ class HospitalHomeFragment : Fragment() {
             buttonBack.setOnClickListener {
                 requireActivity().onBackPressedDispatcher.onBackPressed()
             }
+            formbutton.setOnClickListener {
+                findNavController().navigate(R.id.action_hospitalHomeFragment_to_donationFormFragment)
+            }
         }
         // Resim listesi
         val imageList = listOf(

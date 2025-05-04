@@ -43,4 +43,8 @@ class HospitalRepostory(var hospitalDataSource: HospitalDataSource) {
         onFailure: (Exception) -> Unit
     )=hospitalDataSource.createRequest(patientName,bloodType,units,notes,onSuccess,onFailure)
     fun viewrequest()=hospitalDataSource.viewrewuest()
+    fun donationform(  idnumber:String,
+                      name:String,
+                      amount:Float,
+                      bloodType: String)=hospitalDataSource.donationform(idnumber,name,amount,bloodType)
 }

@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.softwarengineering.bloodconnect.data.model.Donation
 import com.softwarengineering.bloodconnect.data.model.Donor
 import com.softwarengineering.bloodconnect.data.model.Hospital
 import com.softwarengineering.bloodconnect.data.model.Request
@@ -120,6 +122,58 @@ class HospitalDataSource(var collectionhospital :CollectionReference) {
 
 
     }
+    fun donationform(
+        idnumber:String,
+        name:String,
+        amount:Float,
+        bloodType: String
+
+    ){
+
+            val hospitalID = FirebaseAuth.getInstance().currentUser?.uid ?: return
+            val firestore = FirebaseFirestore.getInstance()
+
+            val usersRef = firestore.collection("donor")
+        val donationRef = FirebaseFirestore.getInstance().collection("donation").document() // boş document => ID üretir
+        val donationID = donationRef.id
+
+            // 1. TC (idNumber) ile donor'ü bul
+            usersRef.whereEqualTo("idnumber", idnumber).get()
+                .addOnSuccessListener { querySnapshot ->
+                    if (!querySnapshot.isEmpty) {
+                        val donorDoc = querySnapshot.documents[0]
+                        val donorID = donorDoc.id // FirebaseAuth UID olarak ayarlanmış olmalı
+
+                        // 2. Donation verisini oluştur ve kaydet
+                        val donationData =Donation(
+                           hospitalID=hospitalID,
+                            donationID = donationID,
+                            donorID = donorID,
+                            donationTime = Timestamp.now(),
+                            bloodType = bloodType,
+                            amount = amount
+                            // diğer alanları da buraya ekleyebilirsin
+                        )
+
+                        firestore.collection("donation").add(donationData)
+                            .addOnSuccessListener {
+                                Log.d("donation", "Başarıyla kayıt yapıldı.")
+                            }
+                            .addOnFailureListener {
+                                Log.e("donation", "Kayıt sırasında hata: ${it.message}")
+                            }
+
+                    } else {
+                        Log.e("donation", "Bu TC ile eşleşen kullanıcı bulunamadı.")
+                    }
+                }
+                .addOnFailureListener {
+                    Log.e("donation", "Sorgu başarısız: ${it.message}")
+                }
+        }
+
+
+
 }
 
 

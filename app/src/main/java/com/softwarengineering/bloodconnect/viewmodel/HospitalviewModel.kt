@@ -23,5 +23,10 @@ class HospitalviewModel@Inject constructor (var hospitalRepostory: HospitalRepos
     )=hospitalRepostory.createRequest(patientName,bloodType,units,notes,onSuccess,onFailure)
     fun viewrequest(){
         requestlist=hospitalRepostory.viewrequest()}
+    fun donationform (idnumber:String,
+    name:String,
+    amount:Float,
+    bloodType: String,
+    )=hospitalRepostory.donationform(idnumber,name,amount,bloodType)
 
 }

@@ -19,6 +19,7 @@ import android.widget.AdapterView
 import com.google.firebase.auth.FirebaseAuth
 import com.softwarengineering.bloodconnect.data.model.Hospital
 import android.util.Log
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.GeoPoint
 import dagger.hilt.android.AndroidEntryPoint
 import com.google.firebase.firestore.SetOptions
@@ -115,7 +116,9 @@ class ListmatchDonorFragment : Fragment() {
             }
 
 
-
+            binding.buttonBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
     }
 }
