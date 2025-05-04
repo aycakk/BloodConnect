@@ -16,16 +16,22 @@ class HospitalregisterViewModel@Inject constructor (var hospitalRepository: Hosp
     var mail=""
     var password=""
 
-    fun registerhospital() {
-        hospitalRepository.registerhospital(hospitalname, authname, mail, phone, password)
-            .addOnSuccessListener {
-                Log.d("Register", "Hospital registration successful")
+    fun registerhospital(
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        hospitalRepository.registerhospital(hospitalname, authname, mail, phone, password,
+            onSuccess = {
+                // ✅ Başarılı kayıt sonrası inventory başlat
                 initializeBloodInventoryForHospital(hospitalname)
+                onSuccess()
+            },
+            onFailure = { e ->
+                onFailure(e)
             }
-            .addOnFailureListener { e ->
-                Log.e("Register", "Hospital registration failed: ${e.message}")
-            }
+        )
     }
+
 
     fun initializeBloodInventoryForHospital(hospitalName: String) {
         Log.d("HospitalDebug", "Hospital name used in Firestore: '$hospitalname'")

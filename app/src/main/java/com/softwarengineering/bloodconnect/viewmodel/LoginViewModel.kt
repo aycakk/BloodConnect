@@ -34,8 +34,10 @@ class LoginViewModel @Inject constructor (var donorRepository: DonorRepository):
             onUnapproved:()->Unit
 
         ) {
+            Log.d("DEBUG", "→ loginhospital() çağrıldı")
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener {
+                    Log.d("DEBUG", "✓ Firebase login başarılı")
                     val uid =
                         FirebaseAuth.getInstance().currentUser?.uid ?: return@addOnSuccessListener
 
@@ -43,21 +45,37 @@ class LoginViewModel @Inject constructor (var donorRepository: DonorRepository):
                     FirebaseFirestore.getInstance().collection("hospital").document(uid)
                         .get()
                         .addOnSuccessListener { doc ->
+                            Log.d("DEBUG", "✓ Firestore'dan hospital belgesi alındı")
+
                             val hospitalName = doc.getString("hospitalName") // Firestore'daki alan adı
                             val approved = doc.getBoolean("status") ?: false
                             if (!approved) {
+                                Log.w("DEBUG", "✗ Hesap onaylı değil (status=false)")
                                 FirebaseAuth.getInstance().signOut()
                                 onUnapproved()
                                 return@addOnSuccessListener
                             }
                             if (!hospitalName.isNullOrBlank()) {
+                                Log.d("DEBUG", "✓ Hesap onaylı → hospitalName: $hospitalName")
                                 SessionManager.currentHospitalName = hospitalName.trim()
                                 onSuccess()
                             } else {
-                                onFailure(Exception("Hospital name is missing in Firestore."))
+                                Log.e("DEBUG", "✗ hospitalName boş")
+
+                                onFailure(
+
+                                    Exception("Hospital name is missing in Firestore.")
+                                )
                             }
                         }
-                        .addOnFailureListener { onFailure(it) }
+                        .addOnFailureListener {
+                            Log.e("DEBUG", "✗ Firebase login hatası: ${it.message}")
+                            onFailure(it) }
                 }
+                .addOnFailureListener { exception ->
+                    Log.e("DEBUG", "Firebase login hatası: ${exception.message}")
+                    onFailure(exception)
+                }
+
         }
     }

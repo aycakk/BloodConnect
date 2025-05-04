@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -28,6 +29,7 @@ private lateinit var loginViewModel:LoginViewModel
         savedInstanceState: Bundle?
     ): View? {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_register1, container, false)
+        requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.red)
 
         binding.buttonContinue.setOnClickListener {
             val name = binding.name.text.toString().trim()

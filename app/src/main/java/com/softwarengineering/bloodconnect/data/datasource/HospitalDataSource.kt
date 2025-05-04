@@ -15,11 +15,12 @@ class HospitalDataSource(var collectionhospital :CollectionReference) {
     var requestlist = MutableLiveData<List<Request>>()
     fun registerhospital(
         name: String,
-        authname:String,
+        authname: String,
         email: String,
         phone: String,
-        password: String
-
+        password: String,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
     ) {
         val auth = FirebaseAuth.getInstance()
         val db = FirebaseFirestore.getInstance()
@@ -28,29 +29,33 @@ class HospitalDataSource(var collectionhospital :CollectionReference) {
             .addOnSuccessListener { result ->
                 val uid = result.user?.uid ?: return@addOnSuccessListener
 
-                val hospital = Hospital(
-                    hospitalID = uid,
-                    hospitalName = name,
-                    personName = authname,
-                    email = email,
-                    phone = phone,
-                    password = "",
-                    address = "",
+                val hospitalData = hashMapOf(
+                    "hospitalID" to uid,
+                    "hospitalName" to name,
+                    "personName" to authname,
+                    "email" to email,
+                    "phone" to phone,
+                    "password" to password,
+                    "status" to false
+                )
 
-                    )
-
-                db.collection("hospital").document(uid).set(hospital)
+                db.collection("hospital").document(uid)
+                    .set(hospitalData)
                     .addOnSuccessListener {
-                        Log.d("register", "registerhospital: yes",)
+                        Log.d("register", "Hospital kaydı başarılı")
+                        onSuccess()
                     }
-                    .addOnFailureListener {
-                        Log.d("register", "registerhospital: faile ", it)
+                    .addOnFailureListener { e ->
+                        Log.e("register", "Firestore kaydı başarısız", e)
+                        onFailure(e)
                     }
             }
             .addOnFailureListener { e ->
-                Log.d("register", "registerhospital: ", e)
+                Log.e("register", "FirebaseAuth kayıt başarısız", e)
+                onFailure(e)
             }
     }
+
 
     fun createRequest(
         patientName: String,
