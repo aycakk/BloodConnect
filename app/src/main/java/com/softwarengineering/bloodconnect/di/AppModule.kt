@@ -5,8 +5,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.softwarengineering.bloodconnect.data.datasource.DonorDatasource
 import com.softwarengineering.bloodconnect.data.datasource.HospitalDataSource
-import com.softwarengineering.bloodconnect.data.repo.DonorRepostory
-import com.softwarengineering.bloodconnect.data.repo.HospitalRepostory
+import com.softwarengineering.bloodconnect.data.repo.DonorRepository
+import com.softwarengineering.bloodconnect.data.repo.HospitalRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,8 +41,8 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideDonorRepository(donorDatasource: DonorDatasource): DonorRepostory {
-        return DonorRepostory(donorDatasource)
+    fun provideDonorRepository(donorDatasource: DonorDatasource): DonorRepository {
+        return DonorRepository(donorDatasource)
     }
 
     // Hospital DataSource & Repository
@@ -54,7 +54,7 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideHospitalRepository(hospitalDataSource: HospitalDataSource): HospitalRepostory {
-        return HospitalRepostory(hospitalDataSource)
+    fun provideHospitalRepository(hospitalDataSource: HospitalDataSource): HospitalRepository {
+        return HospitalRepository(hospitalDataSource)
     }
 }

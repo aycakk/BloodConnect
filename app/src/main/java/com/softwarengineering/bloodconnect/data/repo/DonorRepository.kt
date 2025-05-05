@@ -1,10 +1,9 @@
 package com.softwarengineering.bloodconnect.data.repo
 
-import com.google.firebase.Timestamp
 import com.softwarengineering.bloodconnect.data.datasource.DonorDatasource
 import com.softwarengineering.bloodconnect.data.model.Donor
 
-class DonorRepostory(var donorDatasource: DonorDatasource) {
+class DonorRepository(var donorDatasource: DonorDatasource) {
     fun registerDonor(
         name: String,
         lastname:String,

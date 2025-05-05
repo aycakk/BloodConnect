@@ -3,12 +3,12 @@ package com.softwarengineering.bloodconnect.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
-import com.softwarengineering.bloodconnect.data.repo.DonorRepostory
-import com.softwarengineering.bloodconnect.data.repo.HospitalRepostory
+import com.softwarengineering.bloodconnect.data.repo.HospitalRepository
+
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 @HiltViewModel
-class HospitalregisterViewModel@Inject constructor (var hospitalRepostory: HospitalRepostory): ViewModel() {
+class HospitalregisterViewModel@Inject constructor (var hospitalRepostory: HospitalRepository): ViewModel() {
 
     var hospitalname=""
 

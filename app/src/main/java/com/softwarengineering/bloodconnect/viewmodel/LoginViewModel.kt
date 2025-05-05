@@ -4,12 +4,12 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.softwarengineering.bloodconnect.data.repo.DonorRepostory
+import com.softwarengineering.bloodconnect.data.repo.DonorRepository
 import com.softwarengineering.bloodconnect.utils.SessionManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 @HiltViewModel
-class LoginViewModel @Inject constructor (var donorRepostory: DonorRepostory): ViewModel() {
+class LoginViewModel @Inject constructor (var donorRepostory: DonorRepository): ViewModel() {
     private val auth = FirebaseAuth.getInstance()
 
     fun loginUser(

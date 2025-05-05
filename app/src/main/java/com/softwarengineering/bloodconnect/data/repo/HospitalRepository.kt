@@ -1,9 +1,8 @@
 package com.softwarengineering.bloodconnect.data.repo
 
-import com.google.firebase.Timestamp
 import com.softwarengineering.bloodconnect.data.datasource.HospitalDataSource
 
-class HospitalRepostory(var hospitalDataSource: HospitalDataSource) {
+class HospitalRepository(var hospitalDataSource: HospitalDataSource) {
 /*
     fun registerhospital(name: String, email: String, phone: String, password: String): Task<Void> {
         val uid = FirebaseAuth.getInstance().currentUser?.uid
