@@ -13,20 +13,19 @@ import java.util.Locale
 import java.util.TimeZone
 
 class DonorDatasource(var collectiondonor: CollectionReference) {
-
-     fun registerDonor(
+    fun registerDonor(
         name: String,
-        lastname:String,
-        idnumber:String,
-        phonenumber:String,
-        birthdate:String,
+        lastname: String,
+        idnumber: String,
+        phonenumber: String,
+        birthdate: String,
         adress: String,
-        gender:String,
-        blood:String,
-
+        gender: String,
+        blood: String,
         email: String,
         password: String,
-
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
     ) {
         val auth = FirebaseAuth.getInstance()
         val db = FirebaseFirestore.getInstance()
@@ -35,46 +34,57 @@ class DonorDatasource(var collectiondonor: CollectionReference) {
             .addOnSuccessListener { result ->
                 val uid = result.user?.uid ?: return@addOnSuccessListener
 
-                  try {
-                      // Önce gelen formata göre parse et
-                      val inputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-                      val cleanBirthdate = birthdate.trim() // boşlukları temizle
-                      val date = inputFormat.parse(cleanBirthdate)
+                result.user?.sendEmailVerification()
+                    ?.addOnCompleteListener { verifyTask ->
+                        if (verifyTask.isSuccessful) {
+                            Log.d("Register", "E-posta doğrulama linki gönderildi.")
+                            try {
+                                val inputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                                val date = inputFormat.parse(birthdate.trim())
+                                val timestamp = date?.let { Timestamp(it) }
 
-                      val timestamp = date?.let { Timestamp(it) }
-                      val donor = Donor(
-                          donorID = uid,
-                          idnumber=idnumber,
-                          name = name,
-                          surname = lastname,
-                          birthDate =timestamp ,
-                          bloodType = blood,
-                          address =adress ,
-                          email = email,
-                          illness ="" ,
-                          phone = phonenumber,
-                          gender = gender,
-                          height = 0F,
-                          weight = 0F,)
+                                val donor = Donor(
+                                    donorID = uid,
+                                    idnumber = idnumber,
+                                    name = name,
+                                    surname = lastname,
+                                    birthDate = timestamp,
+                                    bloodType = blood,
+                                    address = adress,
+                                    email = email,
+                                    illness = "",
+                                    phone = phonenumber,
+                                    gender = gender,
+                                    height = 0F,
+                                    weight = 0F
+                                )
 
-                      db.collection("donor").document(uid).set(donor)
-                          .addOnSuccessListener {
-                              Log.d("register", "registerDonor: yes",)}
-                          .addOnFailureListener {
-                              Log.d("register", "registerDonor: faile ",it)
-                          }
+                                db.collection("donor").document(uid).set(donor)
+                                    .addOnSuccessListener {
+                                        Log.d("register", "Firestore'a kayıt başarılı.")
+                                        onSuccess()  // ✔️ Artık güvenle çalıştırılabilir
+                                    }
+                                    .addOnFailureListener {
+                                        Log.e("register", "Firestore hatası: ${it.message}")
+                                        onFailure(it)
+                                    }
 
+                            } catch (e: Exception) {
+                                Log.e("register", "Tarih parse hatası", e)
+                                onFailure(e)
+                            }
+                        } else {
+                            Log.e("register", "Doğrulama e-postası gönderilemedi: ${verifyTask.exception?.message}")
+                            onFailure(verifyTask.exception ?: Exception("Email verification failed."))
+                        }
+                    }
+            }
+            .addOnFailureListener {
+                Log.e("register", "FirebaseAuth başarısız: ${it.message}")
+                onFailure(it)
+            }
+    }
 
-
-
-                      }
-
-                  catch (e:Exception){
-
-                          Log.d("register", "registerDonor: ",e)
-                  }
-
-    }}
 
     fun getCurrentDonor(
         onSuccess: (Donor) -> Unit,

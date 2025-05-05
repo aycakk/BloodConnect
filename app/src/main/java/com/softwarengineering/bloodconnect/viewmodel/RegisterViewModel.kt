@@ -10,7 +10,8 @@ import javax.inject.Inject
 class RegisterViewModel @Inject constructor(var donorRepository: DonorRepository):ViewModel() {
     fun registerDonor(
 
-    ){donorRepository.registerDonor(name,lastname,idnumber,phonenumber,birthdate,adress,gender,blood,email,password)
+        onSuccess: () -> Unit, onFailure: (Exception) -> Unit    ){
+        donorRepository.registerDonor(name,lastname,idnumber,phonenumber,birthdate,adress,gender,blood,email,password,onSuccess,onFailure)
         Log.d("registerdonor", "$name,$idnumber")}
     var name :String= ""
     var lastname:String = ""

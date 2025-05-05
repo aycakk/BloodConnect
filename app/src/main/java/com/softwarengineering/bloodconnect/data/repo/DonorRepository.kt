@@ -16,8 +16,10 @@ class DonorRepository(var donorDatasource: DonorDatasource) {
 
         email: String,
         password: String,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
 
-    )=donorDatasource.registerDonor(name,lastname,idnumber,phonenumber,birthdate,adress,gender,blood,email,password)
+    )=donorDatasource.registerDonor(name,lastname,idnumber,phonenumber,birthdate,adress,gender,blood,email,password,onSuccess,onFailure)
 
     fun getDonor( onSuccess: (Donor) -> Unit, onFailure: (Exception) -> Unit) =
         donorDatasource.getCurrentDonor( onSuccess, onFailure)
