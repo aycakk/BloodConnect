@@ -29,9 +29,10 @@ class HospitalRepository(var hospitalDataSource: HospitalDataSource) {
         authname:String,
         email:String,
         phone:String,
-        password:String
+        password:String,onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
 
-    )=hospitalDataSource.registerhospital(name, authname,email,phone,password)
+    )=hospitalDataSource.registerhospital(name, authname,email,phone,password,onSuccess,onFailure)
 
     fun createRequest(
         patientName: String,
@@ -41,9 +42,11 @@ class HospitalRepository(var hospitalDataSource: HospitalDataSource) {
         onSuccess: () -> Unit,
         onFailure: (Exception) -> Unit
     )=hospitalDataSource.createRequest(patientName,bloodType,units,notes,onSuccess,onFailure)
-    fun viewrequest()=hospitalDataSource.viewrewuest()
+    fun viewrequest()=hospitalDataSource.viewrequest()
     fun donationform(  idnumber:String,
                       name:String,
                       amount:Float,
-                      bloodType: String)=hospitalDataSource.donationform(idnumber,name,amount,bloodType)
+                      bloodType: String,
+                       onSuccess: () -> Unit,
+                       onFailure: (String) -> Unit)=hospitalDataSource.donationform(idnumber,name,amount,bloodType,onSuccess,onFailure)
 }

@@ -33,25 +33,33 @@ class DonationFormFragment : Fragment() {
 
             save.setOnClickListener {
 
-                try {
-                    val donorname=donorname.text.toString()
-                    val donoridnumber=donorid.text.toString()
-                    val amounttext=units.text.toString().trim()
-                    val amount=units.text.toString().toFloat()
-                    val blood=spinnerblood.selectedItem.toString().trim()
-                    if ( donoridnumber.isEmpty() || amounttext.isEmpty() || blood == "Select") {
-                        Toast.makeText(requireContext(), "Please fill in all fields correctly.", Toast.LENGTH_SHORT).show()
-                        return@setOnClickListener
-                    viewmodel.donationform(donoridnumber,donorname,amount,blood,)
-                        Toast.makeText(requireContext(), "Accept form", Toast.LENGTH_SHORT).show()
-                        findNavController().popBackStack()
+                save.setOnClickListener {
+                    try {
+                        val donorname = donorname.text.toString().trim()
+                        val donoridnumber = donorid.text.toString().trim()
+                        val amountText = units.text.toString().trim()
+                        val blood = spinnerblood.selectedItem.toString().trim()
 
-                }}
+                        if (donoridnumber.isEmpty() || amountText.isEmpty() || blood == "Select") {
+                            Toast.makeText(requireContext(), "Please fill in all fields correctly.", Toast.LENGTH_SHORT).show()
+                            return@setOnClickListener
+                        }
 
-                catch (e:Exception){
+                        val amount = amountText.toFloat()
 
-                    Log.d("donationform", "$e")
+                        viewmodel.donationform(donoridnumber, donorname, amount, blood, onSuccess = {
+                            Toast.makeText(requireContext(), "Donation saved successfully.", Toast.LENGTH_SHORT).show()
+                            findNavController().popBackStack()
+                        }, onFailure ={
+                            Toast.makeText(requireContext(), "Error: ${it}", Toast.LENGTH_SHORT).show()
+                        })
+
+
+                    } catch (e: Exception) {
+                        Log.e("donationform", "Error: ${e.message}")
+                        Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_SHORT).show()
                     }
+                }
 
             }
 

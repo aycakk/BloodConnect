@@ -10,15 +10,18 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.FirebaseFirestore
 import com.softwarengineering.bloodconnect.R
 import com.softwarengineering.bloodconnect.databinding.FragmentCreateBloodRequestBinding
 import com.softwarengineering.bloodconnect.utils.SessionManager
+import com.softwarengineering.bloodconnect.viewmodel.HospitalviewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CreateBloodRequestFragment : Fragment() {
-
+    private lateinit var viewmodel: HospitalviewModel
     private var _binding: FragmentCreateBloodRequestBinding? = null
     private val binding get() = _binding!!
     private val db = FirebaseFirestore.getInstance()
@@ -62,6 +65,15 @@ class CreateBloodRequestFragment : Fragment() {
                 units = unitsFloat,
                 notes = notes
             )
+            viewmodel.createRequest(patientName,bloodType,unitsFloat,notes,onSuccess = {
+                Toast.makeText(requireContext(), "Request created", Toast.LENGTH_SHORT).show()
+
+            },
+                onFailure = {
+                    Toast.makeText(requireContext(), "Error: ${it.message}", Toast.LENGTH_SHORT).show()
+                })
+
+            findNavController().popBackStack()
         }
 
 
@@ -159,6 +171,11 @@ class CreateBloodRequestFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempviewmodel: HospitalviewModel by viewModels()
+        viewmodel=tempviewmodel
     }
 }
 

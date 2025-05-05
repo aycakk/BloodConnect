@@ -32,9 +32,18 @@ class LoginFragment : Fragment() {
 
         // Inflate the layout for this fragment
         binding.buttonLogin.setOnClickListener {
+            val email = binding.edittextemail.text.toString().trim()
+            val password = binding.editTextpassword.text.toString().trim()
+
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(context, "Please enter both email and password.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             loginViewModel.loginUser(
-                binding.edittextemail.text.toString(),
-                binding.editTextpassword.text.toString(),
+
+
+               email,
+                password,
                 onSuccess = {
                     val uid = FirebaseAuth.getInstance().currentUser?.uid
 

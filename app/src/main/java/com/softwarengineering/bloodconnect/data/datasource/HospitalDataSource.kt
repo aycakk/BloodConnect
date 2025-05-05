@@ -37,7 +37,7 @@ class HospitalDataSource(var collectionhospital :CollectionReference) {
                     "personName" to authname,
                     "email" to email,
                     "phone" to phone,
-                    "password" to password,
+                    "password" to "",
                     "status" to false
                 )
 
@@ -94,7 +94,7 @@ class HospitalDataSource(var collectionhospital :CollectionReference) {
             }
     }
 
-    fun viewrewuest(): MutableLiveData<List<Request>> {
+    fun viewrequest(): MutableLiveData<List<Request>> {
         val currentUser = FirebaseAuth.getInstance().currentUser
 
         if (currentUser != null) {
@@ -128,54 +128,46 @@ class HospitalDataSource(var collectionhospital :CollectionReference) {
 
     }
     fun donationform(
-        idnumber:String,
-        name:String,
-        amount:Float,
-        bloodType: String
-
-    ){
-
-            val hospitalID = FirebaseAuth.getInstance().currentUser?.uid ?: return
-            val firestore = FirebaseFirestore.getInstance()
-
-            val usersRef = firestore.collection("donor")
-        val donationRef = FirebaseFirestore.getInstance().collection("donation").document() // boş document => ID üretir
+        idnumber: String,
+        name: String,
+        amount: Float,
+        bloodType: String,
+        onSuccess: () -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        val hospitalID = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        val firestore = FirebaseFirestore.getInstance()
+        val usersRef = firestore.collection("donor")
+        val donationRef = firestore.collection("donation").document()
         val donationID = donationRef.id
 
-            // 1. TC (idNumber) ile donor'ü bul
-            usersRef.whereEqualTo("idnumber", idnumber).get()
-                .addOnSuccessListener { querySnapshot ->
-                    if (!querySnapshot.isEmpty) {
-                        val donorDoc = querySnapshot.documents[0]
-                        val donorID = donorDoc.id // FirebaseAuth UID olarak ayarlanmış olmalı
+        usersRef.whereEqualTo("idnumber", idnumber).get()
+            .addOnSuccessListener { querySnapshot ->
+                if (!querySnapshot.isEmpty) {
+                    val donorDoc = querySnapshot.documents[0]
+                    val donorID = donorDoc.id
 
-                        // 2. Donation verisini oluştur ve kaydet
-                        val donationData =Donation(
-                           hospitalID=hospitalID,
-                            donationID = donationID,
-                            donorID = donorID,
-                            donationTime = Timestamp.now(),
-                            bloodType = bloodType,
-                            amount = amount
-                            // diğer alanları da buraya ekleyebilirsin
-                        )
+                    val donationData = Donation(
+                        hospitalID = hospitalID,
+                        donationID = donationID,
+                        donorID = donorID,
+                        donationTime = Timestamp.now(),
+                        bloodType = bloodType,
+                        amount = amount
+                    )
 
-                        firestore.collection("donation").add(donationData)
-                            .addOnSuccessListener {
-                                Log.d("donation", "Başarıyla kayıt yapıldı.")
-                            }
-                            .addOnFailureListener {
-                                Log.e("donation", "Kayıt sırasında hata: ${it.message}")
-                            }
+                    donationRef.set(donationData)
+                        .addOnSuccessListener { onSuccess() }
+                        .addOnFailureListener { onFailure("Kayıt sırasında hata: ${it.message}") }
 
-                    } else {
-                        Log.e("donation", "Bu TC ile eşleşen kullanıcı bulunamadı.")
-                    }
+                } else {
+                    onFailure("No user found matching this ID number")
                 }
-                .addOnFailureListener {
-                    Log.e("donation", "Sorgu başarısız: ${it.message}")
-                }
-        }
+            }
+            .addOnFailureListener {
+                onFailure("Sorgu başarısız: ${it.message}")
+            }
+    }
 
 
 

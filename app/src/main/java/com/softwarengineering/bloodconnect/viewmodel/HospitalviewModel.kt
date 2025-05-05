@@ -28,6 +28,8 @@ class HospitalviewModel@Inject constructor (var hospitalRepostory: HospitalRepos
     name:String,
     amount:Float,
     bloodType: String,
-    )=hospitalRepostory.donationform(idnumber,name,amount,bloodType)
+                      onSuccess: () -> Unit,
+                      onFailure: (String) -> Unit
+    )=hospitalRepostory.donationform(idnumber,name,amount,bloodType,onSuccess,onFailure)
 
 }
