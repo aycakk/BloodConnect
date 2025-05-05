@@ -2,13 +2,14 @@ package com.softwarengineering.bloodconnect.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.Timestamp
 import com.softwarengineering.bloodconnect.data.model.Request
 import com.softwarengineering.bloodconnect.data.repo.HospitalRepository
+
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-
 @HiltViewModel
-class HospitalviewModel@Inject constructor (var hospitalRepository: HospitalRepository): ViewModel()  {
+class HospitalviewModel@Inject constructor (var hospitalRepostory: HospitalRepository): ViewModel()  {
     var requestlist=MutableLiveData<List<Request>>()
     init {
         viewrequest()
@@ -20,8 +21,13 @@ class HospitalviewModel@Inject constructor (var hospitalRepository: HospitalRepo
         notes: String,
         onSuccess: () -> Unit,
         onFailure: (Exception) -> Unit
-    )=hospitalRepository.createRequest(patientName,bloodType,units,notes,onSuccess,onFailure)
+    )=hospitalRepostory.createRequest(patientName,bloodType,units,notes,onSuccess,onFailure)
     fun viewrequest(){
-        requestlist=hospitalRepository.viewrequest()}
+        requestlist=hospitalRepostory.viewrequest()}
+    fun donationform (idnumber:String,
+    name:String,
+    amount:Float,
+    bloodType: String,
+    )=hospitalRepostory.donationform(idnumber,name,amount,bloodType)
 
 }

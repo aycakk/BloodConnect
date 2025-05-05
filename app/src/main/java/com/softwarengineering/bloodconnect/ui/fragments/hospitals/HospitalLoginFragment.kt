@@ -34,9 +34,16 @@ class HospitalLoginFragment : Fragment() {
 
 
         binding.buttonLogin.setOnClickListener {
+            val email = binding.edittextemail.text.toString().trim()
+            val password = binding.editTextpassword.text.toString().trim()
+
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(context, "Please enter both email and password.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             viewModel.loginhospital(
-                binding.edittextemail.text.toString(),
-                binding.editTextpassword.text.toString(),
+                email,
+               password,
                 onSuccess = {
                     fetchHospitalInfoAndNavigate(it)
                 },

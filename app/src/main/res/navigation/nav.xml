@@ -98,6 +98,9 @@
         <action
             android:id="@+id/action_hospitalHomeFragment_to_manageBloodInventoryFragment"
             app:destination="@id/manageBloodInventory" />
+        <action
+            android:id="@+id/action_hospitalHomeFragment_to_donationFormFragment"
+            app:destination="@id/donationFormFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -132,5 +135,9 @@
         android:id="@+id/donationTrackingFragment"
         android:name="com.softwarengineering.bloodconnect.ui.fragments.DonationTrackingFragment"
         android:label="DonationTrackingFragment" />
+    <fragment
+        android:id="@+id/donationFormFragment"
+        android:name="com.softwarengineering.bloodconnect.ui.fragments.hospitals.DonationFormFragment"
+        android:label="DonationFormFragment" />
 
 </navigation>
