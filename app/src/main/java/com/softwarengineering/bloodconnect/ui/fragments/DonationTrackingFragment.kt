@@ -16,6 +16,7 @@ import com.softwarengineering.bloodconnect.R
 import com.softwarengineering.bloodconnect.data.model.DonationTrackingModel
 import com.softwarengineering.bloodconnect.databinding.FragmentDonationTrackingBinding
 import com.softwarengineering.bloodconnect.ui.adapter.DonationTrackingAdapter
+import com.softwarengineering.bloodconnect.utils.SessionManager
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -58,7 +59,6 @@ class DonationTrackingFragment : Fragment() {
         val auth = FirebaseAuth.getInstance()
         val currentUserId = auth.currentUser?.uid ?: return
 
-        // 💾 Girişte saklanan ad burada alınır
         val donorName = requireActivity()
             .getSharedPreferences("user_info", 0)
             .getString("donor_name", "Unknown") ?: "Unknown"
@@ -69,6 +69,8 @@ class DonationTrackingFragment : Fragment() {
             .orderBy("donationTime", Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener { documents ->
+                val donationFetchTasks = mutableListOf<com.google.android.gms.tasks.Task<*>>()
+
                 for (document in documents) {
                     val donorId = document.getString("donorID") ?: continue
 
@@ -82,32 +84,45 @@ class DonationTrackingFragment : Fragment() {
                         val status = document.getString("status") ?: ""
                         val hospitalId = document.getString("hospitalID") ?: ""
 
-                        val donation = DonationTrackingModel(
-                            donorName = donorName,
-                            donorIdNumber = donorId,
-                            donationId = donationId,
-                            donationDate = donationDate,
-                            donationStatus = status,
-                            bloodGroup = bloodType,
-                            hospitalName = hospitalId
-                        )
+                        // 🔥 Firestore'dan hospitalName'i al
+                        val task = db.collection("hospital").document(hospitalId).get()
+                            .addOnSuccessListener { hospitalDoc ->
+                                val hospitalName = hospitalDoc.getString("hospitalName") ?: "Unknown Hospital"
 
-                        donationList.add(donation)
+                                val donation = DonationTrackingModel(
+                                    donorName = donorName,
+                                    donorIdNumber = donorId,
+                                    donationId = donationId,
+                                    donationDate = donationDate,
+                                    donationStatus = status,
+                                    bloodGroup = bloodType,
+                                    hospitalName = hospitalName
+                                )
+
+                                donationList.add(donation)
+                            }
+
+                        donationFetchTasks.add(task)
                     }
                 }
-                if (donationList.isEmpty()) {
-                    Toast.makeText(requireContext(), "You don't have a donation record yet.", Toast.LENGTH_SHORT).show()
-                }
 
-                donationAdapter = DonationTrackingAdapter(donationList) { selectedDonation ->
-                    val bottomSheet = DonationDetailsBottomSheet(selectedDonation)
-                    bottomSheet.show(parentFragmentManager, bottomSheet.tag)
-                }
+                // 🔁 Tüm hospitalName'ler alındıktan sonra RecyclerView’i kur
+                com.google.android.gms.tasks.Tasks.whenAllComplete(donationFetchTasks)
+                    .addOnSuccessListener {
+                        if (donationList.isEmpty()) {
+                            Toast.makeText(requireContext(), "You don't have a donation record yet.", Toast.LENGTH_SHORT).show()
+                        }
 
-                binding.donationRecyclerView.apply {
-                    layoutManager = LinearLayoutManager(requireContext())
-                    adapter = donationAdapter
-                }
+                        donationAdapter = DonationTrackingAdapter(donationList) { selectedDonation ->
+                            val bottomSheet = DonationDetailsBottomSheet(selectedDonation)
+                            bottomSheet.show(parentFragmentManager, bottomSheet.tag)
+                        }
+
+                        binding.donationRecyclerView.apply {
+                            layoutManager = LinearLayoutManager(requireContext())
+                            adapter = donationAdapter
+                        }
+                    }
             }
             .addOnFailureListener {
                 Toast.makeText(requireContext(), "Failed to load donation records", Toast.LENGTH_SHORT).show()

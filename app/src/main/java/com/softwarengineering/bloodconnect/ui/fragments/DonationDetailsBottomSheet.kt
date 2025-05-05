@@ -23,7 +23,6 @@ class DonationDetailsBottomSheet(    private val donation: DonationTrackingModel
 
         binding.apply {
             textDonorName.text = donation.donorName
-            textDonorId.text = donation.donorIdNumber
             textDonationId.text = donation.donationId
             textDate.text = donation.donationDate
             textStatus.text = donation.donationStatus
