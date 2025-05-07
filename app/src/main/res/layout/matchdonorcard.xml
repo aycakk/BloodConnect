@@ -32,73 +32,74 @@
                     android:id="@+id/piroritytext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/roboto_medium"
                     android:text="#"
                     android:textColor="@color/red"
                     android:textSize="34sp"
-                    android:fontFamily="@font/roboto_medium"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginEnd="8dp"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
                     android:id="@+id/linearLayout"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:layout_marginTop="19dp"
+                    android:layout_marginBottom="13dp"
                     android:background="@color/textbackground"
+                    android:orientation="vertical"
                     android:padding="8dp"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/piroritytext"
-                    app:layout_constraintEnd_toStartOf="@+id/phone"
-                    android:layout_marginEnd="1dp">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
                         android:id="@+id/nametext"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="Donor Name"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/roboto_medium" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/bloodgrouptext"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="Blood Type"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/roboto_medium" />
+                        android:textSize="16sp" />
                 </LinearLayout>
-
-                <TextView
-                    android:id="@+id/phone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="+90 111 111 11 11"
-                    android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:fontFamily="@font/roboto_medium"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/linearLayout"
-                    app:layout_constraintEnd_toStartOf="@+id/scoretext"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginEnd="8dp"/>
 
                 <TextView
                     android:id="@+id/scoretext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
                     android:text="90"
                     android:textColor="@color/red"
                     android:textSize="24sp"
-                    android:fontFamily="@font/roboto_medium"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/revisedphone"
+                    android:layout_width="173dp"
+                    android:layout_height="36dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="+90 111 111 11 11"
+                    android:textColor="#050505"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/scoretext"
+                    app:layout_constraintHorizontal_bias="0.483"
+                    app:layout_constraintStart_toEndOf="@+id/linearLayout"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.571" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
