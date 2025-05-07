@@ -118,7 +118,7 @@ class ListmatchDonorFragment : Fragment() {
 
 
             
-            }
+            
         }
     }
 }
