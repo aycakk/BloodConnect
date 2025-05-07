@@ -117,8 +117,7 @@ class ListmatchDonorFragment : Fragment() {
             }
 
 
-            binding.buttonBack.setOnClickListener {
-                findNavController().popBackStack()
+            
             }
         }
     }
