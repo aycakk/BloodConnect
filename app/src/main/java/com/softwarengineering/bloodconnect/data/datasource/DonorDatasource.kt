@@ -23,6 +23,8 @@ class DonorDatasource(var collectiondonor: CollectionReference) {
         adress: String,
         gender:String,
         blood:String,
+        height:Float,
+        weight:Float,
 
         email: String,
         password: String,
@@ -54,8 +56,8 @@ class DonorDatasource(var collectiondonor: CollectionReference) {
                           illness ="" ,
                           phone = phonenumber,
                           gender = gender,
-                          height = 0F,
-                          weight = 0F,)
+                          height =height,
+                          weight = weight,)
 
                       db.collection("donor").document(uid).set(donor)
                           .addOnSuccessListener {

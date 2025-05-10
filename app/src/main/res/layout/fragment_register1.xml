@@ -248,7 +248,7 @@
                     android:text="Email*"
                     android:textSize="10sp"
                     app:layout_constraintStart_toStartOf="@+id/email"
-                    app:layout_constraintTop_toBottomOf="@+id/spinnerbloodtype" />
+                    app:layout_constraintTop_toBottomOf="@+id/edittextkg" />
 
                 <EditText
                     android:id="@+id/email"
@@ -318,6 +318,50 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/confirmpassword" />
+
+                <EditText
+                    android:id="@+id/edittextheight"
+                    android:layout_width="283dp"
+                    android:layout_height="30dp"
+                    android:background="@color/textbackground"
+                    android:ems="10"
+                    android:hint="cm"
+                    android:inputType="text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Heighttext" />
+
+                <TextView
+                    android:id="@+id/Heighttext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Height"
+                    app:layout_constraintStart_toStartOf="@+id/spinnerbloodtype"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerbloodtype" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="weight"
+                    app:layout_constraintStart_toStartOf="@+id/edittextheight"
+                    app:layout_constraintTop_toBottomOf="@+id/edittextheight" />
+
+                <EditText
+                    android:id="@+id/edittextkg"
+                    android:layout_width="283dp"
+                    android:layout_height="30dp"
+                    android:background="@color/textbackground"
+                    android:ems="10"
+                    android:hint="kg"
+                    android:inputType="text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

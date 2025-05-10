@@ -44,10 +44,16 @@ private lateinit var loginViewModel:LoginViewModel
             val password = binding.password.text.toString().trim()
             val confirmpassword = binding.confirmpassword.text.toString().trim()
 
+            val height=binding.edittextheight.text.toString().toFloat()
+            val weight=binding.edittextkg.text.toString().toFloat()
+            val heightext=binding.edittextheight.text.toString()
+            val weighttext=binding.edittextkg.text.toString()
+
+
             // Boş alan kontrolü
             if (name.isEmpty() || lastname.isEmpty() || idnumber.isEmpty() || phonenumber.isEmpty()
                 || birthdate.isEmpty() || adress.isEmpty() || gender.isEmpty() || blood.isEmpty()
-                || email.isEmpty() || password.isEmpty() || confirmpassword.isEmpty()
+                || email.isEmpty() || password.isEmpty() || confirmpassword.isEmpty() || heightext.isEmpty() ||weighttext.isEmpty()
             ) {
                 Toast.makeText(context, "Please fill all fields!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -71,6 +77,8 @@ private lateinit var loginViewModel:LoginViewModel
             viewModel.blood = blood
             viewModel.email = email
             viewModel.password = password
+            viewModel.height=height
+            viewModel.weight=weight
 
             // Kaydı başlat
             viewModel.registerDonor()
