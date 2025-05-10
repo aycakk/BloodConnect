@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.softwarengineering.bloodconnect.R
 import com.softwarengineering.bloodconnect.databinding.FragmentRegister1Binding
 import com.softwarengineering.bloodconnect.viewmodel.LoginViewModel
@@ -81,17 +82,16 @@ private lateinit var loginViewModel:LoginViewModel
             viewModel.weight=weight
 
             // Kaydı başlat
-            viewModel.registerDonor()
+            viewModel.registerDonor(onSuccess = {
+                Toast.makeText(context, "Kayıt başarılı! E-postanızı doğrulayın.", Toast.LENGTH_LONG).show()
+                findNavController().navigate(R.id.action_hospitalRegister1Fragment_to_welcomeFragment)
+            },
+                onFailure = {
+                    Toast.makeText(context, "Hata: ${it.message}", Toast.LENGTH_SHORT).show()
+                })
 
             // Kayıt başarılıysa login yap ve home'a git
-            loginViewModel.loginUser(viewModel.email, viewModel.password,
-                onSuccess = {
-                    Navigation.findNavController(it).navigate(R.id.action_register1Fragment_to_homeFragment)
-                },
-                onFailure = {
-                    Toast.makeText(context, "Login failed: ${it.message}", Toast.LENGTH_SHORT).show()
-                }
-            )
+
         }
         binding.buttonBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
