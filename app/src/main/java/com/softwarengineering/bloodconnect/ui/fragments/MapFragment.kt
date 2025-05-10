@@ -1,12 +1,26 @@
 package com.softwarengineering.bloodconnect.ui.fragments
 
+import android.Manifest
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Color
+import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.Geofence
 import com.google.android.gms.location.GeofencingClient
 import com.google.android.gms.location.GeofencingRequest
@@ -19,23 +33,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.Places
-import android.Manifest
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Color
-import android.net.ConnectivityManager
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.navigation.fragment.findNavController
 import com.softwarengineering.bloodconnect.R
-import com.softwarengineering.bloodconnect.data.model.Hospital
 import com.softwarengineering.bloodconnect.data.model.HospitalApiModel
 import com.softwarengineering.bloodconnect.databinding.FragmentMapBinding
 import com.softwarengineering.bloodconnect.service.GeofenceBroadcastReceiver
@@ -83,10 +81,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.red)
 
-
-
-
-
         //internet connection test
         if (!isConnected(requireContext())) {
             Toast.makeText(requireContext(), "No internet connection. Map features may not work properly.", Toast.LENGTH_LONG).show()
@@ -126,24 +120,26 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             showOnlyBloodCenters = it.getBoolean("showOnlyBloodCenters", false)
         }
     }
-/*
+
     private fun observeViewModel() {
-        //hastaneler
-        viewModel.hospitalResults.observe(viewLifecycleOwner) { hospitalList ->
-            Log.d("MapFragment", "Map'e eklenecek hastane sayısı: ${hospitalList.size}")
-            hospitalList.forEach { hospital ->
-                val latLng = LatLng(hospital.latitude, hospital.longitude)
-                val marker = mMap.addMarker(
-                    MarkerOptions()
-                        .position(latLng)
-                        .title(hospital.name)
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
-                )
-                marker?.tag = hospital  // 🔗 Tag olarak HospitalApiModel atanıyor
-                addGeofence(latLng, hospital.name)
+        // Eğer sadece kan merkezleri gösterilecekse, hastane kısmını atla
+        if (!showOnlyBloodCenters) {
+            viewModel.hospitalResults.observe(viewLifecycleOwner) { hospitalList ->
+                hospitalList.forEach { hospital ->
+                    val latLng = LatLng(hospital.latitude, hospital.longitude)
+                    val marker = mMap.addMarker(
+                        MarkerOptions()
+                            .position(latLng)
+                            .title(hospital.name)
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                    )
+                    marker?.tag = hospital
+                    addGeofence(latLng, hospital.name)
+                }
             }
         }
-        //kan merkezleri
+
+        // Kan merkezleri her zaman gösterilsin
         viewModel.bloodCenters.observe(viewLifecycleOwner) { centers ->
             centers.forEach { center ->
                 val latLng = LatLng(center.latitude, center.longitude)
@@ -159,64 +155,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-
- */
-private fun observeViewModel() {
-    // Eğer sadece kan merkezleri gösterilecekse, hastane kısmını atla
-    if (!showOnlyBloodCenters) {
-        viewModel.hospitalResults.observe(viewLifecycleOwner) { hospitalList ->
-            hospitalList.forEach { hospital ->
-                val latLng = LatLng(hospital.latitude, hospital.longitude)
-                val marker = mMap.addMarker(
-                    MarkerOptions()
-                        .position(latLng)
-                        .title(hospital.name)
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
-                )
-                marker?.tag = hospital
-                addGeofence(latLng, hospital.name)
-            }
-        }
-    }
-
-    // Kan merkezleri her zaman gösterilsin
-    viewModel.bloodCenters.observe(viewLifecycleOwner) { centers ->
-        centers.forEach { center ->
-            val latLng = LatLng(center.latitude, center.longitude)
-            val marker = mMap.addMarker(
-                MarkerOptions()
-                    .position(latLng)
-                    .title(center.name)
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
-            )
-            marker?.tag = center
-            addGeofence(latLng, center.name)
-        }
-    }
-}
-
-
-
-
-    /*
-        @RequiresApi(Build.VERSION_CODES.O)
-        private fun simulateEmergencyRequest() {
-            val hospitalName = "Florence Nightingale Hospital"
-            val hospitalLocation = LatLng(41.0080, 28.9790)
-            val bloodType = "O-"
-
-            val matched = viewModel.findEligibleDonors(bloodType, hospitalLocation)
-
-            if (matched.isEmpty()) {
-                Toast.makeText(requireContext(), "Uygun donör bulunamadı", Toast.LENGTH_SHORT).show()
-            } else {
-                matched.forEach {
-                    viewModel.sendNotification(requireContext(), it.name, hospitalName)
-                }
-            }
-        }
-
-     */
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap

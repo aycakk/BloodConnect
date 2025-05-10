@@ -19,6 +19,8 @@ import android.widget.AdapterView
 import com.google.firebase.auth.FirebaseAuth
 import com.softwarengineering.bloodconnect.data.model.Hospital
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.GeoPoint
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,6 +51,13 @@ class ListmatchDonorFragment : Fragment() {
 
             override fun onNothingSelected(parent: AdapterView<*>) {}
         }
+
+        binding.buttonBack.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+        requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.red)
+
+
 
 
         return binding.root

@@ -49,7 +49,7 @@ class HospitalHomeFragment : Fragment() {
                 findNavController().navigate(R.id.action_hospitalHomeFragment_to_mapFragment, bundle)
 
             }
-            imageButtonListdonor.setOnClickListener {
+            donorlist.setOnClickListener {
                 Navigation.findNavController(it).navigate(R.id.action_hospitalHomeFragment_to_listmatchDonorFragment)
             }
             createBloodRequest.setOnClickListener {
@@ -70,10 +70,9 @@ class HospitalHomeFragment : Fragment() {
         }
         // Resim listesi
         val imageList = listOf(
-            R.drawable.hhospital,
+            R.drawable.welcome,
             R.drawable.blood_donation_benefits,
             R.drawable.world_blood_donor_day,
-            //R.drawable.donate_blood
         )
         val adapter = ViewPagerAdapter(imageList)
         binding.viewPager.adapter = adapter

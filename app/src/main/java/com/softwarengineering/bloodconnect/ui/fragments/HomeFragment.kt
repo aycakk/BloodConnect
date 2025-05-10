@@ -65,8 +65,10 @@ class HomeFragment : Fragment() {
         // Resim listesi
         val imageList = listOf(
             R.drawable.hhospital,
-            R.drawable.blood_donation_benefits,
             R.drawable.world_blood_donor_day,
+            R.drawable.donate_blood,
+
+
             //R.drawable.donate_blood
         )
 
