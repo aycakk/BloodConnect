@@ -39,53 +39,41 @@ class LoginFragment : Fragment() {
                 Toast.makeText(context, "Please enter both email and password.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
             loginViewModel.loginUser(
-                email,
+
+
+               email,
                 password,
                 onSuccess = {
-                    val user = FirebaseAuth.getInstance().currentUser
+                    val uid = FirebaseAuth.getInstance().currentUser?.uid
 
-                    user?.reload()?.addOnSuccessListener {
-                        if (user.isEmailVerified) {
-                            val uid = user.uid
+                    if (uid != null) {
+                        // 🔎 Firestore'dan donor adını çek
+                        FirebaseFirestore.getInstance().collection("donor")
+                            .document(uid)
+                            .get()
+                            .addOnSuccessListener { document ->
+                                val donorName = document.getString("name") ?: "Unknown"
+                                Log.d("Login", "Donor name: $donorName")
 
-                            FirebaseFirestore.getInstance().collection("donor")
-                                .document(uid)
-                                .get()
-                                .addOnSuccessListener { document ->
-                                    val donorName = document.getString("name") ?: "Unknown"
-                                    Log.d("Login", "Donor name: $donorName")
+                                // SharedPreferences'e yaz
+                                val sharedPref = requireActivity().getSharedPreferences("user_info", 0)
+                                sharedPref.edit().putString("donor_name", donorName).apply()
 
-                                    val sharedPref = requireActivity().getSharedPreferences("user_info", 0)
-                                    sharedPref.edit().putString("donor_name", donorName).apply()
-
-                                    Navigation.findNavController(binding.root)
-                                        .navigate(R.id.action_loginFragment_to_homeFragment)
-                                }
-                                .addOnFailureListener {
-                                    Toast.makeText(
-                                        requireContext(),
-                                        "Failed to fetch donor name.",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
-                        } else {
-                            FirebaseAuth.getInstance().signOut()
-                            Toast.makeText(
-                                requireContext(),
-                                "Lütfen e-postanızı doğrulayın ve tekrar giriş yapın.",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
+                                // HomeFragment'a yönlendir
+                                Navigation.findNavController(binding.root)
+                                    .navigate(R.id.action_loginFragment_to_homeFragment)
+                            }
+                            .addOnFailureListener {
+                                Toast.makeText(requireContext(), "Failed to fetch donor name.", Toast.LENGTH_SHORT).show()
+                            }
+                    } else {
+                        Toast.makeText(requireContext(), "UID is null", Toast.LENGTH_SHORT).show()
                     }
                 },
-                onFailure = {
-                    Toast.makeText(context, "Login failed: ${it.message}", Toast.LENGTH_SHORT).show()
-                }
-            )
-        }
+                onFailure = { Toast.makeText(context, "Login failed: ${it.message}", Toast.LENGTH_SHORT).show()})
 
+        }
         //Geri butonu
         binding.buttonBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
