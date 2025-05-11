@@ -105,7 +105,7 @@ class CreateBloodRequestFragment : Fragment() {
 
         db.collection("match")
             .whereEqualTo("hospitalID", hospitalId)
-            .whereGreaterThanOrEqualTo("matchScore", 70)
+            .whereGreaterThanOrEqualTo("matchScore", 60)
             .get()
             .addOnSuccessListener { documents ->
                 if (documents.isEmpty) {
