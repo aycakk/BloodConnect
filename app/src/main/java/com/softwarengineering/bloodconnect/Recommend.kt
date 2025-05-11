@@ -9,7 +9,7 @@ import com.google.firebase.firestore.GeoPoint
 
 class Recommend() {
     fun scoreDonor(context: Context, donor: Donor, recipientBloodType: String, hospitalAddress: GeoPoint?, donations: List<Donation> ): Float {
-        if (donor.birthDate == null || donor.height == 0f || donor.weight == 0f || donor.bloodType == "" || donor.location == null || hospitalAddress == null) {
+        if (donor.birthDate == null || donor.height == 0f || donor.weight == 0f || donor.bloodType == "" || hospitalAddress == null) {
             return 0f
         }
 
@@ -61,13 +61,19 @@ class Recommend() {
             monthsSinceFirstDonation.toFloat()
         )
 
-        val results = FloatArray(1)
-        Location.distanceBetween(
-            hospitalAddress.latitude, hospitalAddress.longitude,
-            donor.location.latitude, donor.location.longitude,
-            results
-        )
-        val donorDistance = results[0]
+        var donorDistance = 0f
+        if (donor.location == null ) {
+            donorDistance = 0f
+        } else {
+            val results = FloatArray(1)
+            Location.distanceBetween(
+                hospitalAddress.latitude, hospitalAddress.longitude,
+                donor.location.latitude, donor.location.longitude,
+                results
+            )
+            donorDistance = results[0]
+        }
+
 
         val bloodCompatibility = mapOf(
             "O-" to listOf("O-"),
