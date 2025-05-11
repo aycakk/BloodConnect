@@ -58,16 +58,17 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp">
+                android:padding="4dp">
 
                 <!-- Name -->
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="10dp"
                     android:text="Name*"
-                    android:textSize="10sp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@+id/name"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -90,7 +91,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Last name*"
-                    android:textSize="10sp"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@+id/name"
                     app:layout_constraintTop_toBottomOf="@id/name" />
 
@@ -111,7 +113,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Date of Birth*"
-                    android:textSize="10sp"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@+id/editText_lastname"
                     app:layout_constraintTop_toBottomOf="@id/editText_lastname" />
 
@@ -120,7 +123,7 @@
                     android:layout_width="283dp"
                     android:layout_height="30dp"
                     android:background="@color/textbackground"
-                    android:hint="Date"
+                    android:hint="DD//MM//YYYY"
                     android:inputType="date"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -134,7 +137,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="ID Number*"
-                    android:textSize="10sp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@+id/birthdate"
                     app:layout_constraintTop_toBottomOf="@id/birthdate" />
 
@@ -156,7 +160,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Phone Number*"
-                    android:textSize="10sp"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@+id/idnumber"
                     app:layout_constraintTop_toBottomOf="@id/idnumber" />
 
@@ -178,7 +183,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Address*"
-                    android:textSize="10sp"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@+id/phonenumber"
                     app:layout_constraintTop_toBottomOf="@id/phonenumber" />
 
@@ -200,7 +206,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Gender*"
-                    android:textSize="10sp"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@+id/editTextadress"
                     app:layout_constraintTop_toBottomOf="@id/editTextadress" />
 
@@ -222,7 +229,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Blood Group*"
-                    android:textSize="10sp"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@+id/spinnergende"
                     app:layout_constraintTop_toBottomOf="@id/spinnergende" />
 
@@ -237,16 +245,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/textView11" />
 
-                <!-- Illness -->
-
-                <!-- Continue Button -->
                 <TextView
                     android:id="@+id/textViewemailnew"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Email*"
-                    android:textSize="10sp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@+id/email"
                     app:layout_constraintTop_toBottomOf="@+id/edittextkg" />
 
@@ -268,7 +274,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Password*"
-                    android:textSize="10sp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@+id/email"
                     app:layout_constraintTop_toBottomOf="@id/email" />
 
@@ -290,7 +297,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Confirm Password*"
-                    android:textSize="10sp"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@+id/password"
                     app:layout_constraintTop_toBottomOf="@id/password" />
 
@@ -338,6 +346,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Height"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@+id/spinnerbloodtype"
                     app:layout_constraintTop_toBottomOf="@+id/spinnerbloodtype" />
 
@@ -347,6 +357,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="weight"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@+id/edittextheight"
                     app:layout_constraintTop_toBottomOf="@+id/edittextheight" />
 

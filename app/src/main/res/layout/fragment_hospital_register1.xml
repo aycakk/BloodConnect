@@ -57,7 +57,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="24dp">
+                android:padding="8dp">
 
                 <!-- Buraya form başlıyor -->
 
@@ -66,9 +66,10 @@
                     android:id="@+id/text_hospital_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:text="Hospital Name*"
-                    android:textSize="10sp"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@+id/hospitalname"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -92,7 +93,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Authorized Person Name-Surname*"
-                    android:textSize="10sp"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@+id/authname"
                     app:layout_constraintTop_toBottomOf="@id/hospitalname" />
 
@@ -115,7 +117,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Phone Number*"
-                    android:textSize="10sp"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@+id/phone"
                     app:layout_constraintTop_toBottomOf="@id/authname" />
 
@@ -139,7 +142,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Email*"
-                    android:textSize="10sp"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@+id/email"
                     app:layout_constraintTop_toBottomOf="@id/phone" />
 
@@ -163,7 +167,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Password*"
-                    android:textSize="10sp"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@+id/password"
                     app:layout_constraintTop_toBottomOf="@id/email" />
 
@@ -188,7 +193,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Confirm Password*"
-                    android:textSize="10sp"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@+id/confirmpassword"
                     app:layout_constraintTop_toBottomOf="@id/password" />
 
