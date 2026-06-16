@@ -13,3 +13,7 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Firebase config — gizli, repoya girmemeli
+google-services.json
+app/google-services.json
