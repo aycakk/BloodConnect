@@ -22,6 +22,22 @@ BloodConnect is an Android application designed to improve communication between
 - RecyclerView
 - Navigation Component
 
+## Setup
+
+This project uses Firebase. For security reasons, the `google-services.json`
+configuration file is **not** included in the repository.
+
+To build and run the app:
+
+1. Clone the repository.
+2. Create (or open) the Firebase project for this app and register an Android
+   app with the package name `com.softwarengineering.bloodconnect`.
+3. Download the generated `google-services.json` from the Firebase console.
+4. Place it in the `app/` directory (`app/google-services.json`).
+5. Build and run the project in Android Studio.
+
+> `google-services.json` is listed in `.gitignore` and must never be committed.
+
 ## Purpose
 
 This project was developed to support faster and more organized communication in blood donation processes by combining secure mobile access, real-time updates, and practical coordination features.
